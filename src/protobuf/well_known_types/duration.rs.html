@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.8.0/src/well_known_types/duration.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>duration.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.17.0/src/well_known_types/duration.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>duration.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -321,35 +321,16 @@
 <span id="321">321</span>
 <span id="322">322</span>
 <span id="323">323</span>
-<span id="324">324</span>
-<span id="325">325</span>
-<span id="326">326</span>
-<span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
-<span id="330">330</span>
-<span id="331">331</span>
-<span id="332">332</span>
-<span id="333">333</span>
-<span id="334">334</span>
-<span id="335">335</span>
-<span id="336">336</span>
-<span id="337">337</span>
-<span id="338">338</span>
-<span id="339">339</span>
-<span id="340">340</span>
-<span id="341">341</span>
-<span id="342">342</span>
-<span id="343">343</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">// This file is generated by rust-protobuf 2.8.0-pre. Do not edit</span>
+<span class="comment">// This file is generated by rust-protobuf 2.17.0-pre. Do not edit</span>
 <span class="comment">// @generated</span>
 
-<span class="comment">// https://github.com/Manishearth/rust-clippy/issues/702</span>
+<span class="comment">// https://github.com/rust-lang/rust-clippy/issues/702</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unknown_lints</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">all</span>)]</span>
 
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt_skip</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_attributes</span>)]</span>
+<span class="attribute">#![<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">box_pointers</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
@@ -358,13 +339,9 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_upper_case_globals</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">trivial_casts</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_results</span>)]</span>
 <span class="doccomment">//! Generated file from `google/protobuf/duration.proto`</span>
-
-<span class="kw">use</span> <span class="ident">protobuf</span>::<span class="ident">Message</span> <span class="kw">as</span> <span class="ident">Message_imported_for_functions</span>;
-<span class="kw">use</span> <span class="ident">protobuf</span>::<span class="ident">ProtobufEnum</span> <span class="kw">as</span> <span class="ident">ProtobufEnum_imported_for_functions</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
@@ -374,14 +351,14 @@
     <span class="kw">pub</span> <span class="ident">nanos</span>: <span class="ident">i32</span>,
     <span class="comment">// special fields</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span> <span class="ident">unknown_fields</span>: ::<span class="ident">protobuf</span>::<span class="ident">UnknownFields</span>,
+    <span class="kw">pub</span> <span class="ident">unknown_fields</span>: <span class="kw">crate</span>::<span class="ident">UnknownFields</span>,
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span> <span class="ident">cached_size</span>: ::<span class="ident">protobuf</span>::<span class="ident">CachedSize</span>,
+    <span class="kw">pub</span> <span class="ident">cached_size</span>: <span class="kw">crate</span>::<span class="ident">CachedSize</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">default</span>::<span class="ident">Default</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Duration</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Duration</span> {
-        <span class="op">&lt;</span><span class="ident">Duration</span> <span class="kw">as</span> ::<span class="ident">protobuf</span>::<span class="ident">Message</span><span class="op">&gt;</span>::<span class="ident">default_instance</span>()
+        <span class="op">&lt;</span><span class="ident">Duration</span> <span class="kw">as</span> <span class="kw">crate</span>::<span class="ident">Message</span><span class="op">&gt;</span>::<span class="ident">default_instance</span>()
     }
 }
 
@@ -421,31 +398,31 @@
     }
 }
 
-<span class="kw">impl</span> ::<span class="ident">protobuf</span>::<span class="ident">Message</span> <span class="kw">for</span> <span class="ident">Duration</span> {
+<span class="kw">impl</span> <span class="kw">crate</span>::<span class="ident">Message</span> <span class="kw">for</span> <span class="ident">Duration</span> {
     <span class="kw">fn</span> <span class="ident">is_initialized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="bool-val">true</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">merge_from</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">is</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> ::<span class="ident">protobuf</span>::<span class="ident">CodedInputStream</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">protobuf</span>::<span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">merge_from</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">is</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">crate</span>::<span class="ident">CodedInputStream</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">while</span> <span class="op">!</span><span class="ident">is</span>.<span class="ident">eof</span>()<span class="question-mark">?</span> {
             <span class="kw">let</span> (<span class="ident">field_number</span>, <span class="ident">wire_type</span>) <span class="op">=</span> <span class="ident">is</span>.<span class="ident">read_tag_unpack</span>()<span class="question-mark">?</span>;
             <span class="kw">match</span> <span class="ident">field_number</span> {
                 <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">if</span> <span class="ident">wire_type</span> <span class="op">!</span><span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span> {
-                        <span class="kw">return</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span>::<span class="prelude-val">Err</span>(::<span class="ident">protobuf</span>::<span class="ident">rt</span>::<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>));
+                    <span class="kw">if</span> <span class="ident">wire_type</span> <span class="op">!</span><span class="op">=</span> <span class="kw">crate</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span> {
+                        <span class="kw">return</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span>::<span class="prelude-val">Err</span>(<span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>));
                     }
                     <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">is</span>.<span class="ident">read_int64</span>()<span class="question-mark">?</span>;
                     <span class="self">self</span>.<span class="ident">seconds</span> <span class="op">=</span> <span class="ident">tmp</span>;
                 },
                 <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">if</span> <span class="ident">wire_type</span> <span class="op">!</span><span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span> {
-                        <span class="kw">return</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span>::<span class="prelude-val">Err</span>(::<span class="ident">protobuf</span>::<span class="ident">rt</span>::<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>));
+                    <span class="kw">if</span> <span class="ident">wire_type</span> <span class="op">!</span><span class="op">=</span> <span class="kw">crate</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span> {
+                        <span class="kw">return</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span>::<span class="prelude-val">Err</span>(<span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>));
                     }
                     <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">is</span>.<span class="ident">read_int32</span>()<span class="question-mark">?</span>;
                     <span class="self">self</span>.<span class="ident">nanos</span> <span class="op">=</span> <span class="ident">tmp</span>;
                 },
                 <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    ::<span class="ident">protobuf</span>::<span class="ident">rt</span>::<span class="ident">read_unknown_or_skip_group</span>(<span class="ident">field_number</span>, <span class="ident">wire_type</span>, <span class="ident">is</span>, <span class="self">self</span>.<span class="ident">mut_unknown_fields</span>())<span class="question-mark">?</span>;
+                    <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">read_unknown_or_skip_group</span>(<span class="ident">field_number</span>, <span class="ident">wire_type</span>, <span class="ident">is</span>, <span class="self">self</span>.<span class="ident">mut_unknown_fields</span>())<span class="question-mark">?</span>;
                 },
             };
         }
@@ -457,17 +434,17 @@
     <span class="kw">fn</span> <span class="ident">compute_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">my_size</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">seconds</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="ident">my_size</span> <span class="op">+</span><span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">rt</span>::<span class="ident">value_size</span>(<span class="number">1</span>, <span class="self">self</span>.<span class="ident">seconds</span>, ::<span class="ident">protobuf</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span>);
+            <span class="ident">my_size</span> <span class="op">+</span><span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">value_size</span>(<span class="number">1</span>, <span class="self">self</span>.<span class="ident">seconds</span>, <span class="kw">crate</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span>);
         }
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">nanos</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="ident">my_size</span> <span class="op">+</span><span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">rt</span>::<span class="ident">value_size</span>(<span class="number">2</span>, <span class="self">self</span>.<span class="ident">nanos</span>, ::<span class="ident">protobuf</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span>);
+            <span class="ident">my_size</span> <span class="op">+</span><span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">value_size</span>(<span class="number">2</span>, <span class="self">self</span>.<span class="ident">nanos</span>, <span class="kw">crate</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span>);
         }
-        <span class="ident">my_size</span> <span class="op">+</span><span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">rt</span>::<span class="ident">unknown_fields_size</span>(<span class="self">self</span>.<span class="ident">get_unknown_fields</span>());
+        <span class="ident">my_size</span> <span class="op">+</span><span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">unknown_fields_size</span>(<span class="self">self</span>.<span class="ident">get_unknown_fields</span>());
         <span class="self">self</span>.<span class="ident">cached_size</span>.<span class="ident">set</span>(<span class="ident">my_size</span>);
         <span class="ident">my_size</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">write_to_with_cached_sizes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">os</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> ::<span class="ident">protobuf</span>::<span class="ident">CodedOutputStream</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">protobuf</span>::<span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">write_to_with_cached_sizes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">os</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">crate</span>::<span class="ident">CodedOutputStream</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">seconds</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="ident">os</span>.<span class="ident">write_int64</span>(<span class="number">1</span>, <span class="self">self</span>.<span class="ident">seconds</span>)<span class="question-mark">?</span>;
         }
@@ -482,25 +459,25 @@
         <span class="self">self</span>.<span class="ident">cached_size</span>.<span class="ident">get</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">get_unknown_fields</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>::<span class="ident">protobuf</span>::<span class="ident">UnknownFields</span> {
+    <span class="kw">fn</span> <span class="ident">get_unknown_fields</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">UnknownFields</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">mut_unknown_fields</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> ::<span class="ident">protobuf</span>::<span class="ident">UnknownFields</span> {
+    <span class="kw">fn</span> <span class="ident">mut_unknown_fields</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">crate</span>::<span class="ident">UnknownFields</span> {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">descriptor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span> {
+    <span class="kw">fn</span> <span class="ident">descriptor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span> {
         <span class="self">Self</span>::<span class="ident">descriptor_static</span>()
     }
 
@@ -508,45 +485,35 @@
         <span class="ident">Duration</span>::<span class="ident">new</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">descriptor_static</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span> {
-        <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">descriptor</span>: ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">Lazy</span><span class="op">&lt;</span>::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span><span class="op">&gt;</span> <span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">Lazy</span> {
-            <span class="ident">lock</span>: ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">ONCE_INIT</span>,
-            <span class="ident">ptr</span>: <span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span>,
-        };
-        <span class="kw">unsafe</span> {
-            <span class="ident">descriptor</span>.<span class="ident">get</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fields</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span>::<span class="ident">new</span>();
-                <span class="ident">fields</span>.<span class="ident">push</span>(::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">accessor</span>::<span class="ident">make_simple_field_accessor</span>::<span class="op">&lt;</span><span class="kw">_</span>, ::<span class="ident">protobuf</span>::<span class="ident">types</span>::<span class="ident">ProtobufTypeInt64</span><span class="op">&gt;</span>(
-                    <span class="string">&quot;seconds&quot;</span>,
-                    <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="ident">m</span>.<span class="ident">seconds</span> },
-                    <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">m</span>.<span class="ident">seconds</span> },
-                ));
-                <span class="ident">fields</span>.<span class="ident">push</span>(::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">accessor</span>::<span class="ident">make_simple_field_accessor</span>::<span class="op">&lt;</span><span class="kw">_</span>, ::<span class="ident">protobuf</span>::<span class="ident">types</span>::<span class="ident">ProtobufTypeInt32</span><span class="op">&gt;</span>(
-                    <span class="string">&quot;nanos&quot;</span>,
-                    <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="ident">m</span>.<span class="ident">nanos</span> },
-                    <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">m</span>.<span class="ident">nanos</span> },
-                ));
-                ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span>::<span class="ident">new</span>::<span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span>(
-                    <span class="string">&quot;Duration&quot;</span>,
-                    <span class="ident">fields</span>,
-                    <span class="ident">file_descriptor_proto</span>()
-                )
-            })
-        }
+    <span class="kw">fn</span> <span class="ident">descriptor_static</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span> {
+        <span class="kw">static</span> <span class="ident">descriptor</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
+        <span class="ident">descriptor</span>.<span class="ident">get</span>(<span class="op">|</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fields</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span>::<span class="ident">new</span>();
+            <span class="ident">fields</span>.<span class="ident">push</span>(<span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">accessor</span>::<span class="ident">make_simple_field_accessor</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">crate</span>::<span class="ident">types</span>::<span class="ident">ProtobufTypeInt64</span><span class="op">&gt;</span>(
+                <span class="string">&quot;seconds&quot;</span>,
+                <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="ident">m</span>.<span class="ident">seconds</span> },
+                <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">m</span>.<span class="ident">seconds</span> },
+            ));
+            <span class="ident">fields</span>.<span class="ident">push</span>(<span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">accessor</span>::<span class="ident">make_simple_field_accessor</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">crate</span>::<span class="ident">types</span>::<span class="ident">ProtobufTypeInt32</span><span class="op">&gt;</span>(
+                <span class="string">&quot;nanos&quot;</span>,
+                <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="ident">m</span>.<span class="ident">nanos</span> },
+                <span class="op">|</span><span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Duration</span><span class="op">|</span> { <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">m</span>.<span class="ident">nanos</span> },
+            ));
+            <span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">MessageDescriptor</span>::<span class="ident">new_pb_name</span>::<span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span>(
+                <span class="string">&quot;Duration&quot;</span>,
+                <span class="ident">fields</span>,
+                <span class="ident">file_descriptor_proto</span>()
+            )
+        })
     }
 
     <span class="kw">fn</span> <span class="ident">default_instance</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Duration</span> {
-        <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">instance</span>: ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span> <span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">Lazy</span> {
-            <span class="ident">lock</span>: ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">ONCE_INIT</span>,
-            <span class="ident">ptr</span>: <span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Duration</span>,
-        };
-        <span class="kw">unsafe</span> {
-            <span class="ident">instance</span>.<span class="ident">get</span>(<span class="ident">Duration</span>::<span class="ident">new</span>)
-        }
+        <span class="kw">static</span> <span class="ident">instance</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
+        <span class="ident">instance</span>.<span class="ident">get</span>(<span class="ident">Duration</span>::<span class="ident">new</span>)
     }
 }
 
-<span class="kw">impl</span> ::<span class="ident">protobuf</span>::<span class="ident">Clear</span> <span class="kw">for</span> <span class="ident">Duration</span> {
+<span class="kw">impl</span> <span class="kw">crate</span>::<span class="ident">Clear</span> <span class="kw">for</span> <span class="ident">Duration</span> {
     <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">seconds</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">nanos</span> <span class="op">=</span> <span class="number">0</span>;
@@ -555,14 +522,14 @@
 }
 
 <span class="kw">impl</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Duration</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-        ::<span class="ident">protobuf</span>::<span class="ident">text_format</span>::<span class="ident">fmt</span>(<span class="self">self</span>, <span class="ident">f</span>)
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">crate</span>::<span class="ident">text_format</span>::<span class="ident">fmt</span>(<span class="self">self</span>, <span class="ident">f</span>)
     }
 }
 
-<span class="kw">impl</span> ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">ProtobufValue</span> <span class="kw">for</span> <span class="ident">Duration</span> {
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">ProtobufValueRef</span> {
-        ::<span class="ident">protobuf</span>::<span class="ident">reflect</span>::<span class="ident">ProtobufValueRef</span>::<span class="ident">Message</span>(<span class="self">self</span>)
+<span class="kw">impl</span> <span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">ProtobufValue</span> <span class="kw">for</span> <span class="ident">Duration</span> {
+    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">ReflectValueRef</span> {
+        <span class="kw">crate</span>::<span class="ident">reflect</span>::<span class="ident">ReflectValueRef</span>::<span class="ident">Message</span>(<span class="self">self</span>)
     }
 }
 
@@ -571,7 +538,7 @@
     tion\x12\x18\n\x07seconds\x18\x01\x20\x01(\x03R\x07seconds\x12\x14\n\x05\
     nanos\x18\x02\x20\x01(\x05R\x05nanosB|\n\x13com.google.protobufB\rDurati\
     onProtoP\x01Z*github.com/golang/protobuf/ptypes/duration\xf8\x01\x01\xa2\
-    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xff\x1e\n\x06\x12\
+    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xe1\x1e\n\x06\x12\
     \x04\x1e\0g\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Protoc\
     ol\x20Buffers\x20-\x20Google&#39;s\x20data\x20interchange\x20format\n\x20Cop\
     yright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20\
@@ -606,84 +573,77 @@
     LUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\x20ANY\x20WAY\
     \x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\x20EVEN\x20IF\
     \x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20DAMAGE.\n\n\x08\
-    \n\x01\x02\x12\x03\x20\x08\x17\n\x08\n\x01\x08\x12\x03\&quot;\0;\n\t\n\x02\
-    \x08%\x12\x03\&quot;\0;\n\x08\n\x01\x08\x12\x03#\0\x1f\n\t\n\x02\x08\x1f\x12\
-    \x03#\0\x1f\n\x08\n\x01\x08\x12\x03$\0A\n\t\n\x02\x08\x0b\x12\x03$\0A\n\
-    \x08\n\x01\x08\x12\x03%\0,\n\t\n\x02\x08\x01\x12\x03%\0,\n\x08\n\x01\x08\
-    \x12\x03&amp;\0.\n\t\n\x02\x08\x08\x12\x03&amp;\0.\n\x08\n\x01\x08\x12\x03&#39;\0\&quot;\
-    \n\t\n\x02\x08\n\x12\x03&#39;\0\&quot;\n\x08\n\x01\x08\x12\x03(\0!\n\t\n\x02\x08$\
-    \x12\x03(\0!\n\x92\x0c\n\x02\x04\0\x12\x04Z\0g\x01\x1a\x85\x0c\x20A\x20D\
-    uration\x20represents\x20a\x20signed,\x20fixed-length\x20span\x20of\x20t\
-    ime\x20represented\n\x20as\x20a\x20count\x20of\x20seconds\x20and\x20frac\
-    tions\x20of\x20seconds\x20at\x20nanosecond\n\x20resolution.\x20It\x20is\
-    \x20independent\x20of\x20any\x20calendar\x20and\x20concepts\x20like\x20\
-    \&quot;day\&quot;\n\x20or\x20\&quot;month\&quot;.\x20It\x20is\x20related\x20to\x20Timestamp\
-    \x20in\x20that\x20the\x20difference\x20between\n\x20two\x20Timestamp\x20\
-    values\x20is\x20a\x20Duration\x20and\x20it\x20can\x20be\x20added\x20or\
-    \x20subtracted\n\x20from\x20a\x20Timestamp.\x20Range\x20is\x20approximat\
-    ely\x20+-10,000\x20years.\n\n\x20Example\x201:\x20Compute\x20Duration\
-    \x20from\x20two\x20Timestamps\x20in\x20pseudo\x20code.\n\n\x20\x20\x20\
-    \x20\x20Timestamp\x20start\x20=\x20...;\n\x20\x20\x20\x20\x20Timestamp\
-    \x20end\x20=\x20...;\n\x20\x20\x20\x20\x20Duration\x20duration\x20=\x20.\
-    ..;\n\n\x20\x20\x20\x20\x20duration.seconds\x20=\x20end.seconds\x20-\x20\
-    start.seconds;\n\x20\x20\x20\x20\x20duration.nanos\x20=\x20end.nanos\x20\
-    -\x20start.nanos;\n\n\x20\x20\x20\x20\x20if\x20(duration.seconds\x20&lt;\
-    \x200\x20&amp;&amp;\x20duration.nanos\x20&gt;\x200)\x20{\n\x20\x20\x20\x20\x20\x20\
-    \x20duration.seconds\x20+=\x201;\n\x20\x20\x20\x20\x20\x20\x20duration.n\
-    anos\x20-=\x201000000000;\n\x20\x20\x20\x20\x20}\x20else\x20if\x20(durat\
-    ions.seconds\x20&gt;\x200\x20&amp;&amp;\x20duration.nanos\x20&lt;\x200)\x20{\n\x20\x20\
-    \x20\x20\x20\x20\x20duration.seconds\x20-=\x201;\n\x20\x20\x20\x20\x20\
-    \x20\x20duration.nanos\x20+=\x201000000000;\n\x20\x20\x20\x20\x20}\n\n\
-    \x20Example\x202:\x20Compute\x20Timestamp\x20from\x20Timestamp\x20+\x20D\
-    uration\x20in\x20pseudo\x20code.\n\n\x20\x20\x20\x20\x20Timestamp\x20sta\
-    rt\x20=\x20...;\n\x20\x20\x20\x20\x20Duration\x20duration\x20=\x20...;\n\
-    \x20\x20\x20\x20\x20Timestamp\x20end\x20=\x20...;\n\n\x20\x20\x20\x20\
-    \x20end.seconds\x20=\x20start.seconds\x20+\x20duration.seconds;\n\x20\
-    \x20\x20\x20\x20end.nanos\x20=\x20start.nanos\x20+\x20duration.nanos;\n\
-    \n\x20\x20\x20\x20\x20if\x20(end.nanos\x20&lt;\x200)\x20{\n\x20\x20\x20\x20\
-    \x20\x20\x20end.seconds\x20-=\x201;\n\x20\x20\x20\x20\x20\x20\x20end.nan\
-    os\x20+=\x201000000000;\n\x20\x20\x20\x20\x20}\x20else\x20if\x20(end.nan\
-    os\x20&gt;=\x201000000000)\x20{\n\x20\x20\x20\x20\x20\x20\x20end.seconds\
-    \x20+=\x201;\n\x20\x20\x20\x20\x20\x20\x20end.nanos\x20-=\x201000000000;\
-    \n\x20\x20\x20\x20\x20}\n\n\x20Example\x203:\x20Compute\x20Duration\x20f\
-    rom\x20datetime.timedelta\x20in\x20Python.\n\n\x20\x20\x20\x20\x20td\x20\
-    =\x20datetime.timedelta(days=3,\x20minutes=10)\n\x20\x20\x20\x20\x20dura\
-    tion\x20=\x20Duration()\n\x20\x20\x20\x20\x20duration.FromTimedelta(td)\
-    \n\n\n\n\n\n\x03\x04\0\x01\x12\x03Z\x08\x10\np\n\x04\x04\0\x02\0\x12\x03\
-    ^\x02\x14\x1ac\x20Signed\x20seconds\x20of\x20the\x20span\x20of\x20time.\
-    \x20Must\x20be\x20from\x20-315,576,000,000\n\x20to\x20+315,576,000,000\
-    \x20inclusive.\n\n\r\n\x05\x04\0\x02\0\x04\x12\x04^\x02Z\x12\n\x0c\n\x05\
-    \x04\0\x02\0\x05\x12\x03^\x02\x07\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03^\
-    \x08\x0f\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03^\x12\x13\n\x83\x03\n\x04\
-    \x04\0\x02\x01\x12\x03f\x02\x12\x1a\xf5\x02\x20Signed\x20fractions\x20of\
-    \x20a\x20second\x20at\x20nanosecond\x20resolution\x20of\x20the\x20span\n\
-    \x20of\x20time.\x20Durations\x20less\x20than\x20one\x20second\x20are\x20\
-    represented\x20with\x20a\x200\n\x20`seconds`\x20field\x20and\x20a\x20pos\
-    itive\x20or\x20negative\x20`nanos`\x20field.\x20For\x20durations\n\x20of\
-    \x20one\x20second\x20or\x20more,\x20a\x20non-zero\x20value\x20for\x20the\
-    \x20`nanos`\x20field\x20must\x20be\n\x20of\x20the\x20same\x20sign\x20as\
-    \x20the\x20`seconds`\x20field.\x20Must\x20be\x20from\x20-999,999,999\n\
-    \x20to\x20+999,999,999\x20inclusive.\n\n\r\n\x05\x04\0\x02\x01\x04\x12\
-    \x04f\x02^\x14\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03f\x02\x07\n\x0c\n\
-    \x05\x04\0\x02\x01\x01\x12\x03f\x08\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\
-    \x03f\x10\x11b\x06proto3\
+    \n\x01\x02\x12\x03\x20\0\x18\n\x08\n\x01\x08\x12\x03\&quot;\0;\n\t\n\x02\x08%\
+    \x12\x03\&quot;\0;\n\x08\n\x01\x08\x12\x03#\0\x1f\n\t\n\x02\x08\x1f\x12\x03#\
+    \0\x1f\n\x08\n\x01\x08\x12\x03$\0A\n\t\n\x02\x08\x0b\x12\x03$\0A\n\x08\n\
+    \x01\x08\x12\x03%\0,\n\t\n\x02\x08\x01\x12\x03%\0,\n\x08\n\x01\x08\x12\
+    \x03&amp;\0.\n\t\n\x02\x08\x08\x12\x03&amp;\0.\n\x08\n\x01\x08\x12\x03&#39;\0\&quot;\n\t\
+    \n\x02\x08\n\x12\x03&#39;\0\&quot;\n\x08\n\x01\x08\x12\x03(\0!\n\t\n\x02\x08$\x12\
+    \x03(\0!\n\x92\x0c\n\x02\x04\0\x12\x04Z\0g\x01\x1a\x85\x0c\x20A\x20Durat\
+    ion\x20represents\x20a\x20signed,\x20fixed-length\x20span\x20of\x20time\
+    \x20represented\n\x20as\x20a\x20count\x20of\x20seconds\x20and\x20fractio\
+    ns\x20of\x20seconds\x20at\x20nanosecond\n\x20resolution.\x20It\x20is\x20\
+    independent\x20of\x20any\x20calendar\x20and\x20concepts\x20like\x20\&quot;day\
+    \&quot;\n\x20or\x20\&quot;month\&quot;.\x20It\x20is\x20related\x20to\x20Timestamp\x20in\
+    \x20that\x20the\x20difference\x20between\n\x20two\x20Timestamp\x20values\
+    \x20is\x20a\x20Duration\x20and\x20it\x20can\x20be\x20added\x20or\x20subt\
+    racted\n\x20from\x20a\x20Timestamp.\x20Range\x20is\x20approximately\x20+\
+    -10,000\x20years.\n\n\x20Example\x201:\x20Compute\x20Duration\x20from\
+    \x20two\x20Timestamps\x20in\x20pseudo\x20code.\n\n\x20\x20\x20\x20\x20Ti\
+    mestamp\x20start\x20=\x20...;\n\x20\x20\x20\x20\x20Timestamp\x20end\x20=\
+    \x20...;\n\x20\x20\x20\x20\x20Duration\x20duration\x20=\x20...;\n\n\x20\
+    \x20\x20\x20\x20duration.seconds\x20=\x20end.seconds\x20-\x20start.secon\
+    ds;\n\x20\x20\x20\x20\x20duration.nanos\x20=\x20end.nanos\x20-\x20start.\
+    nanos;\n\n\x20\x20\x20\x20\x20if\x20(duration.seconds\x20&lt;\x200\x20&amp;&amp;\
+    \x20duration.nanos\x20&gt;\x200)\x20{\n\x20\x20\x20\x20\x20\x20\x20duration\
+    .seconds\x20+=\x201;\n\x20\x20\x20\x20\x20\x20\x20duration.nanos\x20-=\
+    \x201000000000;\n\x20\x20\x20\x20\x20}\x20else\x20if\x20(durations.secon\
+    ds\x20&gt;\x200\x20&amp;&amp;\x20duration.nanos\x20&lt;\x200)\x20{\n\x20\x20\x20\x20\
+    \x20\x20\x20duration.seconds\x20-=\x201;\n\x20\x20\x20\x20\x20\x20\x20du\
+    ration.nanos\x20+=\x201000000000;\n\x20\x20\x20\x20\x20}\n\n\x20Example\
+    \x202:\x20Compute\x20Timestamp\x20from\x20Timestamp\x20+\x20Duration\x20\
+    in\x20pseudo\x20code.\n\n\x20\x20\x20\x20\x20Timestamp\x20start\x20=\x20\
+    ...;\n\x20\x20\x20\x20\x20Duration\x20duration\x20=\x20...;\n\x20\x20\
+    \x20\x20\x20Timestamp\x20end\x20=\x20...;\n\n\x20\x20\x20\x20\x20end.sec\
+    onds\x20=\x20start.seconds\x20+\x20duration.seconds;\n\x20\x20\x20\x20\
+    \x20end.nanos\x20=\x20start.nanos\x20+\x20duration.nanos;\n\n\x20\x20\
+    \x20\x20\x20if\x20(end.nanos\x20&lt;\x200)\x20{\n\x20\x20\x20\x20\x20\x20\
+    \x20end.seconds\x20-=\x201;\n\x20\x20\x20\x20\x20\x20\x20end.nanos\x20+=\
+    \x201000000000;\n\x20\x20\x20\x20\x20}\x20else\x20if\x20(end.nanos\x20&gt;=\
+    \x201000000000)\x20{\n\x20\x20\x20\x20\x20\x20\x20end.seconds\x20+=\x201\
+    ;\n\x20\x20\x20\x20\x20\x20\x20end.nanos\x20-=\x201000000000;\n\x20\x20\
+    \x20\x20\x20}\n\n\x20Example\x203:\x20Compute\x20Duration\x20from\x20dat\
+    etime.timedelta\x20in\x20Python.\n\n\x20\x20\x20\x20\x20td\x20=\x20datet\
+    ime.timedelta(days=3,\x20minutes=10)\n\x20\x20\x20\x20\x20duration\x20=\
+    \x20Duration()\n\x20\x20\x20\x20\x20duration.FromTimedelta(td)\n\n\n\n\n\
+    \n\x03\x04\0\x01\x12\x03Z\x08\x10\np\n\x04\x04\0\x02\0\x12\x03^\x02\x14\
+    \x1ac\x20Signed\x20seconds\x20of\x20the\x20span\x20of\x20time.\x20Must\
+    \x20be\x20from\x20-315,576,000,000\n\x20to\x20+315,576,000,000\x20inclus\
+    ive.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03^\x02\x07\n\x0c\n\x05\x04\0\
+    \x02\0\x01\x12\x03^\x08\x0f\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03^\x12\x13\
+    \n\x83\x03\n\x04\x04\0\x02\x01\x12\x03f\x02\x12\x1a\xf5\x02\x20Signed\
+    \x20fractions\x20of\x20a\x20second\x20at\x20nanosecond\x20resolution\x20\
+    of\x20the\x20span\n\x20of\x20time.\x20Durations\x20less\x20than\x20one\
+    \x20second\x20are\x20represented\x20with\x20a\x200\n\x20`seconds`\x20fie\
+    ld\x20and\x20a\x20positive\x20or\x20negative\x20`nanos`\x20field.\x20For\
+    \x20durations\n\x20of\x20one\x20second\x20or\x20more,\x20a\x20non-zero\
+    \x20value\x20for\x20the\x20`nanos`\x20field\x20must\x20be\n\x20of\x20the\
+    \x20same\x20sign\x20as\x20the\x20`seconds`\x20field.\x20Must\x20be\x20fr\
+    om\x20-999,999,999\n\x20to\x20+999,999,999\x20inclusive.\n\n\x0c\n\x05\
+    \x04\0\x02\x01\x05\x12\x03f\x02\x07\n\x0c\n\x05\x04\0\x02\x01\x01\x12\
+    \x03f\x08\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03f\x10\x11b\x06proto3\
 &quot;</span>;
 
-<span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">file_descriptor_proto_lazy</span>: ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">Lazy</span><span class="op">&lt;</span>::<span class="ident">protobuf</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span><span class="op">&gt;</span> <span class="op">=</span> ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">Lazy</span> {
-    <span class="ident">lock</span>: ::<span class="ident">protobuf</span>::<span class="ident">lazy</span>::<span class="ident">ONCE_INIT</span>,
-    <span class="ident">ptr</span>: <span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">protobuf</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span>,
-};
+<span class="kw">static</span> <span class="ident">file_descriptor_proto_lazy</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
 
-<span class="kw">fn</span> <span class="ident">parse_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">protobuf</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
-    ::<span class="ident">protobuf</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
+<span class="kw">fn</span> <span class="ident">parse_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
+    <span class="kw">crate</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> ::<span class="ident">protobuf</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
-    <span class="kw">unsafe</span> {
-        <span class="ident">file_descriptor_proto_lazy</span>.<span class="ident">get</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">parse_descriptor_proto</span>()
-        })
-    }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
+    <span class="ident">file_descriptor_proto_lazy</span>.<span class="ident">get</span>(<span class="op">|</span><span class="op">|</span> {
+        <span class="ident">parse_descriptor_proto</span>()
+    })
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

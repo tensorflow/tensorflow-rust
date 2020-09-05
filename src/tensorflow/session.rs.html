@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/session.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>session.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../tensorflow/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/session.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>session.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../tensorflow/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -700,13 +700,22 @@
 <span id="700">700</span>
 <span id="701">701</span>
 <span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
+<span id="707">707</span>
+<span id="708">708</span>
+<span id="709">709</span>
+<span id="710">710</span>
+<span id="711">711</span>
+<span id="712">712</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">AnyTensor</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Buffer</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Code</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">DataType</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Graph</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;experimental_training&quot;</span>)]</span>
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">MetaGraphDef</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Operation</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="prelude-ty">Result</span>;
@@ -727,9 +736,14 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SavedModelBundle</span> {
     <span class="doccomment">/// The loaded session.</span>
     <span class="kw">pub</span> <span class="ident">session</span>: <span class="ident">Session</span>,
-    <span class="doccomment">/// A meta graph definition as raw protocol buffer.</span>
+    <span class="doccomment">/// A meta graph definition as raw protocol buffer. This is deprecated in favour of the</span>
+    <span class="doccomment">/// deserialized type.</span>
+    <span class="attribute">#[<span class="ident">deprecated</span>(
+        <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Please use SavedModelBundle::meta_graph_def() instead&quot;</span>,
+        <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.16.0&quot;</span>
+    )]</span>
     <span class="kw">pub</span> <span class="ident">meta_graph_def</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;experimental_training&quot;</span>)]</span>
+    <span class="doccomment">/// A decoded meta-graph definition.</span>
     <span class="ident">meta_graph</span>: <span class="ident">MetaGraphDef</span>,
 }
 
@@ -774,17 +788,16 @@
         <span class="kw">if</span> <span class="ident">inner</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">status</span>)
         } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">session</span> <span class="op">=</span> <span class="ident">Session</span> { <span class="ident">inner</span>: <span class="ident">inner</span> };
+            <span class="kw">let</span> <span class="ident">session</span> <span class="op">=</span> <span class="ident">Session</span> { <span class="ident">inner</span> };
             <span class="prelude-val">Ok</span>(<span class="ident">SavedModelBundle</span> {
-                <span class="ident">session</span>: <span class="ident">session</span>,
+                <span class="ident">session</span>,
                 <span class="ident">meta_graph_def</span>: <span class="ident">Vec</span>::<span class="ident">from</span>(<span class="ident">meta</span>.<span class="ident">as_ref</span>()),
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;experimental_training&quot;</span>)]</span>
                 <span class="ident">meta_graph</span>: <span class="ident">MetaGraphDef</span>::<span class="ident">from_serialized_proto</span>(<span class="ident">meta</span>.<span class="ident">as_ref</span>())<span class="question-mark">?</span>,
             })
         }
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;experimental_training&quot;</span>)]</span>
+    <span class="doccomment">/// Returns the metagraph definition for the saved model.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">meta_graph_def</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">MetaGraphDef</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">meta_graph</span>
     }
@@ -806,7 +819,7 @@
         <span class="kw">if</span> <span class="ident">inner</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">status</span>)
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Session</span> { <span class="ident">inner</span>: <span class="ident">inner</span> })
+            <span class="prelude-val">Ok</span>(<span class="ident">Session</span> { <span class="ident">inner</span> })
         }
     }
 
@@ -848,7 +861,7 @@
         <span class="kw">if</span> <span class="ident">inner</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">status</span>)
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Session</span> { <span class="ident">inner</span>: <span class="ident">inner</span> })
+            <span class="prelude-val">Ok</span>(<span class="ident">Session</span> { <span class="ident">inner</span> })
         }
     }
 
@@ -1013,6 +1026,12 @@
     <span class="ident">phantom</span>: <span class="ident">marker</span>::<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> ()<span class="op">&gt;</span>,
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">SessionRunArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span>::<span class="ident">new</span>()
+    }
+}
+
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">SessionRunArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates a SessionRunArgs.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1044,7 +1063,7 @@
     ) {
         <span class="self">self</span>.<span class="ident">input_ports</span>.<span class="ident">push</span>(<span class="ident">tf</span>::<span class="ident">TF_Output</span> {
             <span class="ident">oper</span>: <span class="ident">operation</span>.<span class="ident">inner</span>(),
-            <span class="ident">index</span>: <span class="ident">index</span>,
+            <span class="ident">index</span>,
         });
         <span class="self">self</span>.<span class="ident">input_tensors</span>.<span class="ident">push</span>(<span class="ident">tensor</span>);
     }
@@ -1068,7 +1087,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_fetch</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>, <span class="ident">index</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FetchToken</span> {
         <span class="self">self</span>.<span class="ident">output_ports</span>.<span class="ident">push</span>(<span class="ident">tf</span>::<span class="ident">TF_Output</span> {
             <span class="ident">oper</span>: <span class="ident">operation</span>.<span class="ident">inner</span>(),
-            <span class="ident">index</span>: <span class="ident">index</span>,
+            <span class="ident">index</span>,
         });
         <span class="self">self</span>.<span class="ident">output_tensors</span>.<span class="ident">push</span>(<span class="ident">ptr</span>::<span class="ident">null_mut</span>());
         <span class="ident">FetchToken</span> {
@@ -1235,7 +1254,7 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">Shape</span>;
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">Tensor</span>;
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fs</span>;
+    <span class="kw">use</span> <span class="ident">serial_test</span>::<span class="ident">serial</span>;
 
     <span class="kw">fn</span> <span class="ident">create_session</span>() <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Session</span>, <span class="ident">Operation</span>, <span class="ident">Operation</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">g</span> <span class="op">=</span> <span class="ident">Graph</span>::<span class="ident">new</span>();
@@ -1295,6 +1314,7 @@
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="attribute">#[<span class="ident">serial</span>]</span> <span class="comment">// Full trace enable profile session</span>
     <span class="kw">fn</span> <span class="ident">test_run_metadata</span>() {
         <span class="kw">let</span> (<span class="ident">session</span>, <span class="ident">x_operation</span>, <span class="ident">y_operation</span>) <span class="op">=</span> <span class="ident">create_session</span>();
         <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">Tensor</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">2.0</span>, <span class="number">3.0</span>][..]);
@@ -1323,6 +1343,7 @@
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="attribute">#[<span class="ident">serial</span>]</span> <span class="comment">// Full_trace enable profile session</span>
     <span class="kw">fn</span> <span class="ident">test_run_options</span>() {
         <span class="kw">let</span> (<span class="ident">session</span>, <span class="ident">x_operation</span>, <span class="ident">y_operation</span>) <span class="op">=</span> <span class="ident">create_session</span>();
         <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">Tensor</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">2.0</span>, <span class="number">3.0</span>][..]);
@@ -1373,8 +1394,7 @@
         <span class="kw">let</span> <span class="ident">SavedModelBundle</span> {
             <span class="ident">session</span>,
             <span class="ident">meta_graph_def</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;experimental_training&quot;</span>)]</span>
-                <span class="ident">meta_graph</span>: <span class="kw">_</span>,
+            <span class="ident">meta_graph</span>: <span class="kw">_</span>,
         } <span class="op">=</span> <span class="ident">bundle</span>;
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">meta_graph_def</span>.<span class="ident">is_empty</span>());

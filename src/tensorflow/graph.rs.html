@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/graph.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>graph.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../tensorflow/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/graph.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>graph.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../tensorflow/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2918,6 +2918,62 @@
 <span id="2918">2918</span>
 <span id="2919">2919</span>
 <span id="2920">2920</span>
+<span id="2921">2921</span>
+<span id="2922">2922</span>
+<span id="2923">2923</span>
+<span id="2924">2924</span>
+<span id="2925">2925</span>
+<span id="2926">2926</span>
+<span id="2927">2927</span>
+<span id="2928">2928</span>
+<span id="2929">2929</span>
+<span id="2930">2930</span>
+<span id="2931">2931</span>
+<span id="2932">2932</span>
+<span id="2933">2933</span>
+<span id="2934">2934</span>
+<span id="2935">2935</span>
+<span id="2936">2936</span>
+<span id="2937">2937</span>
+<span id="2938">2938</span>
+<span id="2939">2939</span>
+<span id="2940">2940</span>
+<span id="2941">2941</span>
+<span id="2942">2942</span>
+<span id="2943">2943</span>
+<span id="2944">2944</span>
+<span id="2945">2945</span>
+<span id="2946">2946</span>
+<span id="2947">2947</span>
+<span id="2948">2948</span>
+<span id="2949">2949</span>
+<span id="2950">2950</span>
+<span id="2951">2951</span>
+<span id="2952">2952</span>
+<span id="2953">2953</span>
+<span id="2954">2954</span>
+<span id="2955">2955</span>
+<span id="2956">2956</span>
+<span id="2957">2957</span>
+<span id="2958">2958</span>
+<span id="2959">2959</span>
+<span id="2960">2960</span>
+<span id="2961">2961</span>
+<span id="2962">2962</span>
+<span id="2963">2963</span>
+<span id="2964">2964</span>
+<span id="2965">2965</span>
+<span id="2966">2966</span>
+<span id="2967">2967</span>
+<span id="2968">2968</span>
+<span id="2969">2969</span>
+<span id="2970">2970</span>
+<span id="2971">2971</span>
+<span id="2972">2972</span>
+<span id="2973">2973</span>
+<span id="2974">2974</span>
+<span id="2975">2975</span>
+<span id="2976">2976</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">buffer</span>::<span class="ident">Buffer</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">AnyTensor</span>;
@@ -2936,6 +2992,7 @@
 <span class="kw">use</span> <span class="ident">libc</span>::<span class="ident">c_void</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::<span class="ident">size_t</span>;
 <span class="kw">use</span> <span class="ident">std</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cmp</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CStr</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CString</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">NulError</span>;
@@ -3205,6 +3262,12 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Graph</span> {
     <span class="ident">gimpl</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">GraphImpl</span><span class="op">&gt;</span>,
     <span class="ident">lifetime</span>: <span class="ident">GraphLifetime</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Graph</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span>::<span class="ident">new</span>()
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">Graph</span> {
@@ -3566,7 +3629,7 @@
         <span class="ident">description</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Function</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">fn_name_cstr</span> <span class="op">=</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">fn_name</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">num_opers</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="ident">ops</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">opers</span> {
+        <span class="kw">let</span> <span class="ident">num_opers</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ops</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">opers</span> {
             <span class="ident">ops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>
         } <span class="kw">else</span> {
             <span class="op">-</span><span class="number">1</span>
@@ -3574,7 +3637,7 @@
         <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">trivial_casts</span>)]</span>
         <span class="kw">let</span> <span class="ident">c_opers</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
             <span class="ident">opers</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">op</span><span class="op">|</span> <span class="ident">op</span>.<span class="ident">inner</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>).<span class="ident">collect</span>());
-        <span class="kw">let</span> <span class="ident">c_opers_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">tf</span>::<span class="ident">TF_Operation</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">ops</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">c_opers</span> {
+        <span class="kw">let</span> <span class="ident">c_opers_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">tf</span>::<span class="ident">TF_Operation</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">ops</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">c_opers</span> {
             <span class="ident">ops</span>.<span class="ident">as_ptr</span>()
         } <span class="kw">else</span> {
             <span class="ident">ptr</span>::<span class="ident">null</span>()
@@ -3591,18 +3654,18 @@
         <span class="comment">// Don&#39;t use Option::map because the CStrings need to outlive the</span>
         <span class="comment">// pointers and Option::map consumes the Option.</span>
         <span class="kw">let</span> <span class="ident">output_names_ptrs</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">output_names_cstrs</span> {
-            <span class="kw-2">&amp;</span><span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
-            <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">slice</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">slice</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>()).<span class="ident">collect</span>()),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">slice</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">slice</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>()).<span class="ident">collect</span>()),
         };
         <span class="kw">let</span> <span class="ident">output_names_ptrs_ptr</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">output_names_ptrs</span> {
-            <span class="kw-2">&amp;</span><span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ptr</span>::<span class="ident">null</span>(),
-            <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">v</span>.<span class="ident">as_ptr</span>(),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ptr</span>::<span class="ident">null</span>(),
+            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">v</span>.<span class="ident">as_ptr</span>(),
         };
         <span class="kw">let</span> <span class="ident">description_cstr</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">description</span> {
             <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
             <span class="prelude-val">Some</span>(<span class="ident">d</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">d</span>)<span class="question-mark">?</span>),
         };
-        <span class="kw">let</span> <span class="ident">description_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">cstr</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">description_cstr</span> {
+        <span class="kw">let</span> <span class="ident">description_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">cstr</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">description_cstr</span> {
             <span class="ident">cstr</span>.<span class="ident">as_ptr</span>()
         } <span class="kw">else</span> {
             <span class="ident">ptr</span>::<span class="ident">null</span>()
@@ -3753,7 +3816,7 @@
             <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">s</span>)<span class="question-mark">?</span>),
             <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         };
-        <span class="kw">let</span> <span class="ident">prefix_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">cstr</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">prefix_cstr</span> {
+        <span class="kw">let</span> <span class="ident">prefix_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">cstr</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">prefix_cstr</span> {
             <span class="ident">cstr</span>.<span class="ident">as_ptr</span>()
         } <span class="kw">else</span> {
             <span class="ident">ptr</span>::<span class="ident">null</span>()
@@ -3831,21 +3894,21 @@
 <span class="comment">////////////////////////</span>
 
 <span class="macro">c_enum</span><span class="macro">!</span>(
-    <span class="ident">TF_AttrType</span>,
-    <span class="comment">// TODO: Provide docs on variants once they are added to c_api.h.</span>
-    <span class="doccomment">/// Describes the type of the value of an attribute on an operation.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-    <span class="ident">AttrType</span> {
-        <span class="ident">String</span> <span class="op">=</span> <span class="number">0</span>,
-        <span class="ident">Int</span> <span class="op">=</span> <span class="number">1</span>,
-        <span class="ident">Float</span> <span class="op">=</span> <span class="number">2</span>,
-        <span class="ident">Bool</span> <span class="op">=</span> <span class="number">3</span>,
-        <span class="ident">Type</span> <span class="op">=</span> <span class="number">4</span>,
-        <span class="ident">Shape</span> <span class="op">=</span> <span class="number">5</span>,
-        <span class="ident">Tensor</span> <span class="op">=</span> <span class="number">6</span>,
-        <span class="ident">Placeholder</span> <span class="op">=</span> <span class="number">7</span>,
-        <span class="ident">Func</span> <span class="op">=</span> <span class="number">8</span>,
-    });
+<span class="ident">TF_AttrType</span>,
+<span class="comment">// TODO: Provide docs on variants once they are added to c_api.h.</span>
+<span class="doccomment">/// Describes the type of the value of an attribute on an operation.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
+<span class="ident">AttrType</span> {
+    <span class="ident">String</span> <span class="op">=</span> <span class="number">0</span>,
+    <span class="ident">Int</span> <span class="op">=</span> <span class="number">1</span>,
+    <span class="ident">Float</span> <span class="op">=</span> <span class="number">2</span>,
+    <span class="ident">Bool</span> <span class="op">=</span> <span class="number">3</span>,
+    <span class="ident">Type</span> <span class="op">=</span> <span class="number">4</span>,
+    <span class="ident">Shape</span> <span class="op">=</span> <span class="number">5</span>,
+    <span class="ident">Tensor</span> <span class="op">=</span> <span class="number">6</span>,
+    <span class="ident">Placeholder</span> <span class="op">=</span> <span class="number">7</span>,
+    <span class="ident">Func</span> <span class="op">=</span> <span class="number">8</span>,
+});
 
 <span class="doccomment">/// AttrMetadata describes the value of an attribute on an operation.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
@@ -4069,9 +4132,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">num_consumers</span> <span class="op">=</span> <span class="ident">tf</span>::<span class="ident">TF_OperationNumControlInputs</span>(<span class="self">self</span>.<span class="ident">inner</span>);
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vec</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Operation</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">with_capacity</span>(<span class="ident">num_consumers</span> <span class="kw">as</span> <span class="ident">usize</span>);
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span>
-                <span class="ident">tf</span>::<span class="ident">TF_OperationGetControlInputs</span>(<span class="self">self</span>.<span class="ident">inner</span>, <span class="ident">vec</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">vec</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>);
-            <span class="ident">vec</span>.<span class="ident">set_len</span>(<span class="ident">len</span> <span class="kw">as</span> <span class="ident">usize</span>);
+            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">tf</span>::<span class="ident">TF_OperationGetControlInputs</span>(
+                <span class="self">self</span>.<span class="ident">inner</span>,
+                <span class="ident">vec</span>.<span class="ident">as_mut_ptr</span>(),
+                <span class="ident">num_consumers</span> <span class="kw">as</span> <span class="ident">c_int</span>,
+            );
+            <span class="ident">vec</span>.<span class="ident">set_len</span>(<span class="ident">cmp</span>::<span class="ident">min</span>(<span class="ident">num_consumers</span>, <span class="ident">len</span>) <span class="kw">as</span> <span class="ident">usize</span>);
             <span class="ident">vec</span>.<span class="ident">into_iter</span>()
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">operation</span><span class="op">|</span> <span class="ident">Operation</span> {
                     <span class="ident">inner</span>: <span class="ident">operation</span>,
@@ -4675,13 +4741,14 @@
     <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">Status</span>;
     <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">splits</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">split</span>(<span class="string">&#39;:&#39;</span>).<span class="ident">collect</span>();
-        <span class="kw">if</span> <span class="ident">splits</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="number">2</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Status</span>::<span class="ident">new_set_lossy</span>(
+        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">splits</span>.<span class="ident">len</span>() {
+            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">splits</span>[<span class="number">1</span>].<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">c_int</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Status</span>::<span class="ident">new_set_lossy</span>(
                 <span class="ident">Code</span>::<span class="ident">InvalidArgument</span>,
-                <span class="string">&quot;Name must contain exactly one colon (&#39;:&#39;)&quot;</span>,
-            ));
-        }
-        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">splits</span>[<span class="number">1</span>].<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">c_int</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+                <span class="string">&quot;Name contains more than one colon (&#39;:&#39;)&quot;</span>,
+            ))<span class="question-mark">?</span>,
+        };
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
             <span class="ident">name</span>: <span class="ident">splits</span>[<span class="number">0</span>].<span class="ident">to_string</span>(),
             <span class="ident">index</span>,
@@ -5103,7 +5170,11 @@
     }
 
     <span class="doccomment">/// Sets a tensor-valued attribute.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_attr_any_tensor</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">attr_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">AnyTensor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_attr_any_tensor</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">attr_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AnyTensor</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">c_attr_name</span> <span class="op">=</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">attr_name</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">Status</span>::<span class="ident">new</span>();
         <span class="kw">unsafe</span> {
@@ -5174,6 +5245,12 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_copy_implementations</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FunctionOptions</span> {
     <span class="ident">inner</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_FunctionOptions</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FunctionOptions</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span>::<span class="ident">new</span>()
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">FunctionOptions</span> {
@@ -5805,7 +5882,7 @@
             <span class="ident">nd</span>.<span class="ident">set_attr_shape</span>(<span class="string">&quot;shape&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">Shape</span>(<span class="prelude-val">Some</span>(<span class="macro">vec</span><span class="macro">!</span>[]))).<span class="ident">unwrap</span>();
             <span class="ident">nd</span>.<span class="ident">finish</span>().<span class="ident">unwrap</span>()
         };
-        <span class="kw">let</span> <span class="ident">y_op</span> <span class="op">=</span> {
+        <span class="kw">let</span> <span class="ident">_y_op</span> <span class="op">=</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nd</span> <span class="op">=</span> <span class="ident">graph</span>.<span class="ident">new_operation</span>(<span class="string">&quot;EncodeBase64&quot;</span>, <span class="string">&quot;y&quot;</span>).<span class="ident">unwrap</span>();
             <span class="ident">nd</span>.<span class="ident">add_input</span>(<span class="ident">x_op</span>.<span class="ident">clone</span>());
             <span class="ident">nd</span>.<span class="ident">finish</span>().<span class="ident">unwrap</span>()
@@ -5834,9 +5911,44 @@
             .<span class="ident">to_string</span>(),
             <span class="string">&quot;foo:1&quot;</span>
         );
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="string">&quot;foo&quot;</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">OutputName</span><span class="op">&gt;</span>().<span class="ident">is_err</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="string">&quot;foo&quot;</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">OutputName</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(),
+            <span class="ident">OutputName</span> {
+                <span class="ident">name</span>: <span class="string">&quot;foo&quot;</span>.<span class="ident">to_string</span>(),
+                <span class="ident">index</span>: <span class="number">0</span>
+            }
+        );
         <span class="macro">assert</span><span class="macro">!</span>(<span class="string">&quot;foo:bar&quot;</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">OutputName</span><span class="op">&gt;</span>().<span class="ident">is_err</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="string">&quot;foo:0:1&quot;</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">OutputName</span><span class="op">&gt;</span>().<span class="ident">is_err</span>());
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">device</span>() {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">graph</span> <span class="op">=</span> <span class="ident">Graph</span>::<span class="ident">new</span>();
+        <span class="kw">let</span> <span class="ident">op</span> <span class="op">=</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nd</span> <span class="op">=</span> <span class="ident">graph</span>.<span class="ident">new_operation</span>(<span class="string">&quot;NoOp&quot;</span>, <span class="string">&quot;x&quot;</span>).<span class="ident">unwrap</span>();
+            <span class="ident">nd</span>.<span class="ident">set_device</span>(<span class="string">&quot;foo&quot;</span>).<span class="ident">unwrap</span>();
+            <span class="ident">nd</span>.<span class="ident">finish</span>().<span class="ident">unwrap</span>()
+        };
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">op</span>.<span class="ident">device</span>().<span class="ident">unwrap</span>(), <span class="string">&quot;foo&quot;</span>);
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">control_inputs</span>() {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">graph</span> <span class="op">=</span> <span class="ident">Graph</span>::<span class="ident">new</span>();
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">graph</span>.<span class="ident">new_operation</span>(<span class="string">&quot;NoOp&quot;</span>, <span class="string">&quot;x&quot;</span>).<span class="ident">unwrap</span>().<span class="ident">finish</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nd</span> <span class="op">=</span> <span class="ident">graph</span>.<span class="ident">new_operation</span>(<span class="string">&quot;NoOp&quot;</span>, <span class="string">&quot;y&quot;</span>).<span class="ident">unwrap</span>();
+            <span class="ident">nd</span>.<span class="ident">add_control_input</span>(<span class="kw-2">&amp;</span><span class="ident">x</span>);
+            <span class="ident">nd</span>.<span class="ident">finish</span>().<span class="ident">unwrap</span>()
+        };
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">y</span>.<span class="ident">control_inputs</span>()
+                .<span class="ident">iter</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span>.<span class="ident">name</span>().<span class="ident">unwrap</span>())
+                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>(),
+            <span class="kw-2">&amp;</span>[<span class="string">&quot;x&quot;</span>]
+        );
     }
 }
 </pre></div>

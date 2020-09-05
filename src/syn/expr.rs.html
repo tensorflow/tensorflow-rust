@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.16/src/expr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>expr.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../syn/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.38/src/expr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>expr.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../syn/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -3254,6 +3254,86 @@
 <span id="3254">3254</span>
 <span id="3255">3255</span>
 <span id="3256">3256</span>
+<span id="3257">3257</span>
+<span id="3258">3258</span>
+<span id="3259">3259</span>
+<span id="3260">3260</span>
+<span id="3261">3261</span>
+<span id="3262">3262</span>
+<span id="3263">3263</span>
+<span id="3264">3264</span>
+<span id="3265">3265</span>
+<span id="3266">3266</span>
+<span id="3267">3267</span>
+<span id="3268">3268</span>
+<span id="3269">3269</span>
+<span id="3270">3270</span>
+<span id="3271">3271</span>
+<span id="3272">3272</span>
+<span id="3273">3273</span>
+<span id="3274">3274</span>
+<span id="3275">3275</span>
+<span id="3276">3276</span>
+<span id="3277">3277</span>
+<span id="3278">3278</span>
+<span id="3279">3279</span>
+<span id="3280">3280</span>
+<span id="3281">3281</span>
+<span id="3282">3282</span>
+<span id="3283">3283</span>
+<span id="3284">3284</span>
+<span id="3285">3285</span>
+<span id="3286">3286</span>
+<span id="3287">3287</span>
+<span id="3288">3288</span>
+<span id="3289">3289</span>
+<span id="3290">3290</span>
+<span id="3291">3291</span>
+<span id="3292">3292</span>
+<span id="3293">3293</span>
+<span id="3294">3294</span>
+<span id="3295">3295</span>
+<span id="3296">3296</span>
+<span id="3297">3297</span>
+<span id="3298">3298</span>
+<span id="3299">3299</span>
+<span id="3300">3300</span>
+<span id="3301">3301</span>
+<span id="3302">3302</span>
+<span id="3303">3303</span>
+<span id="3304">3304</span>
+<span id="3305">3305</span>
+<span id="3306">3306</span>
+<span id="3307">3307</span>
+<span id="3308">3308</span>
+<span id="3309">3309</span>
+<span id="3310">3310</span>
+<span id="3311">3311</span>
+<span id="3312">3312</span>
+<span id="3313">3313</span>
+<span id="3314">3314</span>
+<span id="3315">3315</span>
+<span id="3316">3316</span>
+<span id="3317">3317</span>
+<span id="3318">3318</span>
+<span id="3319">3319</span>
+<span id="3320">3320</span>
+<span id="3321">3321</span>
+<span id="3322">3322</span>
+<span id="3323">3323</span>
+<span id="3324">3324</span>
+<span id="3325">3325</span>
+<span id="3326">3326</span>
+<span id="3327">3327</span>
+<span id="3328">3328</span>
+<span id="3329">3329</span>
+<span id="3330">3330</span>
+<span id="3331">3331</span>
+<span id="3332">3332</span>
+<span id="3333">3333</span>
+<span id="3334">3334</span>
+<span id="3335">3335</span>
+<span id="3336">3336</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">punctuated</span>::<span class="ident">Punctuated</span>;
@@ -3265,14 +3345,14 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;printing&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::{<span class="self">self</span>, <span class="ident">Display</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">hash</span>::{<span class="ident">Hash</span>, <span class="ident">Hasher</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 
 <span class="macro">ast_enum_of_structs</span><span class="macro">!</span> {
     <span class="doccomment">/// A Rust expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`</span>
-    <span class="doccomment">/// feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`</span>
+    <span class="doccomment">/// feature, but most of the variants are not available unless &quot;full&quot; is enabled.*</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Syntax tree enums</span>
     <span class="doccomment">///</span>
@@ -3488,7 +3568,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A slice literal expression: `[a, b, c, d]`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprArray</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">bracket_token</span>: <span class="ident">token</span>::<span class="ident">Bracket</span>,
@@ -3499,7 +3579,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// An assignment expression: `a = compute()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprAssign</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">left</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3511,7 +3591,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A compound assignment expression: `counter += 1`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprAssignOp</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">left</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3523,7 +3603,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// An async block: `async { ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprAsync</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">async_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">async</span>],
@@ -3535,7 +3615,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// An await expression: `fut.await`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprAwait</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">base</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3547,7 +3627,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A binary operation: `a + b`, `a * b`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprBinary</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3560,7 +3640,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A blocked scope: `{ ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprBlock</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>,
@@ -3571,7 +3651,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A box expression: `box f`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprBox</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">box_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">box</span>],
@@ -3583,7 +3663,7 @@
     <span class="doccomment">/// A `break`, with an optional label to break and an optional</span>
     <span class="doccomment">/// expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprBreak</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">break_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">break</span>],
@@ -3595,7 +3675,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A function call expression: `invoke(a, b)`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprCall</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3608,7 +3688,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A cast expression: `foo as f64`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprCast</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3621,7 +3701,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A closure expression: `|a, b| a + b`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprClosure</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">asyncness</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="kw">async</span>]<span class="op">&gt;</span>,
@@ -3638,7 +3718,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A `continue`, with an optional label.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprContinue</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">continue_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">continue</span>],
@@ -3650,7 +3730,7 @@
     <span class="doccomment">/// Access of a named struct field (`obj.k`) or unnamed tuple struct</span>
     <span class="doccomment">/// field (`obj.0`).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprField</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">base</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3662,7 +3742,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A for loop: `for pat in expr { ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprForLoop</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>,
@@ -3681,7 +3761,7 @@
     <span class="doccomment">/// of expressions and is related to `None`-delimited spans in a</span>
     <span class="doccomment">/// `TokenStream`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprGroup</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">group_token</span>: <span class="ident">token</span>::<span class="ident">Group</span>,
@@ -3696,7 +3776,7 @@
     <span class="doccomment">/// The `else` branch expression may only be an `If` or `Block`</span>
     <span class="doccomment">/// expression, not any of the other types of expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprIf</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">if_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">if</span>],
@@ -3709,7 +3789,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A square bracketed indexing expression: `vector[2]`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprIndex</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3722,7 +3802,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A `let` guard: `let Some(x) = opt`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprLet</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">let_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">let</span>],
@@ -3735,7 +3815,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A literal in place of an expression: `1`, `&quot;foo&quot;`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprLit</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3746,7 +3826,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// Conditionless loop: `loop { ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprLoop</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>,
@@ -3758,7 +3838,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A macro invocation expression: `format!(&quot;{}&quot;, q)`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprMacro</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">mac</span>: <span class="ident">Macro</span>,
@@ -3768,7 +3848,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A `match` expression: `match n { Some(n) =&gt; {}, None =&gt; {} }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprMatch</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">match_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">match</span>],
@@ -3781,7 +3861,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A method call expression: `x.foo::&lt;T&gt;(a, b)`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprMethodCall</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">receiver</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3796,7 +3876,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A parenthesized expression: `(a + b)`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprParen</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">paren_token</span>: <span class="ident">token</span>::<span class="ident">Paren</span>,
@@ -3810,7 +3890,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A plain identifier like `x` is a path of length 1.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprPath</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3822,7 +3902,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprRange</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">from</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -3834,7 +3914,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A referencing operation: `&amp;a` or `&amp;mut a`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprReference</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">and_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">&amp;</span>],
@@ -3847,7 +3927,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// An array literal constructed from one repeated element: `[0u8; N]`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprRepeat</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">bracket_token</span>: <span class="ident">token</span>::<span class="ident">Bracket</span>,
@@ -3860,7 +3940,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A `return`, with an optional value to be returned.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprReturn</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">return_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">return</span>],
@@ -3874,7 +3954,7 @@
     <span class="doccomment">/// The `rest` provides the value of the remaining fields as in `S { a:</span>
     <span class="doccomment">/// 1, b: 1, ..rest }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprStruct</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">path</span>: <span class="ident">Path</span>,
@@ -3888,7 +3968,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A try-expression: `expr?`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprTry</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">expr</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3899,7 +3979,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A try block: `try { ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprTryBlock</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">try_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">try</span>],
@@ -3910,7 +3990,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A tuple expression: `(a, b, c, d)`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprTuple</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">paren_token</span>: <span class="ident">token</span>::<span class="ident">Paren</span>,
@@ -3921,7 +4001,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A type ascription expression: `foo: f64`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprType</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">expr</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>,
@@ -3933,7 +4013,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A unary operation: `!x`, `*x`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or</span>
     <span class="doccomment">/// `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprUnary</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -3945,7 +4025,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// An unsafe block: `unsafe { ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprUnsafe</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">unsafe_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">unsafe</span>],
@@ -3956,7 +4036,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A while loop: `while expr { ... }`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprWhile</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>,
@@ -3969,7 +4049,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A yield expression: `yield expr`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExprYield</span> #<span class="ident">full</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">yield_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">yield</span>],
@@ -4256,7 +4336,7 @@
     <span class="doccomment">/// A struct or tuple struct field accessed in a struct literal or field</span>
     <span class="doccomment">/// expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`</span>
     <span class="doccomment">/// feature.*</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Member</span> #<span class="ident">manual_extra_traits</span> {
@@ -4287,7 +4367,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// The index of an unnamed tuple struct field.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`</span>
     <span class="doccomment">/// feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Index</span> #<span class="ident">manual_extra_traits</span> {
         <span class="kw">pub</span> <span class="ident">index</span>: <span class="ident">u32</span>,
@@ -4343,7 +4423,7 @@
     <span class="doccomment">/// The `::&lt;&gt;` explicit type parameters passed to a method call:</span>
     <span class="doccomment">/// `parse::&lt;u64&gt;()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MethodTurbofish</span> {
         <span class="kw">pub</span> <span class="ident">colon2_token</span>: <span class="macro">Token</span><span class="macro">!</span>[::],
         <span class="kw">pub</span> <span class="ident">lt_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="op">&lt;</span>],
@@ -4356,7 +4436,7 @@
 <span class="macro">ast_enum</span><span class="macro">!</span> {
     <span class="doccomment">/// An individual generic argument to a method, like `T`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GenericMethodArgument</span> {
         <span class="doccomment">/// A type argument.</span>
         <span class="ident">Type</span>(<span class="ident">Type</span>),
@@ -4372,7 +4452,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A field-value pair in a struct literal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FieldValue</span> {
         <span class="doccomment">/// Attributes tagged on the field.</span>
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
@@ -4393,7 +4473,7 @@
 <span class="macro">ast_struct</span><span class="macro">!</span> {
     <span class="doccomment">/// A lifetime labeling a `for`, `while`, or `loop`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Label</span> {
         <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Lifetime</span>,
         <span class="kw">pub</span> <span class="ident">colon_token</span>: <span class="macro">Token</span><span class="macro">!</span>[:],
@@ -4420,7 +4500,7 @@
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Arm</span> {
         <span class="kw">pub</span> <span class="ident">attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">pat</span>: <span class="ident">Pat</span>,
@@ -4435,7 +4515,7 @@
 <span class="macro">ast_enum</span><span class="macro">!</span> {
     <span class="doccomment">/// Limit types of a range, inclusive or exclusive.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// *This type is available if Syn is built with the `&quot;full&quot;` feature.*</span>
+    <span class="doccomment">/// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;clone-impls&quot;</span>, <span class="ident">derive</span>(<span class="ident">Copy</span>))]</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RangeLimits</span> {
         <span class="doccomment">/// Inclusive at the beginning, exclusive at the end.</span>
@@ -4448,7 +4528,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;printing&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">requires_terminator</span>(<span class="ident">expr</span>: <span class="kw-2">&amp;</span><span class="ident">Expr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    <span class="comment">// see https://github.com/rust-lang/rust/blob/eb8f2586e/src/libsyntax/parse/classify.rs#L17-L37</span>
+    <span class="comment">// see https://github.com/rust-lang/rust/blob/2679c38fc/src/librustc_ast/util/classify.rs#L7-L25</span>
     <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">expr</span> {
         <span class="ident">Expr</span>::<span class="ident">Unsafe</span>(..)
         <span class="op">|</span> <span class="ident">Expr</span>::<span class="ident">Block</span>(..)
@@ -4467,7 +4547,6 @@
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">parsing</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">parse</span>::<span class="ident">discouraged</span>::<span class="ident">Speculative</span>;
     <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">parse</span>::{<span class="ident">Parse</span>, <span class="ident">ParseStream</span>, <span class="prelude-ty">Result</span>};
     <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">path</span>;
 
@@ -4535,9 +4614,91 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">expr_no_struct</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
-        <span class="ident">ambiguous_expr</span>(<span class="ident">input</span>, <span class="ident">AllowStruct</span>(<span class="bool-val">false</span>))
+    <span class="kw">impl</span> <span class="ident">Expr</span> {
+        <span class="doccomment">/// An alternative to the primary `Expr::parse` parser (from the</span>
+        <span class="doccomment">/// [`Parse`] trait) for ambiguous syntactic positions in which a</span>
+        <span class="doccomment">/// trailing brace should not be taken as part of the expression.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Rust grammar has an ambiguity where braces sometimes turn a path</span>
+        <span class="doccomment">/// expression into a struct initialization and sometimes do not. In the</span>
+        <span class="doccomment">/// following code, the expression `S {}` is one expression. Presumably</span>
+        <span class="doccomment">/// there is an empty struct `struct S {}` defined somewhere which it is</span>
+        <span class="doccomment">/// instantiating.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```</span>
+        <span class="doccomment">/// # struct S;</span>
+        <span class="doccomment">/// # impl std::ops::Deref for S {</span>
+        <span class="doccomment">/// #     type Target = bool;</span>
+        <span class="doccomment">/// #     fn deref(&amp;self) -&gt; &amp;Self::Target {</span>
+        <span class="doccomment">/// #         &amp;true</span>
+        <span class="doccomment">/// #     }</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">/// let _ = *S {};</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// // parsed by rustc as: `*(S {})`</span>
+        <span class="doccomment">/// ```</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// We would want to parse the above using `Expr::parse` after the `=`</span>
+        <span class="doccomment">/// token.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// But in the following, `S {}` is *not* a struct init expression.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```</span>
+        <span class="doccomment">/// # const S: &amp;bool = &amp;true;</span>
+        <span class="doccomment">/// if *S {} {}</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// // parsed by rustc as:</span>
+        <span class="doccomment">/// //</span>
+        <span class="doccomment">/// //    if (*S) {</span>
+        <span class="doccomment">/// //        /* empty block */</span>
+        <span class="doccomment">/// //    }</span>
+        <span class="doccomment">/// //    {</span>
+        <span class="doccomment">/// //        /* another empty block */</span>
+        <span class="doccomment">/// //    }</span>
+        <span class="doccomment">/// ```</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// For that reason we would want to parse if-conditions using</span>
+        <span class="doccomment">/// `Expr::parse_without_eager_brace` after the `if` token. Same for</span>
+        <span class="doccomment">/// similar syntactic positions such as the condition expr after a</span>
+        <span class="doccomment">/// `while` token or the expr at the top of a `match`.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// The Rust grammar&#39;s choices around which way this ambiguity is</span>
+        <span class="doccomment">/// resolved at various syntactic positions is fairly arbitrary. Really</span>
+        <span class="doccomment">/// either parse behavior could work in most positions, and language</span>
+        <span class="doccomment">/// designers just decide each case based on which is more likely to be</span>
+        <span class="doccomment">/// what the programmer had in mind most of the time.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```</span>
+        <span class="doccomment">/// # struct S;</span>
+        <span class="doccomment">/// # fn doc() -&gt; S {</span>
+        <span class="doccomment">/// if return S {} {}</span>
+        <span class="doccomment">/// # unreachable!()</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// // parsed by rustc as:</span>
+        <span class="doccomment">/// //</span>
+        <span class="doccomment">/// //    if (return (S {})) {</span>
+        <span class="doccomment">/// //    }</span>
+        <span class="doccomment">/// //</span>
+        <span class="doccomment">/// // but could equally well have been this other arbitrary choice:</span>
+        <span class="doccomment">/// //</span>
+        <span class="doccomment">/// //    if (return S) {</span>
+        <span class="doccomment">/// //    }</span>
+        <span class="doccomment">/// //    {}</span>
+        <span class="doccomment">/// ```</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Note the grammar ambiguity on trailing braces is distinct from</span>
+        <span class="doccomment">/// precedence and is not captured by assigning a precedence level to</span>
+        <span class="doccomment">/// the braced struct init expr in relation to other operators. This can</span>
+        <span class="doccomment">/// be illustrated by `return 0..S {}` vs `match 0..S {}`. The former</span>
+        <span class="doccomment">/// parses as `return (0..(S {}))` implying tighter precedence for</span>
+        <span class="doccomment">/// struct init than `..`, while the latter parses as `match (0..S) {}`</span>
+        <span class="doccomment">/// implying tighter precedence for `..` than struct init, a</span>
+        <span class="doccomment">/// contradiction.</span>
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_without_eager_brace</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
+            <span class="ident">ambiguous_expr</span>(<span class="ident">input</span>, <span class="ident">AllowStruct</span>(<span class="bool-val">false</span>))
+        }
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
@@ -4719,6 +4880,30 @@
         <span class="ident">parse_expr</span>(<span class="ident">input</span>, <span class="ident">lhs</span>, <span class="ident">allow_struct</span>, <span class="ident">Precedence</span>::<span class="ident">Any</span>)
     }
 
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">expr_attrs</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
+        <span class="kw">loop</span> {
+            <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Group</span>) {
+                <span class="kw">let</span> <span class="ident">ahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">fork</span>();
+                <span class="kw">let</span> <span class="ident">group</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">group</span>::<span class="ident">parse_group</span>(<span class="kw-2">&amp;</span><span class="ident">ahead</span>)<span class="question-mark">?</span>;
+                <span class="kw">if</span> <span class="op">!</span><span class="ident">group</span>.<span class="ident">content</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[#]) <span class="op">|</span><span class="op">|</span> <span class="ident">group</span>.<span class="ident">content</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">!</span>]) {
+                    <span class="kw">break</span>;
+                }
+                <span class="kw">let</span> <span class="ident">attr</span> <span class="op">=</span> <span class="ident">group</span>.<span class="ident">content</span>.<span class="ident">call</span>(<span class="ident">attr</span>::<span class="ident">parsing</span>::<span class="ident">single_parse_outer</span>)<span class="question-mark">?</span>;
+                <span class="kw">if</span> <span class="op">!</span><span class="ident">group</span>.<span class="ident">content</span>.<span class="ident">is_empty</span>() {
+                    <span class="kw">break</span>;
+                }
+                <span class="ident">attrs</span>.<span class="ident">push</span>(<span class="ident">attr</span>);
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[#]) {
+                <span class="ident">attrs</span>.<span class="ident">push</span>(<span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">attr</span>::<span class="ident">parsing</span>::<span class="ident">single_parse_outer</span>)<span class="question-mark">?</span>);
+            } <span class="kw">else</span> {
+                <span class="kw">break</span>;
+            }
+        }
+        <span class="prelude-val">Ok</span>(<span class="ident">attrs</span>)
+    }
+
     <span class="comment">// &lt;UnOp&gt; &lt;trailer&gt;</span>
     <span class="comment">// &amp; &lt;trailer&gt;</span>
     <span class="comment">// &amp;mut &lt;trailer&gt;</span>
@@ -4726,66 +4911,53 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unary_expr</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>, <span class="ident">allow_struct</span>: <span class="ident">AllowStruct</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">begin</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">fork</span>();
-        <span class="kw">let</span> <span class="ident">ahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">fork</span>();
-        <span class="kw">let</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">ahead</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">&amp;</span>])
-            <span class="op">|</span><span class="op">|</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">box</span>])
-            <span class="op">|</span><span class="op">|</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">*</span>])
-            <span class="op">|</span><span class="op">|</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">!</span>])
-            <span class="op">|</span><span class="op">|</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">-</span>])
-        {
-            <span class="ident">input</span>.<span class="ident">advance_to</span>(<span class="kw-2">&amp;</span><span class="ident">ahead</span>);
-            <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">&amp;</span>]) {
-                <span class="kw">let</span> <span class="ident">and_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">&amp;</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">raw</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">raw</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">raw</span>)
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> (<span class="ident">input</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">mut</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">const</span>]))
-                {
+        <span class="kw">let</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_attrs</span>)<span class="question-mark">?</span>;
+        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">&amp;</span>]) {
+            <span class="kw">let</span> <span class="ident">and_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">&amp;</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">raw</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">raw</span><span class="op">&gt;</span> <span class="op">=</span>
+                <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">raw</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> (<span class="ident">input</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">mut</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">const</span>])) {
                     <span class="prelude-val">Some</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>)
                 } <span class="kw">else</span> {
                     <span class="prelude-val">None</span>
                 };
-                <span class="kw">let</span> <span class="ident">mutability</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">mut</span>]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_some</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">mutability</span>.<span class="ident">is_none</span>() {
-                    <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="kw">const</span>]<span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                }
-                <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>);
-                <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_some</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Verbatim</span>(<span class="ident">verbatim</span>::<span class="ident">between</span>(<span class="ident">begin</span>, <span class="ident">input</span>)))
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Reference</span>(<span class="ident">ExprReference</span> {
-                        <span class="ident">attrs</span>,
-                        <span class="ident">and_token</span>,
-                        <span class="ident">raw</span>: <span class="ident">Reserved</span>::<span class="ident">default</span>(),
-                        <span class="ident">mutability</span>,
-                        <span class="ident">expr</span>,
-                    }))
-                }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">box</span>]) {
-                <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Box</span>(<span class="ident">ExprBox</span> {
-                    <span class="ident">attrs</span>,
-                    <span class="ident">box_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
-                    <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>),
-                }))
+            <span class="kw">let</span> <span class="ident">mutability</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">mut</span>]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+            <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_some</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">mutability</span>.<span class="ident">is_none</span>() {
+                <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="kw">const</span>]<span class="op">&gt;</span>()<span class="question-mark">?</span>;
+            }
+            <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>);
+            <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_some</span>() {
+                <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Verbatim</span>(<span class="ident">verbatim</span>::<span class="ident">between</span>(<span class="ident">begin</span>, <span class="ident">input</span>)))
             } <span class="kw">else</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Unary</span>(<span class="ident">ExprUnary</span> {
+                <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Reference</span>(<span class="ident">ExprReference</span> {
                     <span class="ident">attrs</span>,
-                    <span class="ident">op</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
-                    <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>),
+                    <span class="ident">and_token</span>,
+                    <span class="ident">raw</span>: <span class="ident">Reserved</span>::<span class="ident">default</span>(),
+                    <span class="ident">mutability</span>,
+                    <span class="ident">expr</span>,
                 }))
             }
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">box</span>]) {
+            <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Box</span>(<span class="ident">ExprBox</span> {
+                <span class="ident">attrs</span>,
+                <span class="ident">box_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
+                <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>),
+            }))
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">*</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">!</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">-</span>]) {
+            <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Unary</span>(<span class="ident">ExprUnary</span> {
+                <span class="ident">attrs</span>,
+                <span class="ident">op</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
+                <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>),
+            }))
         } <span class="kw">else</span> {
-            <span class="ident">trailer_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)
+            <span class="ident">trailer_expr</span>(<span class="ident">attrs</span>, <span class="ident">input</span>, <span class="ident">allow_struct</span>)
         }
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>))]</span>
     <span class="kw">fn</span> <span class="ident">unary_expr</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>, <span class="ident">allow_struct</span>: <span class="ident">AllowStruct</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">ahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">fork</span>();
-        <span class="kw">let</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">ahead</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">*</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">!</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">ahead</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">-</span>]) {
-            <span class="ident">input</span>.<span class="ident">advance_to</span>(<span class="kw-2">&amp;</span><span class="ident">ahead</span>);
+        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw-2">*</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">!</span>]) <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">-</span>]) {
             <span class="prelude-val">Ok</span>(<span class="ident">Expr</span>::<span class="ident">Unary</span>(<span class="ident">ExprUnary</span> {
-                <span class="ident">attrs</span>,
+                <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
                 <span class="ident">op</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
                 <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">unary_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>),
             }))
@@ -4801,13 +4973,11 @@
     <span class="comment">// &lt;atom&gt; [ &lt;expr&gt; ] ...</span>
     <span class="comment">// &lt;atom&gt; ? ...</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">trailer_expr</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>, <span class="ident">allow_struct</span>: <span class="ident">AllowStruct</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Group</span>) {
-            <span class="kw">return</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_group</span>).<span class="ident">map</span>(<span class="ident">Expr</span>::<span class="ident">Group</span>);
-        }
-
-        <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
-
+    <span class="kw">fn</span> <span class="ident">trailer_expr</span>(
+        <span class="ident">outer_attrs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Attribute</span><span class="op">&gt;</span>,
+        <span class="ident">input</span>: <span class="ident">ParseStream</span>,
+        <span class="ident">allow_struct</span>: <span class="ident">AllowStruct</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">atom</span> <span class="op">=</span> <span class="ident">atom_expr</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">trailer_helper</span>(<span class="ident">input</span>, <span class="ident">atom</span>)<span class="question-mark">?</span>;
 
@@ -4829,16 +4999,24 @@
                     <span class="ident">args</span>: <span class="ident">content</span>.<span class="ident">parse_terminated</span>(<span class="ident">Expr</span>::<span class="ident">parse</span>)<span class="question-mark">?</span>,
                 });
             } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[.]) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[..]) {
-                <span class="kw">let</span> <span class="ident">dot_token</span>: <span class="macro">Token</span><span class="macro">!</span>[.] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dot_token</span>: <span class="macro">Token</span><span class="macro">!</span>[.] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
 
-                <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Await</span>) {
+                <span class="kw">let</span> <span class="ident">await_token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">token</span>::<span class="ident">Await</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">await_token</span>) <span class="op">=</span> <span class="ident">await_token</span> {
                     <span class="ident">e</span> <span class="op">=</span> <span class="ident">Expr</span>::<span class="ident">Await</span>(<span class="ident">ExprAwait</span> {
                         <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
                         <span class="ident">base</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">e</span>),
                         <span class="ident">dot_token</span>,
-                        <span class="ident">await_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
+                        <span class="ident">await_token</span>,
                     });
                     <span class="kw">continue</span>;
+                }
+
+                <span class="kw">let</span> <span class="ident">float_token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LitFloat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">float_token</span>) <span class="op">=</span> <span class="ident">float_token</span> {
+                    <span class="kw">if</span> <span class="ident">multi_index</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dot_token</span>, <span class="ident">float_token</span>)<span class="question-mark">?</span> {
+                        <span class="kw">continue</span>;
+                    }
                 }
 
                 <span class="kw">let</span> <span class="ident">member</span>: <span class="ident">Member</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
@@ -4926,10 +5104,17 @@
                 });
             } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[.]) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[..]) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek2</span>(<span class="ident">token</span>::<span class="ident">Await</span>)
             {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dot_token</span>: <span class="macro">Token</span><span class="macro">!</span>[.] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+                <span class="kw">let</span> <span class="ident">float_token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LitFloat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">float_token</span>) <span class="op">=</span> <span class="ident">float_token</span> {
+                    <span class="kw">if</span> <span class="ident">multi_index</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dot_token</span>, <span class="ident">float_token</span>)<span class="question-mark">?</span> {
+                        <span class="kw">continue</span>;
+                    }
+                }
                 <span class="ident">e</span> <span class="op">=</span> <span class="ident">Expr</span>::<span class="ident">Field</span>(<span class="ident">ExprField</span> {
                     <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
                     <span class="ident">base</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">e</span>),
-                    <span class="ident">dot_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
+                    <span class="ident">dot_token</span>,
                     <span class="ident">member</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
                 });
             } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Bracket</span>) {
@@ -4952,7 +5137,11 @@
     <span class="comment">// interactions, as they are fully contained.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">atom_expr</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>, <span class="ident">allow_struct</span>: <span class="ident">AllowStruct</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Group</span>) {
+        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Group</span>)
+            <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[::])
+            <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek2</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">!</span>])
+            <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek2</span>(<span class="ident">token</span>::<span class="ident">Brace</span>)
+        {
             <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_group</span>).<span class="ident">map</span>(<span class="ident">Expr</span>::<span class="ident">Group</span>)
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">Lit</span>) {
             <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">map</span>(<span class="ident">Expr</span>::<span class="ident">Lit</span>)
@@ -4974,7 +5163,6 @@
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="self">self</span>])
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="self">Self</span>])
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">super</span>])
-            <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">extern</span>])
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">crate</span>])
         {
             <span class="ident">path_or_macro_or_struct</span>(<span class="ident">input</span>, <span class="ident">allow_struct</span>)
@@ -5046,7 +5234,6 @@
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="self">self</span>])
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="self">Self</span>])
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">super</span>])
-            <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">extern</span>])
             <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">crate</span>])
         {
             <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">map</span>(<span class="ident">Expr</span>::<span class="ident">Path</span>)
@@ -5184,7 +5371,7 @@
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">expr_early</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_attrs</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">expr</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">if</span>]) {
             <span class="ident">Expr</span>::<span class="ident">If</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>)
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">while</span>]) {
@@ -5257,7 +5444,16 @@
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">generic_method_argument</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">GenericMethodArgument</span><span class="op">&gt;</span> {
-        <span class="comment">// TODO parse const generics as well</span>
+        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">Lit</span>) {
+            <span class="kw">let</span> <span class="ident">lit</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">GenericMethodArgument</span>::<span class="ident">Const</span>(<span class="ident">Expr</span>::<span class="ident">Lit</span>(<span class="ident">lit</span>)));
+        }
+
+        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">token</span>::<span class="ident">Brace</span>) {
+            <span class="kw">let</span> <span class="ident">block</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr</span>::<span class="ident">parsing</span>::<span class="ident">expr_block</span>)<span class="question-mark">?</span>;
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">GenericMethodArgument</span>::<span class="ident">Const</span>(<span class="ident">Expr</span>::<span class="ident">Block</span>(<span class="ident">block</span>)));
+        }
+
         <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">map</span>(<span class="ident">GenericMethodArgument</span>::<span class="ident">Type</span>)
     }
 
@@ -5266,44 +5462,20 @@
         <span class="prelude-val">Ok</span>(<span class="ident">ExprLet</span> {
             <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
             <span class="ident">let_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
-            <span class="ident">pat</span>: {
-                <span class="kw">let</span> <span class="ident">leading_vert</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">pat</span>: <span class="ident">Pat</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="kw">if</span> <span class="ident">leading_vert</span>.<span class="ident">is_some</span>()
-                    <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span><span class="op">|</span>]) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span><span class="op">=</span>])
-                {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cases</span> <span class="op">=</span> <span class="ident">Punctuated</span>::<span class="ident">new</span>();
-                    <span class="ident">cases</span>.<span class="ident">push_value</span>(<span class="ident">pat</span>);
-                    <span class="kw">while</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>])
-                        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span><span class="op">|</span>])
-                        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span><span class="op">=</span>])
-                    {
-                        <span class="kw">let</span> <span class="ident">punct</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                        <span class="ident">cases</span>.<span class="ident">push_punct</span>(<span class="ident">punct</span>);
-                        <span class="kw">let</span> <span class="ident">pat</span>: <span class="ident">Pat</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                        <span class="ident">cases</span>.<span class="ident">push_value</span>(<span class="ident">pat</span>);
-                    }
-                    <span class="ident">Pat</span>::<span class="ident">Or</span>(<span class="ident">PatOr</span> {
-                        <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
-                        <span class="ident">leading_vert</span>,
-                        <span class="ident">cases</span>,
-                    })
-                } <span class="kw">else</span> {
-                    <span class="ident">pat</span>
-                }
-            },
+            <span class="ident">pat</span>: <span class="ident">pat</span>::<span class="ident">parsing</span>::<span class="ident">multi_pat_with_leading_vert</span>(<span class="ident">input</span>)<span class="question-mark">?</span>,
             <span class="ident">eq_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
-            <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_no_struct</span>)<span class="question-mark">?</span>),
+            <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Expr</span>::<span class="ident">parse_without_eager_brace</span>)<span class="question-mark">?</span>),
         })
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">ExprIf</span> {
         <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
             <span class="prelude-val">Ok</span>(<span class="ident">ExprIf</span> {
-                <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
+                <span class="ident">attrs</span>,
                 <span class="ident">if_token</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
-                <span class="ident">cond</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_no_struct</span>)<span class="question-mark">?</span>),
+                <span class="ident">cond</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Expr</span>::<span class="ident">parse_without_eager_brace</span>)<span class="question-mark">?</span>),
                 <span class="ident">then_branch</span>: <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>,
                 <span class="ident">else_branch</span>: {
                     <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">else</span>]) {
@@ -5339,29 +5511,14 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">ExprForLoop</span> {
         <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">for_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">for</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
 
-            <span class="kw">let</span> <span class="ident">leading_vert</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pat</span>: <span class="ident">Pat</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="ident">leading_vert</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]) {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cases</span> <span class="op">=</span> <span class="ident">Punctuated</span>::<span class="ident">new</span>();
-                <span class="ident">cases</span>.<span class="ident">push_value</span>(<span class="ident">pat</span>);
-                <span class="kw">while</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]) {
-                    <span class="kw">let</span> <span class="ident">punct</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                    <span class="ident">cases</span>.<span class="ident">push_punct</span>(<span class="ident">punct</span>);
-                    <span class="kw">let</span> <span class="ident">pat</span>: <span class="ident">Pat</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                    <span class="ident">cases</span>.<span class="ident">push_value</span>(<span class="ident">pat</span>);
-                }
-                <span class="ident">pat</span> <span class="op">=</span> <span class="ident">Pat</span>::<span class="ident">Or</span>(<span class="ident">PatOr</span> {
-                    <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
-                    <span class="ident">leading_vert</span>,
-                    <span class="ident">cases</span>,
-                });
-            }
+            <span class="kw">let</span> <span class="ident">pat</span> <span class="op">=</span> <span class="ident">pat</span>::<span class="ident">parsing</span>::<span class="ident">multi_pat_with_leading_vert</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let</span> <span class="ident">in_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">in</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">expr</span>: <span class="ident">Expr</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">expr_no_struct</span>)<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">expr</span>: <span class="ident">Expr</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Expr</span>::<span class="ident">parse_without_eager_brace</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let</span> <span class="ident">content</span>;
             <span class="kw">let</span> <span class="ident">brace_token</span> <span class="op">=</span> <span class="macro">braced</span><span class="macro">!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
@@ -5369,7 +5526,7 @@
             <span class="kw">let</span> <span class="ident">stmts</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">call</span>(<span class="ident">Block</span>::<span class="ident">parse_within</span>)<span class="question-mark">?</span>;
 
             <span class="prelude-val">Ok</span>(<span class="ident">ExprForLoop</span> {
-                <span class="ident">attrs</span>: <span class="ident">inner_attrs</span>,
+                <span class="ident">attrs</span>: <span class="ident">private</span>::<span class="ident">attrs</span>(<span class="ident">outer_attrs</span>, <span class="ident">inner_attrs</span>),
                 <span class="ident">label</span>,
                 <span class="ident">for_token</span>,
                 <span class="ident">pat</span>,
@@ -5383,6 +5540,7 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">ExprLoop</span> {
         <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">loop_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">loop</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
 
@@ -5392,7 +5550,7 @@
             <span class="kw">let</span> <span class="ident">stmts</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">call</span>(<span class="ident">Block</span>::<span class="ident">parse_within</span>)<span class="question-mark">?</span>;
 
             <span class="prelude-val">Ok</span>(<span class="ident">ExprLoop</span> {
-                <span class="ident">attrs</span>: <span class="ident">inner_attrs</span>,
+                <span class="ident">attrs</span>: <span class="ident">private</span>::<span class="ident">attrs</span>(<span class="ident">outer_attrs</span>, <span class="ident">inner_attrs</span>),
                 <span class="ident">label</span>,
                 <span class="ident">loop_token</span>,
                 <span class="ident">body</span>: <span class="ident">Block</span> { <span class="ident">brace_token</span>, <span class="ident">stmts</span> },
@@ -5403,8 +5561,9 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">ExprMatch</span> {
         <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">match_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">match</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">expr_no_struct</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">Expr</span>::<span class="ident">parse_without_eager_brace</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let</span> <span class="ident">content</span>;
             <span class="kw">let</span> <span class="ident">brace_token</span> <span class="op">=</span> <span class="macro">braced</span><span class="macro">!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
@@ -5416,7 +5575,7 @@
             }
 
             <span class="prelude-val">Ok</span>(<span class="ident">ExprMatch</span> {
-                <span class="ident">attrs</span>: <span class="ident">inner_attrs</span>,
+                <span class="ident">attrs</span>: <span class="ident">private</span>::<span class="ident">attrs</span>(<span class="ident">outer_attrs</span>, <span class="ident">inner_attrs</span>),
                 <span class="ident">match_token</span>,
                 <span class="ident">expr</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">expr</span>),
                 <span class="ident">brace_token</span>,
@@ -5611,9 +5770,10 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>
     <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">ExprWhile</span> {
         <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">outer_attrs</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">while_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">while</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">cond</span> <span class="op">=</span> <span class="ident">expr_no_struct</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">cond</span> <span class="op">=</span> <span class="ident">Expr</span>::<span class="ident">parse_without_eager_brace</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let</span> <span class="ident">content</span>;
             <span class="kw">let</span> <span class="ident">brace_token</span> <span class="op">=</span> <span class="macro">braced</span><span class="macro">!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
@@ -5621,7 +5781,7 @@
             <span class="kw">let</span> <span class="ident">stmts</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">call</span>(<span class="ident">Block</span>::<span class="ident">parse_within</span>)<span class="question-mark">?</span>;
 
             <span class="prelude-val">Ok</span>(<span class="ident">ExprWhile</span> {
-                <span class="ident">attrs</span>: <span class="ident">inner_attrs</span>,
+                <span class="ident">attrs</span>: <span class="ident">private</span>::<span class="ident">attrs</span>(<span class="ident">outer_attrs</span>, <span class="ident">inner_attrs</span>),
                 <span class="ident">label</span>,
                 <span class="ident">while_token</span>,
                 <span class="ident">cond</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">cond</span>),
@@ -5756,7 +5916,7 @@
             }
 
             <span class="ident">fields</span>.<span class="ident">push</span>(<span class="ident">content</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>);
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">content</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[,]) {
+            <span class="kw">if</span> <span class="ident">content</span>.<span class="ident">is_empty</span>() {
                 <span class="kw">break</span>;
             }
             <span class="kw">let</span> <span class="ident">punct</span>: <span class="macro">Token</span><span class="macro">!</span>[,] <span class="op">=</span> <span class="ident">content</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
@@ -5874,27 +6034,7 @@
             <span class="kw">let</span> <span class="ident">requires_comma</span>;
             <span class="prelude-val">Ok</span>(<span class="ident">Arm</span> {
                 <span class="ident">attrs</span>: <span class="ident">input</span>.<span class="ident">call</span>(<span class="ident">Attribute</span>::<span class="ident">parse_outer</span>)<span class="question-mark">?</span>,
-                <span class="ident">pat</span>: {
-                    <span class="kw">let</span> <span class="ident">leading_vert</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">pat</span>: <span class="ident">Pat</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                    <span class="kw">if</span> <span class="ident">leading_vert</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]) {
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cases</span> <span class="op">=</span> <span class="ident">Punctuated</span>::<span class="ident">new</span>();
-                        <span class="ident">cases</span>.<span class="ident">push_value</span>(<span class="ident">pat</span>);
-                        <span class="kw">while</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="op">|</span>]) {
-                            <span class="kw">let</span> <span class="ident">punct</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                            <span class="ident">cases</span>.<span class="ident">push_punct</span>(<span class="ident">punct</span>);
-                            <span class="kw">let</span> <span class="ident">pat</span>: <span class="ident">Pat</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                            <span class="ident">cases</span>.<span class="ident">push_value</span>(<span class="ident">pat</span>);
-                        }
-                        <span class="ident">Pat</span>::<span class="ident">Or</span>(<span class="ident">PatOr</span> {
-                            <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
-                            <span class="ident">leading_vert</span>,
-                            <span class="ident">cases</span>,
-                        })
-                    } <span class="kw">else</span> {
-                        <span class="ident">pat</span>
-                    }
-                },
+                <span class="ident">pat</span>: <span class="ident">pat</span>::<span class="ident">parsing</span>::<span class="ident">multi_pat_with_leading_vert</span>(<span class="ident">input</span>)<span class="question-mark">?</span>,
                 <span class="ident">guard</span>: {
                     <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token</span><span class="macro">!</span>[<span class="kw">if</span>]) {
                         <span class="kw">let</span> <span class="ident">if_token</span>: <span class="macro">Token</span><span class="macro">!</span>[<span class="kw">if</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
@@ -5936,6 +6076,26 @@
                 <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">new</span>(<span class="ident">lit</span>.<span class="ident">span</span>(), <span class="string">&quot;expected unsuffixed integer&quot;</span>))
             }
         }
+    }
+
+    <span class="kw">fn</span> <span class="ident">multi_index</span>(<span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Expr</span>, <span class="ident">dot_token</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="macro">Token</span><span class="macro">!</span>[.], <span class="ident">float</span>: <span class="ident">LitFloat</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">float_repr</span> <span class="op">=</span> <span class="ident">float</span>.<span class="ident">to_string</span>();
+        <span class="kw">let</span> <span class="ident">trailing_dot</span> <span class="op">=</span> <span class="ident">float_repr</span>.<span class="ident">ends_with</span>(<span class="string">&#39;.&#39;</span>);
+        <span class="kw">if</span> <span class="ident">trailing_dot</span> {
+            <span class="ident">float_repr</span>.<span class="ident">truncate</span>(<span class="ident">float_repr</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>);
+        }
+        <span class="kw">for</span> <span class="ident">part</span> <span class="kw">in</span> <span class="ident">float_repr</span>.<span class="ident">split</span>(<span class="string">&#39;.&#39;</span>) {
+            <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">parse_str</span>(<span class="ident">part</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">new</span>(<span class="ident">float</span>.<span class="ident">span</span>(), <span class="ident">err</span>))<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">base</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="ident">e</span>, <span class="ident">Expr</span>::<span class="ident">__Nonexhaustive</span>);
+            <span class="kw-2">*</span><span class="ident">e</span> <span class="op">=</span> <span class="ident">Expr</span>::<span class="ident">Field</span>(<span class="ident">ExprField</span> {
+                <span class="ident">attrs</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
+                <span class="ident">base</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">base</span>),
+                <span class="ident">dot_token</span>: <span class="macro">Token</span><span class="macro">!</span>[.](<span class="ident">dot_token</span>.<span class="ident">span</span>),
+                <span class="ident">member</span>: <span class="ident">Member</span>::<span class="ident">Unnamed</span>(<span class="ident">index</span>),
+            });
+            <span class="kw-2">*</span><span class="ident">dot_token</span> <span class="op">=</span> <span class="macro">Token</span><span class="macro">!</span>[.](<span class="ident">float</span>.<span class="ident">span</span>());
+        }
+        <span class="prelude-val">Ok</span>(<span class="op">!</span><span class="ident">trailing_dot</span>)
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;full&quot;</span>)]</span>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/libc-0.2.68/src/unix/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../libc/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/libc-0.2.74/src/unix/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../libc/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1568,6 +1568,32 @@
 <span id="1568">1568</span>
 <span id="1569">1569</span>
 <span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
+<span id="1594">1594</span>
+<span id="1595">1595</span>
+<span id="1596">1596</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Definitions found commonly among almost all Unix derivatives</span>
 <span class="doccomment">//!</span>
@@ -1797,8 +1823,12 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">S_ISGID</span>: ::<span class="ident">mode_t</span> <span class="op">=</span> <span class="number">0x400</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">S_ISVTX</span>: ::<span class="ident">mode_t</span> <span class="op">=</span> <span class="number">0x200</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IF_NAMESIZE</span>: ::<span class="ident">size_t</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IFNAMSIZ</span>: ::<span class="ident">size_t</span> <span class="op">=</span> <span class="ident">IF_NAMESIZE</span>;
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;illumos&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;solaris&quot;</span>)))]</span> {
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IF_NAMESIZE</span>: ::<span class="ident">size_t</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IFNAMSIZ</span>: ::<span class="ident">size_t</span> <span class="op">=</span> <span class="ident">IF_NAMESIZE</span>;
+    }
+}
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOG_EMERG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOG_ALERT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
@@ -1835,10 +1865,6 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOG_PRIMASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">7</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOG_FACMASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3f8</span>;
-
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIO_PROCESS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIO_PGRP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIO_USER</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIO_MIN</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="op">-</span><span class="number">20</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIO_MAX</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">20</span>;
@@ -2092,6 +2118,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strspn</span>(<span class="ident">cs</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">ct</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strcspn</span>(<span class="ident">cs</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">ct</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strdup</span>(<span class="ident">cs</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strndup</span>(<span class="ident">cs</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">n</span>: <span class="ident">size_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strpbrk</span>(<span class="ident">cs</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">ct</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strstr</span>(<span class="ident">cs</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">ct</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strcasecmp</span>(<span class="ident">s1</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">s2</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
@@ -2109,6 +2136,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strerror</span>(<span class="ident">n</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strtok</span>(<span class="ident">s</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>, <span class="ident">t</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strxfrm</span>(<span class="ident">s</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>, <span class="ident">ct</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">n</span>: <span class="ident">size_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strsignal</span>(<span class="ident">sig</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wcslen</span>(<span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">wchar_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wcstombs</span>(
         <span class="ident">dest</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
@@ -2182,7 +2210,6 @@
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>),
         <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;listen$UNIX2003&quot;</span>
     )]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;illumos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__xnet_listen&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">listen</span>(<span class="ident">socket</span>: ::<span class="ident">c_int</span>, <span class="ident">backlog</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>),
@@ -2255,7 +2282,10 @@
     )]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fchmod</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">mode</span>: <span class="ident">mode_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;fstat$INODE64&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(
+        <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;aarch64&quot;</span>)),
+        <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;fstat$INODE64&quot;</span>
+    )]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;netbsd&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__fstat50&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;freebsd&quot;</span>, <span class="ident">any</span>(<span class="ident">freebsd11</span>, <span class="ident">freebsd10</span>)),
@@ -2265,7 +2295,10 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mkdir</span>(<span class="ident">path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">mode</span>: <span class="ident">mode_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;stat$INODE64&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(
+        <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;aarch64&quot;</span>)),
+        <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;stat$INODE64&quot;</span>
+    )]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;netbsd&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__stat50&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;freebsd&quot;</span>, <span class="ident">any</span>(<span class="ident">freebsd11</span>, <span class="ident">freebsd10</span>)),
@@ -2308,7 +2341,10 @@
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;netbsd&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__opendir30&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opendir</span>(<span class="ident">dirname</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">DIR</span>;
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;readdir$INODE64&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(
+        <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;aarch64&quot;</span>)),
+        <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;readdir$INODE64&quot;</span>
+    )]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;netbsd&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__readdir30&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;freebsd&quot;</span>, <span class="ident">any</span>(<span class="ident">freebsd11</span>, <span class="ident">freebsd10</span>)),
@@ -2344,7 +2380,10 @@
         <span class="ident">group</span>: ::<span class="ident">gid_t</span>,
         <span class="ident">flags</span>: ::<span class="ident">c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;fstatat$INODE64&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(
+        <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;aarch64&quot;</span>)),
+        <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;fstatat$INODE64&quot;</span>
+    )]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;freebsd&quot;</span>, <span class="ident">any</span>(<span class="ident">freebsd11</span>, <span class="ident">freebsd10</span>)),
         <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;fstatat@FBSD_1.1&quot;</span>
@@ -2425,6 +2464,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">geteuid</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">uid_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getgid</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gid_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getgroups</span>(<span class="ident">ngroups_max</span>: ::<span class="ident">c_int</span>, <span class="ident">groups</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gid_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;illumos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;getloginx&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getlogin</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>),
@@ -2481,6 +2521,7 @@
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>),
         <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;ttyname_r$UNIX2003&quot;</span>
     )]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;illumos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__posix_ttyname_r&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ttyname_r</span>(
         <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
         <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
@@ -2575,7 +2616,10 @@
         <span class="ident">ifname</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>;
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;lstat$INODE64&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(
+        <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;aarch64&quot;</span>)),
+        <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;lstat$INODE64&quot;</span>
+    )]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;netbsd&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__lstat50&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(
         <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;freebsd&quot;</span>, <span class="ident">any</span>(<span class="ident">freebsd11</span>, <span class="ident">freebsd10</span>)),
@@ -2787,6 +2831,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dlclose</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dladdr</span>(<span class="ident">addr</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_void</span>, <span class="ident">info</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Dl_info</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
 
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;illumos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__xnet_getaddrinfo&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getaddrinfo</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
         <span class="ident">service</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
@@ -3018,6 +3063,12 @@
         <span class="ident">n</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">size_t</span>,
         <span class="ident">stream</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FILE</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ssize_t</span>;
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lockf</span>(
+        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
+        <span class="ident">cmd</span>: ::<span class="ident">c_int</span>,
+        <span class="ident">len</span>: ::<span class="ident">off_t</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
 }
 
 <span class="macro">cfg_if</span><span class="macro">!</span> {
@@ -3044,7 +3095,8 @@
                        <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;fdopendir$INODE64$UNIX2003&quot;</span>)]</span>
             <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fdopendir</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">DIR</span>;
 
-            <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;readdir_r$INODE64&quot;</span>)]</span>
+            <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;aarch64&quot;</span>)),
+                       <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;readdir_r$INODE64&quot;</span>)]</span>
             <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;netbsd&quot;</span>, <span class="ident">link_name</span> <span class="op">=</span> <span class="string">&quot;__readdir_r30&quot;</span>)]</span>
             <span class="attribute">#[<span class="ident">cfg_attr</span>(
                 <span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;freebsd&quot;</span>, <span class="ident">any</span>(<span class="ident">freebsd11</span>, <span class="ident">freebsd10</span>)),
