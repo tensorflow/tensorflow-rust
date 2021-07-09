@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.17.0/src/well_known_types/timestamp.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>timestamp.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.23.0/src/well_known_types/timestamp.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>timestamp.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -324,8 +327,45 @@
 <span id="324">324</span>
 <span id="325">325</span>
 <span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">// This file is generated by rust-protobuf 2.17.0-pre. Do not edit</span>
+<span class="comment">// This file is generated by rust-protobuf 2.22.0. Do not edit</span>
 <span class="comment">// @generated</span>
 
 <span class="comment">// https://github.com/rust-lang/rust-clippy/issues/702</span>
@@ -333,7 +373,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">all</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_attributes</span>)]</span>
-<span class="attribute">#![<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt</span>::<span class="ident">skip</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">box_pointers</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
@@ -347,7 +387,7 @@
 <span class="doccomment">//! Generated file from `google/protobuf/timestamp.proto`</span>
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Timestamp</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">seconds</span>: <span class="ident">i64</span>,
@@ -470,13 +510,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -539,111 +579,148 @@
 <span class="kw">static</span> <span class="ident">file_descriptor_proto_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="string">b&quot;\
     \n\x1fgoogle/protobuf/timestamp.proto\x12\x0fgoogle.protobuf\&quot;;\n\tTimes\
     tamp\x12\x18\n\x07seconds\x18\x01\x20\x01(\x03R\x07seconds\x12\x14\n\x05\
-    nanos\x18\x02\x20\x01(\x05R\x05nanosB~\n\x13com.google.protobufB\x0eTime\
-    stampProtoP\x01Z+github.com/golang/protobuf/ptypes/timestamp\xf8\x01\x01\
-    \xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\x95!\n\x06\
-    \x12\x04\x1e\0k\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Pr\
-    otocol\x20Buffers\x20-\x20Google&#39;s\x20data\x20interchange\x20format\n\
-    \x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved\
-    .\n\x20https://developers.google.com/protocol-buffers/\n\n\x20Redistribu\
-    tion\x20and\x20use\x20in\x20source\x20and\x20binary\x20forms,\x20with\
-    \x20or\x20without\n\x20modification,\x20are\x20permitted\x20provided\x20\
-    that\x20the\x20following\x20conditions\x20are\n\x20met:\n\n\x20\x20\x20\
-    \x20\x20*\x20Redistributions\x20of\x20source\x20code\x20must\x20retain\
-    \x20the\x20above\x20copyright\n\x20notice,\x20this\x20list\x20of\x20cond\
-    itions\x20and\x20the\x20following\x20disclaimer.\n\x20\x20\x20\x20\x20*\
-    \x20Redistributions\x20in\x20binary\x20form\x20must\x20reproduce\x20the\
-    \x20above\n\x20copyright\x20notice,\x20this\x20list\x20of\x20conditions\
-    \x20and\x20the\x20following\x20disclaimer\n\x20in\x20the\x20documentatio\
-    n\x20and/or\x20other\x20materials\x20provided\x20with\x20the\n\x20distri\
-    bution.\n\x20\x20\x20\x20\x20*\x20Neither\x20the\x20name\x20of\x20Google\
-    \x20Inc.\x20nor\x20the\x20names\x20of\x20its\n\x20contributors\x20may\
-    \x20be\x20used\x20to\x20endorse\x20or\x20promote\x20products\x20derived\
-    \x20from\n\x20this\x20software\x20without\x20specific\x20prior\x20writte\
-    n\x20permission.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDED\x20BY\x20THE\
-    \x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\x20IS\&quot;\x20AND\
-    \x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INCLUDING,\x20BUT\
-    \x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIES\x20OF\x20MER\
-    CHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\x20PURPOSE\
-    \x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\x20COPYRIGHT\
-    \n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\x20ANY\x20DIREC\
-    T,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLARY,\x20OR\x20CONS\
-    EQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\
-    \x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVICES;\x20LOSS\
-    \x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINESS\x20INTERRU\
-    PTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\x20OF\x20LIA\
-    BILITY,\x20WHETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILITY,\x20OR\x20T\
-    ORT\n\x20(INCLUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\
-    \x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\
-    \x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20D\
-    AMAGE.\n\n\x08\n\x01\x02\x12\x03\x20\0\x18\n\x08\n\x01\x08\x12\x03\&quot;\0;\
-    \n\t\n\x02\x08%\x12\x03\&quot;\0;\n\x08\n\x01\x08\x12\x03#\0\x1f\n\t\n\x02\
-    \x08\x1f\x12\x03#\0\x1f\n\x08\n\x01\x08\x12\x03$\0B\n\t\n\x02\x08\x0b\
-    \x12\x03$\0B\n\x08\n\x01\x08\x12\x03%\0,\n\t\n\x02\x08\x01\x12\x03%\0,\n\
-    \x08\n\x01\x08\x12\x03&amp;\0/\n\t\n\x02\x08\x08\x12\x03&amp;\0/\n\x08\n\x01\x08\
-    \x12\x03&#39;\0\&quot;\n\t\n\x02\x08\n\x12\x03&#39;\0\&quot;\n\x08\n\x01\x08\x12\x03(\0!\n\
-    \t\n\x02\x08$\x12\x03(\0!\n\xb8\x0f\n\x02\x04\0\x12\x04_\0k\x01\x1a\xab\
-    \x0f\x20A\x20Timestamp\x20represents\x20a\x20point\x20in\x20time\x20inde\
-    pendent\x20of\x20any\x20time\x20zone\n\x20or\x20calendar,\x20represented\
-    \x20as\x20seconds\x20and\x20fractions\x20of\x20seconds\x20at\n\x20nanose\
-    cond\x20resolution\x20in\x20UTC\x20Epoch\x20time.\x20It\x20is\x20encoded\
-    \x20using\x20the\n\x20Proleptic\x20Gregorian\x20Calendar\x20which\x20ext\
-    ends\x20the\x20Gregorian\x20calendar\n\x20backwards\x20to\x20year\x20one\
-    .\x20It\x20is\x20encoded\x20assuming\x20all\x20minutes\x20are\x2060\n\
-    \x20seconds\x20long,\x20i.e.\x20leap\x20seconds\x20are\x20\&quot;smeared\&quot;\
-    \x20so\x20that\x20no\x20leap\x20second\n\x20table\x20is\x20needed\x20for\
-    \x20interpretation.\x20Range\x20is\x20from\n\x200001-01-01T00:00:00Z\x20\
-    to\x209999-12-31T23:59:59.999999999Z.\n\x20By\x20restricting\x20to\x20th\
-    at\x20range,\x20we\x20ensure\x20that\x20we\x20can\x20convert\x20to\n\x20\
-    and\x20from\x20\x20RFC\x203339\x20date\x20strings.\n\x20See\x20[https://\
-    www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).\n\n\
-    \x20Example\x201:\x20Compute\x20Timestamp\x20from\x20POSIX\x20`time()`.\
-    \n\n\x20\x20\x20\x20\x20Timestamp\x20timestamp;\n\x20\x20\x20\x20\x20tim\
-    estamp.set_seconds(time(NULL));\n\x20\x20\x20\x20\x20timestamp.set_nanos\
-    (0);\n\n\x20Example\x202:\x20Compute\x20Timestamp\x20from\x20POSIX\x20`g\
-    ettimeofday()`.\n\n\x20\x20\x20\x20\x20struct\x20timeval\x20tv;\n\x20\
-    \x20\x20\x20\x20gettimeofday(&amp;tv,\x20NULL);\n\n\x20\x20\x20\x20\x20Times\
-    tamp\x20timestamp;\n\x20\x20\x20\x20\x20timestamp.set_seconds(tv.tv_sec)\
-    ;\n\x20\x20\x20\x20\x20timestamp.set_nanos(tv.tv_usec\x20*\x201000);\n\n\
-    \x20Example\x203:\x20Compute\x20Timestamp\x20from\x20Win32\x20`GetSystem\
-    TimeAsFileTime()`.\n\n\x20\x20\x20\x20\x20FILETIME\x20ft;\n\x20\x20\x20\
-    \x20\x20GetSystemTimeAsFileTime(&amp;ft);\n\x20\x20\x20\x20\x20UINT64\x20tic\
-    ks\x20=\x20(((UINT64)ft.dwHighDateTime)\x20&lt;&lt;\x2032)\x20|\x20ft.dwLowDat\
-    eTime;\n\n\x20\x20\x20\x20\x20//\x20A\x20Windows\x20tick\x20is\x20100\
-    \x20nanoseconds.\x20Windows\x20epoch\x201601-01-01T00:00:00Z\n\x20\x20\
-    \x20\x20\x20//\x20is\x2011644473600\x20seconds\x20before\x20Unix\x20epoc\
-    h\x201970-01-01T00:00:00Z.\n\x20\x20\x20\x20\x20Timestamp\x20timestamp;\
-    \n\x20\x20\x20\x20\x20timestamp.set_seconds((INT64)\x20((ticks\x20/\x201\
-    0000000)\x20-\x2011644473600LL));\n\x20\x20\x20\x20\x20timestamp.set_nan\
-    os((INT32)\x20((ticks\x20%\x2010000000)\x20*\x20100));\n\n\x20Example\
-    \x204:\x20Compute\x20Timestamp\x20from\x20Java\x20`System.currentTimeMil\
-    lis()`.\n\n\x20\x20\x20\x20\x20long\x20millis\x20=\x20System.currentTime\
-    Millis();\n\n\x20\x20\x20\x20\x20Timestamp\x20timestamp\x20=\x20Timestam\
-    p.newBuilder().setSeconds(millis\x20/\x201000)\n\x20\x20\x20\x20\x20\x20\
-    \x20\x20\x20.setNanos((int)\x20((millis\x20%\x201000)\x20*\x201000000)).\
-    build();\n\n\n\x20Example\x205:\x20Compute\x20Timestamp\x20from\x20curre\
-    nt\x20time\x20in\x20Python.\n\n\x20\x20\x20\x20\x20timestamp\x20=\x20Tim\
-    estamp()\n\x20\x20\x20\x20\x20timestamp.GetCurrentTime()\n\n\n\n\n\n\x03\
-    \x04\0\x01\x12\x03_\x08\x11\n\x9c\x01\n\x04\x04\0\x02\0\x12\x03d\x02\x14\
+    nanos\x18\x02\x20\x01(\x05R\x05nanosB\x85\x01\n\x13com.google.protobufB\
+    \x0eTimestampProtoP\x01Z2google.golang.org/protobuf/types/known/timestam\
+    ppb\xf8\x01\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypes\
+    J\xc5/\n\x07\x12\x05\x1e\0\x92\x01\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\
+    \x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google&#39;s\x20data\x20interch\
+    ange\x20format\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20ri\
+    ghts\x20reserved.\n\x20https://developers.google.com/protocol-buffers/\n\
+    \n\x20Redistribution\x20and\x20use\x20in\x20source\x20and\x20binary\x20f\
+    orms,\x20with\x20or\x20without\n\x20modification,\x20are\x20permitted\
+    \x20provided\x20that\x20the\x20following\x20conditions\x20are\n\x20met:\
+    \n\n\x20\x20\x20\x20\x20*\x20Redistributions\x20of\x20source\x20code\x20\
+    must\x20retain\x20the\x20above\x20copyright\n\x20notice,\x20this\x20list\
+    \x20of\x20conditions\x20and\x20the\x20following\x20disclaimer.\n\x20\x20\
+    \x20\x20\x20*\x20Redistributions\x20in\x20binary\x20form\x20must\x20repr\
+    oduce\x20the\x20above\n\x20copyright\x20notice,\x20this\x20list\x20of\
+    \x20conditions\x20and\x20the\x20following\x20disclaimer\n\x20in\x20the\
+    \x20documentation\x20and/or\x20other\x20materials\x20provided\x20with\
+    \x20the\n\x20distribution.\n\x20\x20\x20\x20\x20*\x20Neither\x20the\x20n\
+    ame\x20of\x20Google\x20Inc.\x20nor\x20the\x20names\x20of\x20its\n\x20con\
+    tributors\x20may\x20be\x20used\x20to\x20endorse\x20or\x20promote\x20prod\
+    ucts\x20derived\x20from\n\x20this\x20software\x20without\x20specific\x20\
+    prior\x20written\x20permission.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDE\
+    D\x20BY\x20THE\x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\
+    \x20IS\&quot;\x20AND\x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INC\
+    LUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIE\
+    S\x20OF\x20MERCHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\
+    \x20PURPOSE\x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\
+    \x20COPYRIGHT\n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\
+    \x20ANY\x20DIRECT,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLAR\
+    Y,\x20OR\x20CONSEQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20L\
+    IMITED\x20TO,\x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVI\
+    CES;\x20LOSS\x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINES\
+    S\x20INTERRUPTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\
+    \x20OF\x20LIABILITY,\x20WHETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILIT\
+    Y,\x20OR\x20TORT\n\x20(INCLUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20AR\
+    ISING\x20IN\x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20\
+    SOFTWARE,\x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20\
+    SUCH\x20DAMAGE.\n\n\x08\n\x01\x02\x12\x03\x20\0\x18\n\x08\n\x01\x08\x12\
+    \x03\&quot;\0;\n\t\n\x02\x08%\x12\x03\&quot;\0;\n\x08\n\x01\x08\x12\x03#\0\x1f\n\t\
+    \n\x02\x08\x1f\x12\x03#\0\x1f\n\x08\n\x01\x08\x12\x03$\0I\n\t\n\x02\x08\
+    \x0b\x12\x03$\0I\n\x08\n\x01\x08\x12\x03%\0,\n\t\n\x02\x08\x01\x12\x03%\
+    \0,\n\x08\n\x01\x08\x12\x03&amp;\0/\n\t\n\x02\x08\x08\x12\x03&amp;\0/\n\x08\n\
+    \x01\x08\x12\x03&#39;\0\&quot;\n\t\n\x02\x08\n\x12\x03&#39;\0\&quot;\n\x08\n\x01\x08\x12\
+    \x03(\0!\n\t\n\x02\x08$\x12\x03(\0!\n\xde\x1d\n\x02\x04\0\x12\x06\x87\
+    \x01\0\x92\x01\x01\x1a\xcf\x1d\x20A\x20Timestamp\x20represents\x20a\x20p\
+    oint\x20in\x20time\x20independent\x20of\x20any\x20time\x20zone\x20or\x20\
+    local\n\x20calendar,\x20encoded\x20as\x20a\x20count\x20of\x20seconds\x20\
+    and\x20fractions\x20of\x20seconds\x20at\n\x20nanosecond\x20resolution.\
+    \x20The\x20count\x20is\x20relative\x20to\x20an\x20epoch\x20at\x20UTC\x20\
+    midnight\x20on\n\x20January\x201,\x201970,\x20in\x20the\x20proleptic\x20\
+    Gregorian\x20calendar\x20which\x20extends\x20the\n\x20Gregorian\x20calen\
+    dar\x20backwards\x20to\x20year\x20one.\n\n\x20All\x20minutes\x20are\x206\
+    0\x20seconds\x20long.\x20Leap\x20seconds\x20are\x20\&quot;smeared\&quot;\x20so\x20\
+    that\x20no\x20leap\n\x20second\x20table\x20is\x20needed\x20for\x20interp\
+    retation,\x20using\x20a\x20[24-hour\x20linear\n\x20smear](https://develo\
+    pers.google.com/time/smear).\n\n\x20The\x20range\x20is\x20from\x200001-0\
+    1-01T00:00:00Z\x20to\x209999-12-31T23:59:59.999999999Z.\x20By\n\x20restr\
+    icting\x20to\x20that\x20range,\x20we\x20ensure\x20that\x20we\x20can\x20c\
+    onvert\x20to\x20and\x20from\x20[RFC\n\x203339](https://www.ietf.org/rfc/\
+    rfc3339.txt)\x20date\x20strings.\n\n\x20#\x20Examples\n\n\x20Example\x20\
+    1:\x20Compute\x20Timestamp\x20from\x20POSIX\x20`time()`.\n\n\x20\x20\x20\
+    \x20\x20Timestamp\x20timestamp;\n\x20\x20\x20\x20\x20timestamp.set_secon\
+    ds(time(NULL));\n\x20\x20\x20\x20\x20timestamp.set_nanos(0);\n\n\x20Exam\
+    ple\x202:\x20Compute\x20Timestamp\x20from\x20POSIX\x20`gettimeofday()`.\
+    \n\n\x20\x20\x20\x20\x20struct\x20timeval\x20tv;\n\x20\x20\x20\x20\x20ge\
+    ttimeofday(&amp;tv,\x20NULL);\n\n\x20\x20\x20\x20\x20Timestamp\x20timestamp;\
+    \n\x20\x20\x20\x20\x20timestamp.set_seconds(tv.tv_sec);\n\x20\x20\x20\
+    \x20\x20timestamp.set_nanos(tv.tv_usec\x20*\x201000);\n\n\x20Example\x20\
+    3:\x20Compute\x20Timestamp\x20from\x20Win32\x20`GetSystemTimeAsFileTime(\
+    )`.\n\n\x20\x20\x20\x20\x20FILETIME\x20ft;\n\x20\x20\x20\x20\x20GetSyste\
+    mTimeAsFileTime(&amp;ft);\n\x20\x20\x20\x20\x20UINT64\x20ticks\x20=\x20(((UI\
+    NT64)ft.dwHighDateTime)\x20&lt;&lt;\x2032)\x20|\x20ft.dwLowDateTime;\n\n\x20\
+    \x20\x20\x20\x20//\x20A\x20Windows\x20tick\x20is\x20100\x20nanoseconds.\
+    \x20Windows\x20epoch\x201601-01-01T00:00:00Z\n\x20\x20\x20\x20\x20//\x20\
+    is\x2011644473600\x20seconds\x20before\x20Unix\x20epoch\x201970-01-01T00\
+    :00:00Z.\n\x20\x20\x20\x20\x20Timestamp\x20timestamp;\n\x20\x20\x20\x20\
+    \x20timestamp.set_seconds((INT64)\x20((ticks\x20/\x2010000000)\x20-\x201\
+    1644473600LL));\n\x20\x20\x20\x20\x20timestamp.set_nanos((INT32)\x20((ti\
+    cks\x20%\x2010000000)\x20*\x20100));\n\n\x20Example\x204:\x20Compute\x20\
+    Timestamp\x20from\x20Java\x20`System.currentTimeMillis()`.\n\n\x20\x20\
+    \x20\x20\x20long\x20millis\x20=\x20System.currentTimeMillis();\n\n\x20\
+    \x20\x20\x20\x20Timestamp\x20timestamp\x20=\x20Timestamp.newBuilder().se\
+    tSeconds(millis\x20/\x201000)\n\x20\x20\x20\x20\x20\x20\x20\x20\x20.setN\
+    anos((int)\x20((millis\x20%\x201000)\x20*\x201000000)).build();\n\n\n\
+    \x20Example\x205:\x20Compute\x20Timestamp\x20from\x20Java\x20`Instant.no\
+    w()`.\n\n\x20\x20\x20\x20\x20Instant\x20now\x20=\x20Instant.now();\n\n\
+    \x20\x20\x20\x20\x20Timestamp\x20timestamp\x20=\n\x20\x20\x20\x20\x20\
+    \x20\x20\x20\x20Timestamp.newBuilder().setSeconds(now.getEpochSecond())\
+    \n\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.setNanos(now.getN\
+    ano()).build();\n\n\n\x20Example\x206:\x20Compute\x20Timestamp\x20from\
+    \x20current\x20time\x20in\x20Python.\n\n\x20\x20\x20\x20\x20timestamp\
+    \x20=\x20Timestamp()\n\x20\x20\x20\x20\x20timestamp.GetCurrentTime()\n\n\
+    \x20#\x20JSON\x20Mapping\n\n\x20In\x20JSON\x20format,\x20the\x20Timestam\
+    p\x20type\x20is\x20encoded\x20as\x20a\x20string\x20in\x20the\n\x20[RFC\
+    \x203339](https://www.ietf.org/rfc/rfc3339.txt)\x20format.\x20That\x20is\
+    ,\x20the\n\x20format\x20is\x20\&quot;{year}-{month}-{day}T{hour}:{min}:{sec}[\
+    .{frac_sec}]Z\&quot;\n\x20where\x20{year}\x20is\x20always\x20expressed\x20usi\
+    ng\x20four\x20digits\x20while\x20{month},\x20{day},\n\x20{hour},\x20{min\
+    },\x20and\x20{sec}\x20are\x20zero-padded\x20to\x20two\x20digits\x20each.\
+    \x20The\x20fractional\n\x20seconds,\x20which\x20can\x20go\x20up\x20to\
+    \x209\x20digits\x20(i.e.\x20up\x20to\x201\x20nanosecond\x20resolution),\
+    \n\x20are\x20optional.\x20The\x20\&quot;Z\&quot;\x20suffix\x20indicates\x20the\x20\
+    timezone\x20(\&quot;UTC\&quot;);\x20the\x20timezone\n\x20is\x20required.\x20A\x20p\
+    roto3\x20JSON\x20serializer\x20should\x20always\x20use\x20UTC\x20(as\x20\
+    indicated\x20by\n\x20\&quot;Z\&quot;)\x20when\x20printing\x20the\x20Timestamp\x20t\
+    ype\x20and\x20a\x20proto3\x20JSON\x20parser\x20should\x20be\n\x20able\
+    \x20to\x20accept\x20both\x20UTC\x20and\x20other\x20timezones\x20(as\x20i\
+    ndicated\x20by\x20an\x20offset).\n\n\x20For\x20example,\x20\&quot;2017-01-15T\
+    01:30:15.01Z\&quot;\x20encodes\x2015.01\x20seconds\x20past\n\x2001:30\x20UTC\
+    \x20on\x20January\x2015,\x202017.\n\n\x20In\x20JavaScript,\x20one\x20can\
+    \x20convert\x20a\x20Date\x20object\x20to\x20this\x20format\x20using\x20t\
+    he\n\x20standard\n\x20[toISOString()](https://developer.mozilla.org/en-U\
+    S/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)\n\x20me\
+    thod.\x20In\x20Python,\x20a\x20standard\x20`datetime.datetime`\x20object\
+    \x20can\x20be\x20converted\n\x20to\x20this\x20format\x20using\n\x20[`str\
+    ftime`](https://docs.python.org/2/library/time.html#time.strftime)\x20wi\
+    th\n\x20the\x20time\x20format\x20spec\x20&#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;.\x20Lik\
+    ewise,\x20in\x20Java,\x20one\x20can\x20use\n\x20the\x20Joda\x20Time&#39;s\
+    \x20[`ISODateTimeFormat.dateTime()`](\n\x20http://www.joda.org/joda-time\
+    /apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D\n\
+    \x20)\x20to\x20obtain\x20a\x20formatter\x20capable\x20of\x20generating\
+    \x20timestamps\x20in\x20this\x20format.\n\n\n\n\x0b\n\x03\x04\0\x01\x12\
+    \x04\x87\x01\x08\x11\n\x9d\x01\n\x04\x04\0\x02\0\x12\x04\x8b\x01\x02\x14\
     \x1a\x8e\x01\x20Represents\x20seconds\x20of\x20UTC\x20time\x20since\x20U\
     nix\x20epoch\n\x201970-01-01T00:00:00Z.\x20Must\x20be\x20from\x200001-01\
-    -01T00:00:00Z\x20to\n\x209999-12-31T23:59:59Z\x20inclusive.\n\n\x0c\n\
-    \x05\x04\0\x02\0\x05\x12\x03d\x02\x07\n\x0c\n\x05\x04\0\x02\0\x01\x12\
-    \x03d\x08\x0f\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03d\x12\x13\n\xe4\x01\n\
-    \x04\x04\0\x02\x01\x12\x03j\x02\x12\x1a\xd6\x01\x20Non-negative\x20fract\
-    ions\x20of\x20a\x20second\x20at\x20nanosecond\x20resolution.\x20Negative\
-    \n\x20second\x20values\x20with\x20fractions\x20must\x20still\x20have\x20\
-    non-negative\x20nanos\x20values\n\x20that\x20count\x20forward\x20in\x20t\
-    ime.\x20Must\x20be\x20from\x200\x20to\x20999,999,999\n\x20inclusive.\n\n\
-    \x0c\n\x05\x04\0\x02\x01\x05\x12\x03j\x02\x07\n\x0c\n\x05\x04\0\x02\x01\
-    \x01\x12\x03j\x08\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03j\x10\x11b\x06p\
-    roto3\
+    -01T00:00:00Z\x20to\n\x209999-12-31T23:59:59Z\x20inclusive.\n\n\r\n\x05\
+    \x04\0\x02\0\x05\x12\x04\x8b\x01\x02\x07\n\r\n\x05\x04\0\x02\0\x01\x12\
+    \x04\x8b\x01\x08\x0f\n\r\n\x05\x04\0\x02\0\x03\x12\x04\x8b\x01\x12\x13\n\
+    \xe5\x01\n\x04\x04\0\x02\x01\x12\x04\x91\x01\x02\x12\x1a\xd6\x01\x20Non-\
+    negative\x20fractions\x20of\x20a\x20second\x20at\x20nanosecond\x20resolu\
+    tion.\x20Negative\n\x20second\x20values\x20with\x20fractions\x20must\x20\
+    still\x20have\x20non-negative\x20nanos\x20values\n\x20that\x20count\x20f\
+    orward\x20in\x20time.\x20Must\x20be\x20from\x200\x20to\x20999,999,999\n\
+    \x20inclusive.\n\n\r\n\x05\x04\0\x02\x01\x05\x12\x04\x91\x01\x02\x07\n\r\
+    \n\x05\x04\0\x02\x01\x01\x12\x04\x91\x01\x08\r\n\r\n\x05\x04\0\x02\x01\
+    \x03\x12\x04\x91\x01\x10\x11b\x06proto3\
 &quot;</span>;
 
 <span class="kw">static</span> <span class="ident">file_descriptor_proto_lazy</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
 
 <span class="kw">fn</span> <span class="ident">parse_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
-    <span class="kw">crate</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
+    <span class="kw">crate</span>::<span class="ident">Message</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
@@ -652,4 +729,4 @@
     })
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

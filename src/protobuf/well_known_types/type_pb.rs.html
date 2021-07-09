@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.17.0/src/well_known_types/type_pb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>type_pb.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.23.0/src/well_known_types/type_pb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>type_pb.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2221,8 +2224,18 @@
 <span id="2221">2221</span>
 <span id="2222">2222</span>
 <span id="2223">2223</span>
+<span id="2224">2224</span>
+<span id="2225">2225</span>
+<span id="2226">2226</span>
+<span id="2227">2227</span>
+<span id="2228">2228</span>
+<span id="2229">2229</span>
+<span id="2230">2230</span>
+<span id="2231">2231</span>
+<span id="2232">2232</span>
+<span id="2233">2233</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">// This file is generated by rust-protobuf 2.17.0-pre. Do not edit</span>
+<span class="comment">// This file is generated by rust-protobuf 2.22.0. Do not edit</span>
 <span class="comment">// @generated</span>
 
 <span class="comment">// https://github.com/rust-lang/rust-clippy/issues/702</span>
@@ -2230,7 +2243,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">all</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_attributes</span>)]</span>
-<span class="attribute">#![<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt</span>::<span class="ident">skip</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">box_pointers</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
@@ -2244,7 +2257,7 @@
 <span class="doccomment">//! Generated file from `google/protobuf/type.proto`</span>
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -2542,13 +2555,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2633,7 +2646,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Field</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">Field_Kind</span>,
@@ -3022,13 +3035,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -3137,7 +3150,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>,<span class="ident">PartialEq</span>,<span class="ident">Eq</span>,<span class="ident">Debug</span>,<span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Field_Kind</span> {
     <span class="ident">TYPE_UNKNOWN</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">TYPE_DOUBLE</span> <span class="op">=</span> <span class="number">1</span>,
@@ -3239,7 +3252,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>,<span class="ident">PartialEq</span>,<span class="ident">Eq</span>,<span class="ident">Debug</span>,<span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Field_Cardinality</span> {
     <span class="ident">CARDINALITY_UNKNOWN</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">CARDINALITY_OPTIONAL</span> <span class="op">=</span> <span class="number">1</span>,
@@ -3296,7 +3309,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Enum</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -3559,13 +3572,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -3644,7 +3657,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EnumValue</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -3817,13 +3830,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -3890,7 +3903,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="prelude-ty">Option</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -4042,13 +4055,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -4109,7 +4122,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>,<span class="ident">PartialEq</span>,<span class="ident">Eq</span>,<span class="ident">Debug</span>,<span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Syntax</span> {
     <span class="ident">SYNTAX_PROTO2</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">SYNTAX_PROTO3</span> <span class="op">=</span> <span class="number">1</span>,
@@ -4199,245 +4212,255 @@
     \x03(\x0b2\x17.google.protobuf.OptionR\x07options\&quot;H\n\x06Option\x12\x12\
     \n\x04name\x18\x01\x20\x01(\tR\x04name\x12*\n\x05value\x18\x02\x20\x01(\
     \x0b2\x14.google.protobuf.AnyR\x05value*.\n\x06Syntax\x12\x11\n\rSYNTAX_\
-    PROTO2\x10\0\x12\x11\n\rSYNTAX_PROTO3\x10\x01BL\n\x13com.google.protobuf\
-    B\tTypeProtoP\x01\xf8\x01\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.\
-    WellKnownTypesJ\x9a5\n\x07\x12\x05\x1e\0\xb3\x01\x01\n\xcc\x0c\n\x01\x0c\
-    \x12\x03\x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google&#39;s\x20d\
-    ata\x20interchange\x20format\n\x20Copyright\x202008\x20Google\x20Inc.\
-    \x20\x20All\x20rights\x20reserved.\n\x20https://developers.google.com/pr\
-    otocol-buffers/\n\n\x20Redistribution\x20and\x20use\x20in\x20source\x20a\
-    nd\x20binary\x20forms,\x20with\x20or\x20without\n\x20modification,\x20ar\
-    e\x20permitted\x20provided\x20that\x20the\x20following\x20conditions\x20\
-    are\n\x20met:\n\n\x20\x20\x20\x20\x20*\x20Redistributions\x20of\x20sourc\
-    e\x20code\x20must\x20retain\x20the\x20above\x20copyright\n\x20notice,\
-    \x20this\x20list\x20of\x20conditions\x20and\x20the\x20following\x20discl\
-    aimer.\n\x20\x20\x20\x20\x20*\x20Redistributions\x20in\x20binary\x20form\
-    \x20must\x20reproduce\x20the\x20above\n\x20copyright\x20notice,\x20this\
-    \x20list\x20of\x20conditions\x20and\x20the\x20following\x20disclaimer\n\
-    \x20in\x20the\x20documentation\x20and/or\x20other\x20materials\x20provid\
-    ed\x20with\x20the\n\x20distribution.\n\x20\x20\x20\x20\x20*\x20Neither\
-    \x20the\x20name\x20of\x20Google\x20Inc.\x20nor\x20the\x20names\x20of\x20\
-    its\n\x20contributors\x20may\x20be\x20used\x20to\x20endorse\x20or\x20pro\
-    mote\x20products\x20derived\x20from\n\x20this\x20software\x20without\x20\
-    specific\x20prior\x20written\x20permission.\n\n\x20THIS\x20SOFTWARE\x20I\
-    S\x20PROVIDED\x20BY\x20THE\x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTOR\
-    S\n\x20\&quot;AS\x20IS\&quot;\x20AND\x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANT\
-    IES,\x20INCLUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\
-    \x20WARRANTIES\x20OF\x20MERCHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\
-    \x20PARTICULAR\x20PURPOSE\x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20\
-    SHALL\x20THE\x20COPYRIGHT\n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIAB\
-    LE\x20FOR\x20ANY\x20DIRECT,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\
-    \x20EXEMPLARY,\x20OR\x20CONSEQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\
-    \x20NOT\n\x20LIMITED\x20TO,\x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\
-    \x20OR\x20SERVICES;\x20LOSS\x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\
-    \x20OR\x20BUSINESS\x20INTERRUPTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\
-    \x20ANY\n\x20THEORY\x20OF\x20LIABILITY,\x20WHETHER\x20IN\x20CONTRACT,\
-    \x20STRICT\x20LIABILITY,\x20OR\x20TORT\n\x20(INCLUDING\x20NEGLIGENCE\x20\
-    OR\x20OTHERWISE)\x20ARISING\x20IN\x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20U\
-    SE\n\x20OF\x20THIS\x20SOFTWARE,\x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\
-    \x20POSSIBILITY\x20OF\x20SUCH\x20DAMAGE.\n\n\x08\n\x01\x02\x12\x03\x20\0\
-    \x18\n\t\n\x02\x03\0\x12\x03\&quot;\0#\n\t\n\x02\x03\x01\x12\x03#\0.\n\x08\n\
-    \x01\x08\x12\x03%\0;\n\t\n\x02\x08%\x12\x03%\0;\n\x08\n\x01\x08\x12\x03&amp;\
-    \0\x1f\n\t\n\x02\x08\x1f\x12\x03&amp;\0\x1f\n\x08\n\x01\x08\x12\x03&#39;\0,\n\t\
-    \n\x02\x08\x01\x12\x03&#39;\0,\n\x08\n\x01\x08\x12\x03(\0*\n\t\n\x02\x08\x08\
-    \x12\x03(\0*\n\x08\n\x01\x08\x12\x03)\0\&quot;\n\t\n\x02\x08\n\x12\x03)\0\&quot;\n\
-    \x08\n\x01\x08\x12\x03*\0!\n\t\n\x02\x08$\x12\x03*\0!\n-\n\x02\x04\0\x12\
-    \x04-\0:\x01\x1a!\x20A\x20protocol\x20buffer\x20message\x20type.\n\n\n\n\
-    \x03\x04\0\x01\x12\x03-\x08\x0c\n0\n\x04\x04\0\x02\0\x12\x03/\x02\x12\
-    \x1a#\x20The\x20fully\x20qualified\x20message\x20name.\n\n\x0c\n\x05\x04\
-    \0\x02\0\x05\x12\x03/\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03/\t\r\n\
-    \x0c\n\x05\x04\0\x02\0\x03\x12\x03/\x10\x11\n\&quot;\n\x04\x04\0\x02\x01\x12\
-    \x031\x02\x1c\x1a\x15\x20The\x20list\x20of\x20fields.\n\n\x0c\n\x05\x04\
-    \0\x02\x01\x04\x12\x031\x02\n\n\x0c\n\x05\x04\0\x02\x01\x06\x12\x031\x0b\
-    \x10\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x031\x11\x17\n\x0c\n\x05\x04\0\
-    \x02\x01\x03\x12\x031\x1a\x1b\nO\n\x04\x04\0\x02\x02\x12\x033\x02\x1d\
-    \x1aB\x20The\x20list\x20of\x20types\x20appearing\x20in\x20`oneof`\x20def\
-    initions\x20in\x20this\x20type.\n\n\x0c\n\x05\x04\0\x02\x02\x04\x12\x033\
-    \x02\n\n\x0c\n\x05\x04\0\x02\x02\x05\x12\x033\x0b\x11\n\x0c\n\x05\x04\0\
-    \x02\x02\x01\x12\x033\x12\x18\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x033\x1b\
-    \x1c\n+\n\x04\x04\0\x02\x03\x12\x035\x02\x1e\x1a\x1e\x20The\x20protocol\
-    \x20buffer\x20options.\n\n\x0c\n\x05\x04\0\x02\x03\x04\x12\x035\x02\n\n\
-    \x0c\n\x05\x04\0\x02\x03\x06\x12\x035\x0b\x11\n\x0c\n\x05\x04\0\x02\x03\
-    \x01\x12\x035\x12\x19\n\x0c\n\x05\x04\0\x02\x03\x03\x12\x035\x1c\x1d\n\&quot;\
-    \n\x04\x04\0\x02\x04\x12\x037\x02#\x1a\x15\x20The\x20source\x20context.\
-    \n\n\x0c\n\x05\x04\0\x02\x04\x06\x12\x037\x02\x0f\n\x0c\n\x05\x04\0\x02\
-    \x04\x01\x12\x037\x10\x1e\n\x0c\n\x05\x04\0\x02\x04\x03\x12\x037!\&quot;\n!\n\
-    \x04\x04\0\x02\x05\x12\x039\x02\x14\x1a\x14\x20The\x20source\x20syntax.\
-    \n\n\x0c\n\x05\x04\0\x02\x05\x06\x12\x039\x02\x08\n\x0c\n\x05\x04\0\x02\
-    \x05\x01\x12\x039\t\x0f\n\x0c\n\x05\x04\0\x02\x05\x03\x12\x039\x12\x13\n\
-    0\n\x02\x04\x01\x12\x05=\0\x8a\x01\x01\x1a#\x20A\x20single\x20field\x20o\
-    f\x20a\x20message\x20type.\n\n\n\n\x03\x04\x01\x01\x12\x03=\x08\r\n\&quot;\n\
-    \x04\x04\x01\x04\0\x12\x04?\x02f\x03\x1a\x14\x20Basic\x20field\x20types.\
-    \n\n\x0c\n\x05\x04\x01\x04\0\x01\x12\x03?\x07\x0b\n$\n\x06\x04\x01\x04\0\
-    \x02\0\x12\x03A\x04\x1c\x1a\x15\x20Field\x20type\x20unknown.\n\n\x0e\n\
-    \x07\x04\x01\x04\0\x02\0\x01\x12\x03A\x04\x10\n\x0e\n\x07\x04\x01\x04\0\
-    \x02\0\x02\x12\x03A\x1a\x1b\n#\n\x06\x04\x01\x04\0\x02\x01\x12\x03C\x04\
-    \x1c\x1a\x14\x20Field\x20type\x20double.\n\n\x0e\n\x07\x04\x01\x04\0\x02\
-    \x01\x01\x12\x03C\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x01\x02\x12\x03C\
-    \x1a\x1b\n\&quot;\n\x06\x04\x01\x04\0\x02\x02\x12\x03E\x04\x1c\x1a\x13\x20Fie\
-    ld\x20type\x20float.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x02\x01\x12\x03E\
-    \x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\x02\x02\x12\x03E\x1a\x1b\n\&quot;\n\
-    \x06\x04\x01\x04\0\x02\x03\x12\x03G\x04\x1c\x1a\x13\x20Field\x20type\x20\
-    int64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x03\x01\x12\x03G\x04\x0e\n\x0e\n\
-    \x07\x04\x01\x04\0\x02\x03\x02\x12\x03G\x1a\x1b\n#\n\x06\x04\x01\x04\0\
-    \x02\x04\x12\x03I\x04\x1c\x1a\x14\x20Field\x20type\x20uint64.\n\n\x0e\n\
-    \x07\x04\x01\x04\0\x02\x04\x01\x12\x03I\x04\x0f\n\x0e\n\x07\x04\x01\x04\
-    \0\x02\x04\x02\x12\x03I\x1a\x1b\n\&quot;\n\x06\x04\x01\x04\0\x02\x05\x12\x03K\
-    \x04\x1c\x1a\x13\x20Field\x20type\x20int32.\n\n\x0e\n\x07\x04\x01\x04\0\
-    \x02\x05\x01\x12\x03K\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\x05\x02\x12\
-    \x03K\x1a\x1b\n$\n\x06\x04\x01\x04\0\x02\x06\x12\x03M\x04\x1c\x1a\x15\
-    \x20Field\x20type\x20fixed64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x06\x01\
-    \x12\x03M\x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\x06\x02\x12\x03M\x1a\x1b\
-    \n$\n\x06\x04\x01\x04\0\x02\x07\x12\x03O\x04\x1c\x1a\x15\x20Field\x20typ\
-    e\x20fixed32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x07\x01\x12\x03O\x04\x10\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\x07\x02\x12\x03O\x1a\x1b\n!\n\x06\x04\x01\
-    \x04\0\x02\x08\x12\x03Q\x04\x1c\x1a\x12\x20Field\x20type\x20bool.\n\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\x08\x01\x12\x03Q\x04\r\n\x0e\n\x07\x04\x01\
-    \x04\0\x02\x08\x02\x12\x03Q\x1a\x1b\n#\n\x06\x04\x01\x04\0\x02\t\x12\x03\
-    S\x04\x1c\x1a\x14\x20Field\x20type\x20string.\n\n\x0e\n\x07\x04\x01\x04\
-    \0\x02\t\x01\x12\x03S\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\t\x02\x12\
-    \x03S\x1a\x1b\nF\n\x06\x04\x01\x04\0\x02\n\x12\x03U\x04\x1d\x1a7\x20Fiel\
-    d\x20type\x20group.\x20Proto2\x20syntax\x20only,\x20and\x20deprecated.\n\
-    \n\x0e\n\x07\x04\x01\x04\0\x02\n\x01\x12\x03U\x04\x0e\n\x0e\n\x07\x04\
-    \x01\x04\0\x02\n\x02\x12\x03U\x1a\x1c\n$\n\x06\x04\x01\x04\0\x02\x0b\x12\
-    \x03W\x04\x1d\x1a\x15\x20Field\x20type\x20message.\n\n\x0e\n\x07\x04\x01\
-    \x04\0\x02\x0b\x01\x12\x03W\x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\x0b\
-    \x02\x12\x03W\x1a\x1c\n\&quot;\n\x06\x04\x01\x04\0\x02\x0c\x12\x03Y\x04\x1d\
-    \x1a\x13\x20Field\x20type\x20bytes.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x0c\
-    \x01\x12\x03Y\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\x0c\x02\x12\x03Y\x1a\
-    \x1c\n#\n\x06\x04\x01\x04\0\x02\r\x12\x03[\x04\x1d\x1a\x14\x20Field\x20t\
-    ype\x20uint32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\r\x01\x12\x03[\x04\x0f\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\r\x02\x12\x03[\x1a\x1c\n!\n\x06\x04\x01\x04\
-    \0\x02\x0e\x12\x03]\x04\x1d\x1a\x12\x20Field\x20type\x20enum.\n\n\x0e\n\
-    \x07\x04\x01\x04\0\x02\x0e\x01\x12\x03]\x04\r\n\x0e\n\x07\x04\x01\x04\0\
-    \x02\x0e\x02\x12\x03]\x1a\x1c\n%\n\x06\x04\x01\x04\0\x02\x0f\x12\x03_\
-    \x04\x1d\x1a\x16\x20Field\x20type\x20sfixed32.\n\n\x0e\n\x07\x04\x01\x04\
-    \0\x02\x0f\x01\x12\x03_\x04\x11\n\x0e\n\x07\x04\x01\x04\0\x02\x0f\x02\
-    \x12\x03_\x1a\x1c\n%\n\x06\x04\x01\x04\0\x02\x10\x12\x03a\x04\x1d\x1a\
-    \x16\x20Field\x20type\x20sfixed64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x10\
-    \x01\x12\x03a\x04\x11\n\x0e\n\x07\x04\x01\x04\0\x02\x10\x02\x12\x03a\x1a\
-    \x1c\n#\n\x06\x04\x01\x04\0\x02\x11\x12\x03c\x04\x1d\x1a\x14\x20Field\
-    \x20type\x20sint32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x11\x01\x12\x03c\x04\
-    \x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x11\x02\x12\x03c\x1a\x1c\n#\n\x06\x04\
-    \x01\x04\0\x02\x12\x12\x03e\x04\x1d\x1a\x14\x20Field\x20type\x20sint64.\
-    \n\n\x0e\n\x07\x04\x01\x04\0\x02\x12\x01\x12\x03e\x04\x0f\n\x0e\n\x07\
-    \x04\x01\x04\0\x02\x12\x02\x12\x03e\x1a\x1c\nC\n\x04\x04\x01\x04\x01\x12\
-    \x04i\x02r\x03\x1a5\x20Whether\x20a\x20field\x20is\x20optional,\x20requi\
-    red,\x20or\x20repeated.\n\n\x0c\n\x05\x04\x01\x04\x01\x01\x12\x03i\x07\
-    \x12\n5\n\x06\x04\x01\x04\x01\x02\0\x12\x03k\x04\x1c\x1a&amp;\x20For\x20fiel\
-    ds\x20with\x20unknown\x20cardinality.\n\n\x0e\n\x07\x04\x01\x04\x01\x02\
-    \0\x01\x12\x03k\x04\x17\n\x0e\n\x07\x04\x01\x04\x01\x02\0\x02\x12\x03k\
-    \x1a\x1b\n%\n\x06\x04\x01\x04\x01\x02\x01\x12\x03m\x04\x1d\x1a\x16\x20Fo\
-    r\x20optional\x20fields.\n\n\x0e\n\x07\x04\x01\x04\x01\x02\x01\x01\x12\
-    \x03m\x04\x18\n\x0e\n\x07\x04\x01\x04\x01\x02\x01\x02\x12\x03m\x1b\x1c\n\
-    9\n\x06\x04\x01\x04\x01\x02\x02\x12\x03o\x04\x1d\x1a*\x20For\x20required\
-    \x20fields.\x20Proto2\x20syntax\x20only.\n\n\x0e\n\x07\x04\x01\x04\x01\
-    \x02\x02\x01\x12\x03o\x04\x18\n\x0e\n\x07\x04\x01\x04\x01\x02\x02\x02\
-    \x12\x03o\x1b\x1c\n%\n\x06\x04\x01\x04\x01\x02\x03\x12\x03q\x04\x1d\x1a\
-    \x16\x20For\x20repeated\x20fields.\n\n\x0e\n\x07\x04\x01\x04\x01\x02\x03\
-    \x01\x12\x03q\x04\x18\n\x0e\n\x07\x04\x01\x04\x01\x02\x03\x02\x12\x03q\
-    \x1b\x1c\n\x1e\n\x04\x04\x01\x02\0\x12\x03u\x02\x10\x1a\x11\x20The\x20fi\
-    eld\x20type.\n\n\x0c\n\x05\x04\x01\x02\0\x06\x12\x03u\x02\x06\n\x0c\n\
-    \x05\x04\x01\x02\0\x01\x12\x03u\x07\x0b\n\x0c\n\x05\x04\x01\x02\0\x03\
-    \x12\x03u\x0e\x0f\n%\n\x04\x04\x01\x02\x01\x12\x03w\x02\x1e\x1a\x18\x20T\
-    he\x20field\x20cardinality.\n\n\x0c\n\x05\x04\x01\x02\x01\x06\x12\x03w\
-    \x02\r\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03w\x0e\x19\n\x0c\n\x05\x04\
-    \x01\x02\x01\x03\x12\x03w\x1c\x1d\n\x20\n\x04\x04\x01\x02\x02\x12\x03y\
-    \x02\x13\x1a\x13\x20The\x20field\x20number.\n\n\x0c\n\x05\x04\x01\x02\
-    \x02\x05\x12\x03y\x02\x07\n\x0c\n\x05\x04\x01\x02\x02\x01\x12\x03y\x08\
-    \x0e\n\x0c\n\x05\x04\x01\x02\x02\x03\x12\x03y\x11\x12\n\x1e\n\x04\x04\
-    \x01\x02\x03\x12\x03{\x02\x12\x1a\x11\x20The\x20field\x20name.\n\n\x0c\n\
-    \x05\x04\x01\x02\x03\x05\x12\x03{\x02\x08\n\x0c\n\x05\x04\x01\x02\x03\
-    \x01\x12\x03{\t\r\n\x0c\n\x05\x04\x01\x02\x03\x03\x12\x03{\x10\x11\n\x96\
-    \x01\n\x04\x04\x01\x02\x04\x12\x03~\x02\x16\x1a\x88\x01\x20The\x20field\
-    \x20type\x20URL,\x20without\x20the\x20scheme,\x20for\x20message\x20or\
-    \x20enumeration\n\x20types.\x20Example:\x20`\&quot;type.googleapis.com/google\
-    .protobuf.Timestamp\&quot;`.\n\n\x0c\n\x05\x04\x01\x02\x04\x05\x12\x03~\x02\
-    \x08\n\x0c\n\x05\x04\x01\x02\x04\x01\x12\x03~\t\x11\n\x0c\n\x05\x04\x01\
-    \x02\x04\x03\x12\x03~\x14\x15\n\xa5\x01\n\x04\x04\x01\x02\x05\x12\x04\
-    \x81\x01\x02\x18\x1a\x96\x01\x20The\x20index\x20of\x20the\x20field\x20ty\
-    pe\x20in\x20`Type.oneofs`,\x20for\x20message\x20or\x20enumeration\n\x20t\
-    ypes.\x20The\x20first\x20type\x20has\x20index\x201;\x20zero\x20means\x20\
-    the\x20type\x20is\x20not\x20in\x20the\x20list.\n\n\r\n\x05\x04\x01\x02\
-    \x05\x05\x12\x04\x81\x01\x02\x07\n\r\n\x05\x04\x01\x02\x05\x01\x12\x04\
-    \x81\x01\x08\x13\n\r\n\x05\x04\x01\x02\x05\x03\x12\x04\x81\x01\x16\x17\n\
-    F\n\x04\x04\x01\x02\x06\x12\x04\x83\x01\x02\x12\x1a8\x20Whether\x20to\
-    \x20use\x20alternative\x20packed\x20wire\x20representation.\n\n\r\n\x05\
-    \x04\x01\x02\x06\x05\x12\x04\x83\x01\x02\x06\n\r\n\x05\x04\x01\x02\x06\
-    \x01\x12\x04\x83\x01\x07\r\n\r\n\x05\x04\x01\x02\x06\x03\x12\x04\x83\x01\
-    \x10\x11\n,\n\x04\x04\x01\x02\x07\x12\x04\x85\x01\x02\x1e\x1a\x1e\x20The\
-    \x20protocol\x20buffer\x20options.\n\n\r\n\x05\x04\x01\x02\x07\x04\x12\
-    \x04\x85\x01\x02\n\n\r\n\x05\x04\x01\x02\x07\x06\x12\x04\x85\x01\x0b\x11\
-    \n\r\n\x05\x04\x01\x02\x07\x01\x12\x04\x85\x01\x12\x19\n\r\n\x05\x04\x01\
-    \x02\x07\x03\x12\x04\x85\x01\x1c\x1d\n$\n\x04\x04\x01\x02\x08\x12\x04\
-    \x87\x01\x02\x18\x1a\x16\x20The\x20field\x20JSON\x20name.\n\n\r\n\x05\
-    \x04\x01\x02\x08\x05\x12\x04\x87\x01\x02\x08\n\r\n\x05\x04\x01\x02\x08\
-    \x01\x12\x04\x87\x01\t\x12\n\r\n\x05\x04\x01\x02\x08\x03\x12\x04\x87\x01\
-    \x15\x17\nX\n\x04\x04\x01\x02\t\x12\x04\x89\x01\x02\x1c\x1aJ\x20The\x20s\
-    tring\x20value\x20of\x20the\x20default\x20value\x20of\x20this\x20field.\
-    \x20Proto2\x20syntax\x20only.\n\n\r\n\x05\x04\x01\x02\t\x05\x12\x04\x89\
-    \x01\x02\x08\n\r\n\x05\x04\x01\x02\t\x01\x12\x04\x89\x01\t\x16\n\r\n\x05\
-    \x04\x01\x02\t\x03\x12\x04\x89\x01\x19\x1b\n%\n\x02\x04\x02\x12\x06\x8d\
-    \x01\0\x98\x01\x01\x1a\x17\x20Enum\x20type\x20definition.\n\n\x0b\n\x03\
-    \x04\x02\x01\x12\x04\x8d\x01\x08\x0c\n\x1f\n\x04\x04\x02\x02\0\x12\x04\
-    \x8f\x01\x02\x12\x1a\x11\x20Enum\x20type\x20name.\n\n\r\n\x05\x04\x02\
-    \x02\0\x05\x12\x04\x8f\x01\x02\x08\n\r\n\x05\x04\x02\x02\0\x01\x12\x04\
-    \x8f\x01\t\r\n\r\n\x05\x04\x02\x02\0\x03\x12\x04\x8f\x01\x10\x11\n&#39;\n\
-    \x04\x04\x02\x02\x01\x12\x04\x91\x01\x02#\x1a\x19\x20Enum\x20value\x20de\
-    finitions.\n\n\r\n\x05\x04\x02\x02\x01\x04\x12\x04\x91\x01\x02\n\n\r\n\
-    \x05\x04\x02\x02\x01\x06\x12\x04\x91\x01\x0b\x14\n\r\n\x05\x04\x02\x02\
-    \x01\x01\x12\x04\x91\x01\x15\x1e\n\r\n\x05\x04\x02\x02\x01\x03\x12\x04\
-    \x91\x01!\&quot;\n(\n\x04\x04\x02\x02\x02\x12\x04\x93\x01\x02\x1e\x1a\x1a\x20\
-    Protocol\x20buffer\x20options.\n\n\r\n\x05\x04\x02\x02\x02\x04\x12\x04\
-    \x93\x01\x02\n\n\r\n\x05\x04\x02\x02\x02\x06\x12\x04\x93\x01\x0b\x11\n\r\
-    \n\x05\x04\x02\x02\x02\x01\x12\x04\x93\x01\x12\x19\n\r\n\x05\x04\x02\x02\
-    \x02\x03\x12\x04\x93\x01\x1c\x1d\n#\n\x04\x04\x02\x02\x03\x12\x04\x95\
-    \x01\x02#\x1a\x15\x20The\x20source\x20context.\n\n\r\n\x05\x04\x02\x02\
-    \x03\x06\x12\x04\x95\x01\x02\x0f\n\r\n\x05\x04\x02\x02\x03\x01\x12\x04\
-    \x95\x01\x10\x1e\n\r\n\x05\x04\x02\x02\x03\x03\x12\x04\x95\x01!\&quot;\n\&quot;\n\
-    \x04\x04\x02\x02\x04\x12\x04\x97\x01\x02\x14\x1a\x14\x20The\x20source\
-    \x20syntax.\n\n\r\n\x05\x04\x02\x02\x04\x06\x12\x04\x97\x01\x02\x08\n\r\
-    \n\x05\x04\x02\x02\x04\x01\x12\x04\x97\x01\t\x0f\n\r\n\x05\x04\x02\x02\
-    \x04\x03\x12\x04\x97\x01\x12\x13\n&amp;\n\x02\x04\x03\x12\x06\x9b\x01\0\xa2\
-    \x01\x01\x1a\x18\x20Enum\x20value\x20definition.\n\n\x0b\n\x03\x04\x03\
-    \x01\x12\x04\x9b\x01\x08\x11\n\x20\n\x04\x04\x03\x02\0\x12\x04\x9d\x01\
-    \x02\x12\x1a\x12\x20Enum\x20value\x20name.\n\n\r\n\x05\x04\x03\x02\0\x05\
-    \x12\x04\x9d\x01\x02\x08\n\r\n\x05\x04\x03\x02\0\x01\x12\x04\x9d\x01\t\r\
-    \n\r\n\x05\x04\x03\x02\0\x03\x12\x04\x9d\x01\x10\x11\n\&quot;\n\x04\x04\x03\
-    \x02\x01\x12\x04\x9f\x01\x02\x13\x1a\x14\x20Enum\x20value\x20number.\n\n\
-    \r\n\x05\x04\x03\x02\x01\x05\x12\x04\x9f\x01\x02\x07\n\r\n\x05\x04\x03\
-    \x02\x01\x01\x12\x04\x9f\x01\x08\x0e\n\r\n\x05\x04\x03\x02\x01\x03\x12\
-    \x04\x9f\x01\x11\x12\n(\n\x04\x04\x03\x02\x02\x12\x04\xa1\x01\x02\x1e\
-    \x1a\x1a\x20Protocol\x20buffer\x20options.\n\n\r\n\x05\x04\x03\x02\x02\
-    \x04\x12\x04\xa1\x01\x02\n\n\r\n\x05\x04\x03\x02\x02\x06\x12\x04\xa1\x01\
-    \x0b\x11\n\r\n\x05\x04\x03\x02\x02\x01\x12\x04\xa1\x01\x12\x19\n\r\n\x05\
-    \x04\x03\x02\x02\x03\x12\x04\xa1\x01\x1c\x1d\ng\n\x02\x04\x04\x12\x06\
-    \xa6\x01\0\xab\x01\x01\x1aY\x20A\x20protocol\x20buffer\x20option,\x20whi\
-    ch\x20can\x20be\x20attached\x20to\x20a\x20message,\x20field,\n\x20enumer\
-    ation,\x20etc.\n\n\x0b\n\x03\x04\x04\x01\x12\x04\xa6\x01\x08\x0e\nA\n\
-    \x04\x04\x04\x02\0\x12\x04\xa8\x01\x02\x12\x1a3\x20The\x20option&#39;s\x20na\
-    me.\x20For\x20example,\x20`\&quot;java_package\&quot;`.\n\n\r\n\x05\x04\x04\x02\0\
-    \x05\x12\x04\xa8\x01\x02\x08\n\r\n\x05\x04\x04\x02\0\x01\x12\x04\xa8\x01\
-    \t\r\n\r\n\x05\x04\x04\x02\0\x03\x12\x04\xa8\x01\x10\x11\nI\n\x04\x04\
-    \x04\x02\x01\x12\x04\xaa\x01\x02\x10\x1a;\x20The\x20option&#39;s\x20value.\
-    \x20For\x20example,\x20`\&quot;com.google.protobuf\&quot;`.\n\n\r\n\x05\x04\x04\
-    \x02\x01\x06\x12\x04\xaa\x01\x02\x05\n\r\n\x05\x04\x04\x02\x01\x01\x12\
-    \x04\xaa\x01\x06\x0b\n\r\n\x05\x04\x04\x02\x01\x03\x12\x04\xaa\x01\x0e\
-    \x0f\nI\n\x02\x05\0\x12\x06\xae\x01\0\xb3\x01\x01\x1a;\x20The\x20syntax\
-    \x20in\x20which\x20a\x20protocol\x20buffer\x20element\x20is\x20defined.\
-    \n\n\x0b\n\x03\x05\0\x01\x12\x04\xae\x01\x05\x0b\n\x20\n\x04\x05\0\x02\0\
-    \x12\x04\xb0\x01\x02\x14\x1a\x12\x20Syntax\x20`proto2`.\n\n\r\n\x05\x05\
-    \0\x02\0\x01\x12\x04\xb0\x01\x02\x0f\n\r\n\x05\x05\0\x02\0\x02\x12\x04\
-    \xb0\x01\x12\x13\n\x20\n\x04\x05\0\x02\x01\x12\x04\xb2\x01\x02\x14\x1a\
-    \x12\x20Syntax\x20`proto3`.\n\n\r\n\x05\x05\0\x02\x01\x01\x12\x04\xb2\
-    \x01\x02\x0f\n\r\n\x05\x05\0\x02\x01\x02\x12\x04\xb2\x01\x12\x13b\x06pro\
-    to3\
+    PROTO2\x10\0\x12\x11\n\rSYNTAX_PROTO3\x10\x01B{\n\x13com.google.protobuf\
+    B\tTypeProtoP\x01Z-google.golang.org/protobuf/types/known/typepb\xf8\x01\
+    \x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xc38\n\
+    \x07\x12\x05\x1e\0\xba\x01\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\
+    \xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google&#39;s\x20data\x20interchange\
+    \x20format\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\
+    \x20reserved.\n\x20https://developers.google.com/protocol-buffers/\n\n\
+    \x20Redistribution\x20and\x20use\x20in\x20source\x20and\x20binary\x20for\
+    ms,\x20with\x20or\x20without\n\x20modification,\x20are\x20permitted\x20p\
+    rovided\x20that\x20the\x20following\x20conditions\x20are\n\x20met:\n\n\
+    \x20\x20\x20\x20\x20*\x20Redistributions\x20of\x20source\x20code\x20must\
+    \x20retain\x20the\x20above\x20copyright\n\x20notice,\x20this\x20list\x20\
+    of\x20conditions\x20and\x20the\x20following\x20disclaimer.\n\x20\x20\x20\
+    \x20\x20*\x20Redistributions\x20in\x20binary\x20form\x20must\x20reproduc\
+    e\x20the\x20above\n\x20copyright\x20notice,\x20this\x20list\x20of\x20con\
+    ditions\x20and\x20the\x20following\x20disclaimer\n\x20in\x20the\x20docum\
+    entation\x20and/or\x20other\x20materials\x20provided\x20with\x20the\n\
+    \x20distribution.\n\x20\x20\x20\x20\x20*\x20Neither\x20the\x20name\x20of\
+    \x20Google\x20Inc.\x20nor\x20the\x20names\x20of\x20its\n\x20contributors\
+    \x20may\x20be\x20used\x20to\x20endorse\x20or\x20promote\x20products\x20d\
+    erived\x20from\n\x20this\x20software\x20without\x20specific\x20prior\x20\
+    written\x20permission.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDED\x20BY\
+    \x20THE\x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\x20IS\&quot;\
+    \x20AND\x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INCLUDING,\
+    \x20BUT\x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIES\x20OF\
+    \x20MERCHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\x20PUR\
+    POSE\x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\x20COPYR\
+    IGHT\n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\x20ANY\x20D\
+    IRECT,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLARY,\x20OR\x20\
+    CONSEQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO\
+    ,\x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVICES;\x20LOSS\
+    \x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINESS\x20INTERRU\
+    PTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\x20OF\x20LIA\
+    BILITY,\x20WHETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILITY,\x20OR\x20T\
+    ORT\n\x20(INCLUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\
+    \x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\
+    \x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20D\
+    AMAGE.\n\n\x08\n\x01\x02\x12\x03\x20\0\x18\n\t\n\x02\x03\0\x12\x03\&quot;\0#\
+    \n\t\n\x02\x03\x01\x12\x03#\0.\n\x08\n\x01\x08\x12\x03%\0;\n\t\n\x02\x08\
+    %\x12\x03%\0;\n\x08\n\x01\x08\x12\x03&amp;\0\x1f\n\t\n\x02\x08\x1f\x12\x03&amp;\
+    \0\x1f\n\x08\n\x01\x08\x12\x03&#39;\0,\n\t\n\x02\x08\x01\x12\x03&#39;\0,\n\x08\n\
+    \x01\x08\x12\x03(\0*\n\t\n\x02\x08\x08\x12\x03(\0*\n\x08\n\x01\x08\x12\
+    \x03)\0\&quot;\n\t\n\x02\x08\n\x12\x03)\0\&quot;\n\x08\n\x01\x08\x12\x03*\0!\n\t\n\
+    \x02\x08$\x12\x03*\0!\n\x08\n\x01\x08\x12\x03+\0D\n\t\n\x02\x08\x0b\x12\
+    \x03+\0D\n-\n\x02\x04\0\x12\x04.\0;\x01\x1a!\x20A\x20protocol\x20buffer\
+    \x20message\x20type.\n\n\n\n\x03\x04\0\x01\x12\x03.\x08\x0c\n0\n\x04\x04\
+    \0\x02\0\x12\x030\x02\x12\x1a#\x20The\x20fully\x20qualified\x20message\
+    \x20name.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x030\x02\x08\n\x0c\n\x05\x04\
+    \0\x02\0\x01\x12\x030\t\r\n\x0c\n\x05\x04\0\x02\0\x03\x12\x030\x10\x11\n\
+    \&quot;\n\x04\x04\0\x02\x01\x12\x032\x02\x1c\x1a\x15\x20The\x20list\x20of\x20\
+    fields.\n\n\x0c\n\x05\x04\0\x02\x01\x04\x12\x032\x02\n\n\x0c\n\x05\x04\0\
+    \x02\x01\x06\x12\x032\x0b\x10\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x032\x11\
+    \x17\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x032\x1a\x1b\nO\n\x04\x04\0\x02\
+    \x02\x12\x034\x02\x1d\x1aB\x20The\x20list\x20of\x20types\x20appearing\
+    \x20in\x20`oneof`\x20definitions\x20in\x20this\x20type.\n\n\x0c\n\x05\
+    \x04\0\x02\x02\x04\x12\x034\x02\n\n\x0c\n\x05\x04\0\x02\x02\x05\x12\x034\
+    \x0b\x11\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x034\x12\x18\n\x0c\n\x05\x04\
+    \0\x02\x02\x03\x12\x034\x1b\x1c\n+\n\x04\x04\0\x02\x03\x12\x036\x02\x1e\
+    \x1a\x1e\x20The\x20protocol\x20buffer\x20options.\n\n\x0c\n\x05\x04\0\
+    \x02\x03\x04\x12\x036\x02\n\n\x0c\n\x05\x04\0\x02\x03\x06\x12\x036\x0b\
+    \x11\n\x0c\n\x05\x04\0\x02\x03\x01\x12\x036\x12\x19\n\x0c\n\x05\x04\0\
+    \x02\x03\x03\x12\x036\x1c\x1d\n\&quot;\n\x04\x04\0\x02\x04\x12\x038\x02#\x1a\
+    \x15\x20The\x20source\x20context.\n\n\x0c\n\x05\x04\0\x02\x04\x06\x12\
+    \x038\x02\x0f\n\x0c\n\x05\x04\0\x02\x04\x01\x12\x038\x10\x1e\n\x0c\n\x05\
+    \x04\0\x02\x04\x03\x12\x038!\&quot;\n!\n\x04\x04\0\x02\x05\x12\x03:\x02\x14\
+    \x1a\x14\x20The\x20source\x20syntax.\n\n\x0c\n\x05\x04\0\x02\x05\x06\x12\
+    \x03:\x02\x08\n\x0c\n\x05\x04\0\x02\x05\x01\x12\x03:\t\x0f\n\x0c\n\x05\
+    \x04\0\x02\x05\x03\x12\x03:\x12\x13\n0\n\x02\x04\x01\x12\x05&gt;\0\x8b\x01\
+    \x01\x1a#\x20A\x20single\x20field\x20of\x20a\x20message\x20type.\n\n\n\n\
+    \x03\x04\x01\x01\x12\x03&gt;\x08\r\n\&quot;\n\x04\x04\x01\x04\0\x12\x04@\x02g\
+    \x03\x1a\x14\x20Basic\x20field\x20types.\n\n\x0c\n\x05\x04\x01\x04\0\x01\
+    \x12\x03@\x07\x0b\n$\n\x06\x04\x01\x04\0\x02\0\x12\x03B\x04\x15\x1a\x15\
+    \x20Field\x20type\x20unknown.\n\n\x0e\n\x07\x04\x01\x04\0\x02\0\x01\x12\
+    \x03B\x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\0\x02\x12\x03B\x13\x14\n#\n\
+    \x06\x04\x01\x04\0\x02\x01\x12\x03D\x04\x14\x1a\x14\x20Field\x20type\x20\
+    double.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x01\x01\x12\x03D\x04\x0f\n\x0e\n\
+    \x07\x04\x01\x04\0\x02\x01\x02\x12\x03D\x12\x13\n\&quot;\n\x06\x04\x01\x04\0\
+    \x02\x02\x12\x03F\x04\x13\x1a\x13\x20Field\x20type\x20float.\n\n\x0e\n\
+    \x07\x04\x01\x04\0\x02\x02\x01\x12\x03F\x04\x0e\n\x0e\n\x07\x04\x01\x04\
+    \0\x02\x02\x02\x12\x03F\x11\x12\n\&quot;\n\x06\x04\x01\x04\0\x02\x03\x12\x03H\
+    \x04\x13\x1a\x13\x20Field\x20type\x20int64.\n\n\x0e\n\x07\x04\x01\x04\0\
+    \x02\x03\x01\x12\x03H\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\x03\x02\x12\
+    \x03H\x11\x12\n#\n\x06\x04\x01\x04\0\x02\x04\x12\x03J\x04\x14\x1a\x14\
+    \x20Field\x20type\x20uint64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x04\x01\x12\
+    \x03J\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x04\x02\x12\x03J\x12\x13\n\&quot;\
+    \n\x06\x04\x01\x04\0\x02\x05\x12\x03L\x04\x13\x1a\x13\x20Field\x20type\
+    \x20int32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x05\x01\x12\x03L\x04\x0e\n\
+    \x0e\n\x07\x04\x01\x04\0\x02\x05\x02\x12\x03L\x11\x12\n$\n\x06\x04\x01\
+    \x04\0\x02\x06\x12\x03N\x04\x15\x1a\x15\x20Field\x20type\x20fixed64.\n\n\
+    \x0e\n\x07\x04\x01\x04\0\x02\x06\x01\x12\x03N\x04\x10\n\x0e\n\x07\x04\
+    \x01\x04\0\x02\x06\x02\x12\x03N\x13\x14\n$\n\x06\x04\x01\x04\0\x02\x07\
+    \x12\x03P\x04\x15\x1a\x15\x20Field\x20type\x20fixed32.\n\n\x0e\n\x07\x04\
+    \x01\x04\0\x02\x07\x01\x12\x03P\x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\
+    \x07\x02\x12\x03P\x13\x14\n!\n\x06\x04\x01\x04\0\x02\x08\x12\x03R\x04\
+    \x12\x1a\x12\x20Field\x20type\x20bool.\n\n\x0e\n\x07\x04\x01\x04\0\x02\
+    \x08\x01\x12\x03R\x04\r\n\x0e\n\x07\x04\x01\x04\0\x02\x08\x02\x12\x03R\
+    \x10\x11\n#\n\x06\x04\x01\x04\0\x02\t\x12\x03T\x04\x14\x1a\x14\x20Field\
+    \x20type\x20string.\n\n\x0e\n\x07\x04\x01\x04\0\x02\t\x01\x12\x03T\x04\
+    \x0f\n\x0e\n\x07\x04\x01\x04\0\x02\t\x02\x12\x03T\x12\x13\nF\n\x06\x04\
+    \x01\x04\0\x02\n\x12\x03V\x04\x14\x1a7\x20Field\x20type\x20group.\x20Pro\
+    to2\x20syntax\x20only,\x20and\x20deprecated.\n\n\x0e\n\x07\x04\x01\x04\0\
+    \x02\n\x01\x12\x03V\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\n\x02\x12\x03V\
+    \x11\x13\n$\n\x06\x04\x01\x04\0\x02\x0b\x12\x03X\x04\x16\x1a\x15\x20Fiel\
+    d\x20type\x20message.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x0b\x01\x12\x03X\
+    \x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\x0b\x02\x12\x03X\x13\x15\n\&quot;\n\
+    \x06\x04\x01\x04\0\x02\x0c\x12\x03Z\x04\x14\x1a\x13\x20Field\x20type\x20\
+    bytes.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x0c\x01\x12\x03Z\x04\x0e\n\x0e\n\
+    \x07\x04\x01\x04\0\x02\x0c\x02\x12\x03Z\x11\x13\n#\n\x06\x04\x01\x04\0\
+    \x02\r\x12\x03\\\x04\x15\x1a\x14\x20Field\x20type\x20uint32.\n\n\x0e\n\
+    \x07\x04\x01\x04\0\x02\r\x01\x12\x03\\\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\
+    \x02\r\x02\x12\x03\\\x12\x14\n!\n\x06\x04\x01\x04\0\x02\x0e\x12\x03^\x04\
+    \x13\x1a\x12\x20Field\x20type\x20enum.\n\n\x0e\n\x07\x04\x01\x04\0\x02\
+    \x0e\x01\x12\x03^\x04\r\n\x0e\n\x07\x04\x01\x04\0\x02\x0e\x02\x12\x03^\
+    \x10\x12\n%\n\x06\x04\x01\x04\0\x02\x0f\x12\x03`\x04\x17\x1a\x16\x20Fiel\
+    d\x20type\x20sfixed32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x0f\x01\x12\x03`\
+    \x04\x11\n\x0e\n\x07\x04\x01\x04\0\x02\x0f\x02\x12\x03`\x14\x16\n%\n\x06\
+    \x04\x01\x04\0\x02\x10\x12\x03b\x04\x17\x1a\x16\x20Field\x20type\x20sfix\
+    ed64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x10\x01\x12\x03b\x04\x11\n\x0e\n\
+    \x07\x04\x01\x04\0\x02\x10\x02\x12\x03b\x14\x16\n#\n\x06\x04\x01\x04\0\
+    \x02\x11\x12\x03d\x04\x15\x1a\x14\x20Field\x20type\x20sint32.\n\n\x0e\n\
+    \x07\x04\x01\x04\0\x02\x11\x01\x12\x03d\x04\x0f\n\x0e\n\x07\x04\x01\x04\
+    \0\x02\x11\x02\x12\x03d\x12\x14\n#\n\x06\x04\x01\x04\0\x02\x12\x12\x03f\
+    \x04\x15\x1a\x14\x20Field\x20type\x20sint64.\n\n\x0e\n\x07\x04\x01\x04\0\
+    \x02\x12\x01\x12\x03f\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x12\x02\x12\
+    \x03f\x12\x14\nC\n\x04\x04\x01\x04\x01\x12\x04j\x02s\x03\x1a5\x20Whether\
+    \x20a\x20field\x20is\x20optional,\x20required,\x20or\x20repeated.\n\n\
+    \x0c\n\x05\x04\x01\x04\x01\x01\x12\x03j\x07\x12\n5\n\x06\x04\x01\x04\x01\
+    \x02\0\x12\x03l\x04\x1c\x1a&amp;\x20For\x20fields\x20with\x20unknown\x20card\
+    inality.\n\n\x0e\n\x07\x04\x01\x04\x01\x02\0\x01\x12\x03l\x04\x17\n\x0e\
+    \n\x07\x04\x01\x04\x01\x02\0\x02\x12\x03l\x1a\x1b\n%\n\x06\x04\x01\x04\
+    \x01\x02\x01\x12\x03n\x04\x1d\x1a\x16\x20For\x20optional\x20fields.\n\n\
+    \x0e\n\x07\x04\x01\x04\x01\x02\x01\x01\x12\x03n\x04\x18\n\x0e\n\x07\x04\
+    \x01\x04\x01\x02\x01\x02\x12\x03n\x1b\x1c\n9\n\x06\x04\x01\x04\x01\x02\
+    \x02\x12\x03p\x04\x1d\x1a*\x20For\x20required\x20fields.\x20Proto2\x20sy\
+    ntax\x20only.\n\n\x0e\n\x07\x04\x01\x04\x01\x02\x02\x01\x12\x03p\x04\x18\
+    \n\x0e\n\x07\x04\x01\x04\x01\x02\x02\x02\x12\x03p\x1b\x1c\n%\n\x06\x04\
+    \x01\x04\x01\x02\x03\x12\x03r\x04\x1d\x1a\x16\x20For\x20repeated\x20fiel\
+    ds.\n\n\x0e\n\x07\x04\x01\x04\x01\x02\x03\x01\x12\x03r\x04\x18\n\x0e\n\
+    \x07\x04\x01\x04\x01\x02\x03\x02\x12\x03r\x1b\x1c\n\x1e\n\x04\x04\x01\
+    \x02\0\x12\x03v\x02\x10\x1a\x11\x20The\x20field\x20type.\n\n\x0c\n\x05\
+    \x04\x01\x02\0\x06\x12\x03v\x02\x06\n\x0c\n\x05\x04\x01\x02\0\x01\x12\
+    \x03v\x07\x0b\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03v\x0e\x0f\n%\n\x04\
+    \x04\x01\x02\x01\x12\x03x\x02\x1e\x1a\x18\x20The\x20field\x20cardinality\
+    .\n\n\x0c\n\x05\x04\x01\x02\x01\x06\x12\x03x\x02\r\n\x0c\n\x05\x04\x01\
+    \x02\x01\x01\x12\x03x\x0e\x19\n\x0c\n\x05\x04\x01\x02\x01\x03\x12\x03x\
+    \x1c\x1d\n\x20\n\x04\x04\x01\x02\x02\x12\x03z\x02\x13\x1a\x13\x20The\x20\
+    field\x20number.\n\n\x0c\n\x05\x04\x01\x02\x02\x05\x12\x03z\x02\x07\n\
+    \x0c\n\x05\x04\x01\x02\x02\x01\x12\x03z\x08\x0e\n\x0c\n\x05\x04\x01\x02\
+    \x02\x03\x12\x03z\x11\x12\n\x1e\n\x04\x04\x01\x02\x03\x12\x03|\x02\x12\
+    \x1a\x11\x20The\x20field\x20name.\n\n\x0c\n\x05\x04\x01\x02\x03\x05\x12\
+    \x03|\x02\x08\n\x0c\n\x05\x04\x01\x02\x03\x01\x12\x03|\t\r\n\x0c\n\x05\
+    \x04\x01\x02\x03\x03\x12\x03|\x10\x11\n\x96\x01\n\x04\x04\x01\x02\x04\
+    \x12\x03\x7f\x02\x16\x1a\x88\x01\x20The\x20field\x20type\x20URL,\x20with\
+    out\x20the\x20scheme,\x20for\x20message\x20or\x20enumeration\n\x20types.\
+    \x20Example:\x20`\&quot;type.googleapis.com/google.protobuf.Timestamp\&quot;`.\n\n\
+    \x0c\n\x05\x04\x01\x02\x04\x05\x12\x03\x7f\x02\x08\n\x0c\n\x05\x04\x01\
+    \x02\x04\x01\x12\x03\x7f\t\x11\n\x0c\n\x05\x04\x01\x02\x04\x03\x12\x03\
+    \x7f\x14\x15\n\xa5\x01\n\x04\x04\x01\x02\x05\x12\x04\x82\x01\x02\x18\x1a\
+    \x96\x01\x20The\x20index\x20of\x20the\x20field\x20type\x20in\x20`Type.on\
+    eofs`,\x20for\x20message\x20or\x20enumeration\n\x20types.\x20The\x20firs\
+    t\x20type\x20has\x20index\x201;\x20zero\x20means\x20the\x20type\x20is\
+    \x20not\x20in\x20the\x20list.\n\n\r\n\x05\x04\x01\x02\x05\x05\x12\x04\
+    \x82\x01\x02\x07\n\r\n\x05\x04\x01\x02\x05\x01\x12\x04\x82\x01\x08\x13\n\
+    \r\n\x05\x04\x01\x02\x05\x03\x12\x04\x82\x01\x16\x17\nF\n\x04\x04\x01\
+    \x02\x06\x12\x04\x84\x01\x02\x12\x1a8\x20Whether\x20to\x20use\x20alterna\
+    tive\x20packed\x20wire\x20representation.\n\n\r\n\x05\x04\x01\x02\x06\
+    \x05\x12\x04\x84\x01\x02\x06\n\r\n\x05\x04\x01\x02\x06\x01\x12\x04\x84\
+    \x01\x07\r\n\r\n\x05\x04\x01\x02\x06\x03\x12\x04\x84\x01\x10\x11\n,\n\
+    \x04\x04\x01\x02\x07\x12\x04\x86\x01\x02\x1e\x1a\x1e\x20The\x20protocol\
+    \x20buffer\x20options.\n\n\r\n\x05\x04\x01\x02\x07\x04\x12\x04\x86\x01\
+    \x02\n\n\r\n\x05\x04\x01\x02\x07\x06\x12\x04\x86\x01\x0b\x11\n\r\n\x05\
+    \x04\x01\x02\x07\x01\x12\x04\x86\x01\x12\x19\n\r\n\x05\x04\x01\x02\x07\
+    \x03\x12\x04\x86\x01\x1c\x1d\n$\n\x04\x04\x01\x02\x08\x12\x04\x88\x01\
+    \x02\x18\x1a\x16\x20The\x20field\x20JSON\x20name.\n\n\r\n\x05\x04\x01\
+    \x02\x08\x05\x12\x04\x88\x01\x02\x08\n\r\n\x05\x04\x01\x02\x08\x01\x12\
+    \x04\x88\x01\t\x12\n\r\n\x05\x04\x01\x02\x08\x03\x12\x04\x88\x01\x15\x17\
+    \nX\n\x04\x04\x01\x02\t\x12\x04\x8a\x01\x02\x1c\x1aJ\x20The\x20string\
+    \x20value\x20of\x20the\x20default\x20value\x20of\x20this\x20field.\x20Pr\
+    oto2\x20syntax\x20only.\n\n\r\n\x05\x04\x01\x02\t\x05\x12\x04\x8a\x01\
+    \x02\x08\n\r\n\x05\x04\x01\x02\t\x01\x12\x04\x8a\x01\t\x16\n\r\n\x05\x04\
+    \x01\x02\t\x03\x12\x04\x8a\x01\x19\x1b\n%\n\x02\x04\x02\x12\x06\x8e\x01\
+    \0\x99\x01\x01\x1a\x17\x20Enum\x20type\x20definition.\n\n\x0b\n\x03\x04\
+    \x02\x01\x12\x04\x8e\x01\x08\x0c\n\x1f\n\x04\x04\x02\x02\0\x12\x04\x90\
+    \x01\x02\x12\x1a\x11\x20Enum\x20type\x20name.\n\n\r\n\x05\x04\x02\x02\0\
+    \x05\x12\x04\x90\x01\x02\x08\n\r\n\x05\x04\x02\x02\0\x01\x12\x04\x90\x01\
+    \t\r\n\r\n\x05\x04\x02\x02\0\x03\x12\x04\x90\x01\x10\x11\n&#39;\n\x04\x04\
+    \x02\x02\x01\x12\x04\x92\x01\x02#\x1a\x19\x20Enum\x20value\x20definition\
+    s.\n\n\r\n\x05\x04\x02\x02\x01\x04\x12\x04\x92\x01\x02\n\n\r\n\x05\x04\
+    \x02\x02\x01\x06\x12\x04\x92\x01\x0b\x14\n\r\n\x05\x04\x02\x02\x01\x01\
+    \x12\x04\x92\x01\x15\x1e\n\r\n\x05\x04\x02\x02\x01\x03\x12\x04\x92\x01!\
+    \&quot;\n(\n\x04\x04\x02\x02\x02\x12\x04\x94\x01\x02\x1e\x1a\x1a\x20Protocol\
+    \x20buffer\x20options.\n\n\r\n\x05\x04\x02\x02\x02\x04\x12\x04\x94\x01\
+    \x02\n\n\r\n\x05\x04\x02\x02\x02\x06\x12\x04\x94\x01\x0b\x11\n\r\n\x05\
+    \x04\x02\x02\x02\x01\x12\x04\x94\x01\x12\x19\n\r\n\x05\x04\x02\x02\x02\
+    \x03\x12\x04\x94\x01\x1c\x1d\n#\n\x04\x04\x02\x02\x03\x12\x04\x96\x01\
+    \x02#\x1a\x15\x20The\x20source\x20context.\n\n\r\n\x05\x04\x02\x02\x03\
+    \x06\x12\x04\x96\x01\x02\x0f\n\r\n\x05\x04\x02\x02\x03\x01\x12\x04\x96\
+    \x01\x10\x1e\n\r\n\x05\x04\x02\x02\x03\x03\x12\x04\x96\x01!\&quot;\n\&quot;\n\x04\
+    \x04\x02\x02\x04\x12\x04\x98\x01\x02\x14\x1a\x14\x20The\x20source\x20syn\
+    tax.\n\n\r\n\x05\x04\x02\x02\x04\x06\x12\x04\x98\x01\x02\x08\n\r\n\x05\
+    \x04\x02\x02\x04\x01\x12\x04\x98\x01\t\x0f\n\r\n\x05\x04\x02\x02\x04\x03\
+    \x12\x04\x98\x01\x12\x13\n&amp;\n\x02\x04\x03\x12\x06\x9c\x01\0\xa3\x01\x01\
+    \x1a\x18\x20Enum\x20value\x20definition.\n\n\x0b\n\x03\x04\x03\x01\x12\
+    \x04\x9c\x01\x08\x11\n\x20\n\x04\x04\x03\x02\0\x12\x04\x9e\x01\x02\x12\
+    \x1a\x12\x20Enum\x20value\x20name.\n\n\r\n\x05\x04\x03\x02\0\x05\x12\x04\
+    \x9e\x01\x02\x08\n\r\n\x05\x04\x03\x02\0\x01\x12\x04\x9e\x01\t\r\n\r\n\
+    \x05\x04\x03\x02\0\x03\x12\x04\x9e\x01\x10\x11\n\&quot;\n\x04\x04\x03\x02\x01\
+    \x12\x04\xa0\x01\x02\x13\x1a\x14\x20Enum\x20value\x20number.\n\n\r\n\x05\
+    \x04\x03\x02\x01\x05\x12\x04\xa0\x01\x02\x07\n\r\n\x05\x04\x03\x02\x01\
+    \x01\x12\x04\xa0\x01\x08\x0e\n\r\n\x05\x04\x03\x02\x01\x03\x12\x04\xa0\
+    \x01\x11\x12\n(\n\x04\x04\x03\x02\x02\x12\x04\xa2\x01\x02\x1e\x1a\x1a\
+    \x20Protocol\x20buffer\x20options.\n\n\r\n\x05\x04\x03\x02\x02\x04\x12\
+    \x04\xa2\x01\x02\n\n\r\n\x05\x04\x03\x02\x02\x06\x12\x04\xa2\x01\x0b\x11\
+    \n\r\n\x05\x04\x03\x02\x02\x01\x12\x04\xa2\x01\x12\x19\n\r\n\x05\x04\x03\
+    \x02\x02\x03\x12\x04\xa2\x01\x1c\x1d\ng\n\x02\x04\x04\x12\x06\xa7\x01\0\
+    \xb2\x01\x01\x1aY\x20A\x20protocol\x20buffer\x20option,\x20which\x20can\
+    \x20be\x20attached\x20to\x20a\x20message,\x20field,\n\x20enumeration,\
+    \x20etc.\n\n\x0b\n\x03\x04\x04\x01\x12\x04\xa7\x01\x08\x0e\n\xfc\x01\n\
+    \x04\x04\x04\x02\0\x12\x04\xac\x01\x02\x12\x1a\xed\x01\x20The\x20option&#39;\
+    s\x20name.\x20For\x20protobuf\x20built-in\x20options\x20(options\x20defi\
+    ned\x20in\n\x20descriptor.proto),\x20this\x20is\x20the\x20short\x20name.\
+    \x20For\x20example,\x20`\&quot;map_entry\&quot;`.\n\x20For\x20custom\x20options,\
+    \x20it\x20should\x20be\x20the\x20fully-qualified\x20name.\x20For\x20exam\
+    ple,\n\x20`\&quot;google.api.http\&quot;`.\n\n\r\n\x05\x04\x04\x02\0\x05\x12\x04\
+    \xac\x01\x02\x08\n\r\n\x05\x04\x04\x02\0\x01\x12\x04\xac\x01\t\r\n\r\n\
+    \x05\x04\x04\x02\0\x03\x12\x04\xac\x01\x10\x11\n\xa0\x02\n\x04\x04\x04\
+    \x02\x01\x12\x04\xb1\x01\x02\x10\x1a\x91\x02\x20The\x20option&#39;s\x20value\
+    \x20packed\x20in\x20an\x20Any\x20message.\x20If\x20the\x20value\x20is\
+    \x20a\x20primitive,\n\x20the\x20corresponding\x20wrapper\x20type\x20defi\
+    ned\x20in\x20google/protobuf/wrappers.proto\n\x20should\x20be\x20used.\
+    \x20If\x20the\x20value\x20is\x20an\x20enum,\x20it\x20should\x20be\x20sto\
+    red\x20as\x20an\x20int32\n\x20value\x20using\x20the\x20google.protobuf.I\
+    nt32Value\x20type.\n\n\r\n\x05\x04\x04\x02\x01\x06\x12\x04\xb1\x01\x02\
+    \x05\n\r\n\x05\x04\x04\x02\x01\x01\x12\x04\xb1\x01\x06\x0b\n\r\n\x05\x04\
+    \x04\x02\x01\x03\x12\x04\xb1\x01\x0e\x0f\nI\n\x02\x05\0\x12\x06\xb5\x01\
+    \0\xba\x01\x01\x1a;\x20The\x20syntax\x20in\x20which\x20a\x20protocol\x20\
+    buffer\x20element\x20is\x20defined.\n\n\x0b\n\x03\x05\0\x01\x12\x04\xb5\
+    \x01\x05\x0b\n\x20\n\x04\x05\0\x02\0\x12\x04\xb7\x01\x02\x14\x1a\x12\x20\
+    Syntax\x20`proto2`.\n\n\r\n\x05\x05\0\x02\0\x01\x12\x04\xb7\x01\x02\x0f\
+    \n\r\n\x05\x05\0\x02\0\x02\x12\x04\xb7\x01\x12\x13\n\x20\n\x04\x05\0\x02\
+    \x01\x12\x04\xb9\x01\x02\x14\x1a\x12\x20Syntax\x20`proto3`.\n\n\r\n\x05\
+    \x05\0\x02\x01\x01\x12\x04\xb9\x01\x02\x0f\n\r\n\x05\x05\0\x02\x01\x02\
+    \x12\x04\xb9\x01\x12\x13b\x06proto3\
 &quot;</span>;
 
 <span class="kw">static</span> <span class="ident">file_descriptor_proto_lazy</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
 
 <span class="kw">fn</span> <span class="ident">parse_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
-    <span class="kw">crate</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
+    <span class="kw">crate</span>::<span class="ident">Message</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
@@ -4446,4 +4469,4 @@
     })
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

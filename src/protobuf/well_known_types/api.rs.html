@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.17.0/src/well_known_types/api.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>api.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.23.0/src/well_known_types/api.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>api.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1277,8 +1280,21 @@
 <span id="1277">1277</span>
 <span id="1278">1278</span>
 <span id="1279">1279</span>
+<span id="1280">1280</span>
+<span id="1281">1281</span>
+<span id="1282">1282</span>
+<span id="1283">1283</span>
+<span id="1284">1284</span>
+<span id="1285">1285</span>
+<span id="1286">1286</span>
+<span id="1287">1287</span>
+<span id="1288">1288</span>
+<span id="1289">1289</span>
+<span id="1290">1290</span>
+<span id="1291">1291</span>
+<span id="1292">1292</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">// This file is generated by rust-protobuf 2.17.0-pre. Do not edit</span>
+<span class="comment">// This file is generated by rust-protobuf 2.22.0. Do not edit</span>
 <span class="comment">// @generated</span>
 
 <span class="comment">// https://github.com/rust-lang/rust-clippy/issues/702</span>
@@ -1286,7 +1302,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">all</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_attributes</span>)]</span>
-<span class="attribute">#![<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt</span>::<span class="ident">skip</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">box_pointers</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
@@ -1300,7 +1316,7 @@
 <span class="doccomment">//! Generated file from `google/protobuf/api.proto`</span>
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Api</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -1642,13 +1658,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -1739,7 +1755,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Method</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -2038,13 +2054,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2135,7 +2151,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mixin</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">name</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -2272,13 +2288,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2356,200 +2372,213 @@
     \n\x07options\x18\x06\x20\x03(\x0b2\x17.google.protobuf.OptionR\x07optio\
     ns\x12/\n\x06syntax\x18\x07\x20\x01(\x0e2\x17.google.protobuf.SyntaxR\
     \x06syntax\&quot;/\n\x05Mixin\x12\x12\n\x04name\x18\x01\x20\x01(\tR\x04name\
-    \x12\x12\n\x04root\x18\x02\x20\x01(\tR\x04rootBH\n\x13com.google.protobu\
-    fB\x08ApiProtoP\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownT\
-    ypesJ\xa97\n\x07\x12\x05\x1e\0\xc8\x01\x01\n\xcc\x0c\n\x01\x0c\x12\x03\
-    \x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google&#39;s\x20data\x20i\
-    nterchange\x20format\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\
-    \x20rights\x20reserved.\n\x20https://developers.google.com/protocol-buff\
-    ers/\n\n\x20Redistribution\x20and\x20use\x20in\x20source\x20and\x20binar\
-    y\x20forms,\x20with\x20or\x20without\n\x20modification,\x20are\x20permit\
-    ted\x20provided\x20that\x20the\x20following\x20conditions\x20are\n\x20me\
-    t:\n\n\x20\x20\x20\x20\x20*\x20Redistributions\x20of\x20source\x20code\
-    \x20must\x20retain\x20the\x20above\x20copyright\n\x20notice,\x20this\x20\
-    list\x20of\x20conditions\x20and\x20the\x20following\x20disclaimer.\n\x20\
-    \x20\x20\x20\x20*\x20Redistributions\x20in\x20binary\x20form\x20must\x20\
-    reproduce\x20the\x20above\n\x20copyright\x20notice,\x20this\x20list\x20o\
-    f\x20conditions\x20and\x20the\x20following\x20disclaimer\n\x20in\x20the\
-    \x20documentation\x20and/or\x20other\x20materials\x20provided\x20with\
-    \x20the\n\x20distribution.\n\x20\x20\x20\x20\x20*\x20Neither\x20the\x20n\
-    ame\x20of\x20Google\x20Inc.\x20nor\x20the\x20names\x20of\x20its\n\x20con\
-    tributors\x20may\x20be\x20used\x20to\x20endorse\x20or\x20promote\x20prod\
-    ucts\x20derived\x20from\n\x20this\x20software\x20without\x20specific\x20\
-    prior\x20written\x20permission.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDE\
-    D\x20BY\x20THE\x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\
-    \x20IS\&quot;\x20AND\x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INC\
-    LUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIE\
-    S\x20OF\x20MERCHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\
-    \x20PURPOSE\x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\
-    \x20COPYRIGHT\n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\
-    \x20ANY\x20DIRECT,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLAR\
-    Y,\x20OR\x20CONSEQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20L\
-    IMITED\x20TO,\x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVI\
-    CES;\x20LOSS\x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINES\
-    S\x20INTERRUPTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\
-    \x20OF\x20LIABILITY,\x20WHETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILIT\
-    Y,\x20OR\x20TORT\n\x20(INCLUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20AR\
-    ISING\x20IN\x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20\
-    SOFTWARE,\x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20\
-    SUCH\x20DAMAGE.\n\n\x08\n\x01\x02\x12\x03\x20\0\x18\n\t\n\x02\x03\0\x12\
-    \x03\&quot;\0.\n\t\n\x02\x03\x01\x12\x03#\0$\n\x08\n\x01\x08\x12\x03%\0;\n\t\
-    \n\x02\x08%\x12\x03%\0;\n\x08\n\x01\x08\x12\x03&amp;\0,\n\t\n\x02\x08\x01\
-    \x12\x03&amp;\0,\n\x08\n\x01\x08\x12\x03&#39;\0)\n\t\n\x02\x08\x08\x12\x03&#39;\0)\n\
-    \x08\n\x01\x08\x12\x03(\0\&quot;\n\t\n\x02\x08\n\x12\x03(\0\&quot;\n\x08\n\x01\x08\
-    \x12\x03)\0!\n\t\n\x02\x08$\x12\x03)\0!\nM\n\x02\x04\0\x12\x04,\0Y\x01\
-    \x1aA\x20Api\x20is\x20a\x20light-weight\x20descriptor\x20for\x20a\x20pro\
-    tocol\x20buffer\x20service.\n\n\n\n\x03\x04\0\x01\x12\x03,\x08\x0b\no\n\
-    \x04\x04\0\x02\0\x12\x030\x02\x12\x1ab\x20The\x20fully\x20qualified\x20n\
-    ame\x20of\x20this\x20api,\x20including\x20package\x20name\n\x20followed\
-    \x20by\x20the\x20api&#39;s\x20simple\x20name.\n\n\x0c\n\x05\x04\0\x02\0\x05\
-    \x12\x030\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x030\t\r\n\x0c\n\x05\
-    \x04\0\x02\0\x03\x12\x030\x10\x11\n=\n\x04\x04\0\x02\x01\x12\x033\x02\
-    \x1e\x1a0\x20The\x20methods\x20of\x20this\x20api,\x20in\x20unspecified\
-    \x20order.\n\n\x0c\n\x05\x04\0\x02\x01\x04\x12\x033\x02\n\n\x0c\n\x05\
-    \x04\0\x02\x01\x06\x12\x033\x0b\x11\n\x0c\n\x05\x04\0\x02\x01\x01\x12\
-    \x033\x12\x19\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x033\x1c\x1d\n0\n\x04\
-    \x04\0\x02\x02\x12\x036\x02\x1e\x1a#\x20Any\x20metadata\x20attached\x20t\
-    o\x20the\x20API.\n\n\x0c\n\x05\x04\0\x02\x02\x04\x12\x036\x02\n\n\x0c\n\
-    \x05\x04\0\x02\x02\x06\x12\x036\x0b\x11\n\x0c\n\x05\x04\0\x02\x02\x01\
-    \x12\x036\x12\x19\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x036\x1c\x1d\n\xf2\
-    \x07\n\x04\x04\0\x02\x03\x12\x03N\x02\x15\x1a\xe4\x07\x20A\x20version\
-    \x20string\x20for\x20this\x20api.\x20If\x20specified,\x20must\x20have\
-    \x20the\x20form\n\x20`major-version.minor-version`,\x20as\x20in\x20`1.10\
-    `.\x20If\x20the\x20minor\x20version\n\x20is\x20omitted,\x20it\x20default\
-    s\x20to\x20zero.\x20If\x20the\x20entire\x20version\x20field\x20is\n\x20e\
-    mpty,\x20the\x20major\x20version\x20is\x20derived\x20from\x20the\x20pack\
-    age\x20name,\x20as\n\x20outlined\x20below.\x20If\x20the\x20field\x20is\
-    \x20not\x20empty,\x20the\x20version\x20in\x20the\n\x20package\x20name\
-    \x20will\x20be\x20verified\x20to\x20be\x20consistent\x20with\x20what\x20\
-    is\n\x20provided\x20here.\n\n\x20The\x20versioning\x20schema\x20uses\x20\
-    [semantic\n\x20versioning](http://semver.org)\x20where\x20the\x20major\
-    \x20version\x20number\n\x20indicates\x20a\x20breaking\x20change\x20and\
-    \x20the\x20minor\x20version\x20an\x20additive,\n\x20non-breaking\x20chan\
-    ge.\x20Both\x20version\x20numbers\x20are\x20signals\x20to\x20users\n\x20\
-    what\x20to\x20expect\x20from\x20different\x20versions,\x20and\x20should\
-    \x20be\x20carefully\n\x20chosen\x20based\x20on\x20the\x20product\x20plan\
-    .\n\n\x20The\x20major\x20version\x20is\x20also\x20reflected\x20in\x20the\
-    \x20package\x20name\x20of\x20the\n\x20API,\x20which\x20must\x20end\x20in\
-    \x20`v&lt;major-version&gt;`,\x20as\x20in\n\x20`google.feature.v1`.\x20For\x20\
-    major\x20versions\x200\x20and\x201,\x20the\x20suffix\x20can\n\x20be\x20o\
-    mitted.\x20Zero\x20major\x20versions\x20must\x20only\x20be\x20used\x20fo\
-    r\n\x20experimental,\x20none-GA\x20apis.\n\n\n\n\x0c\n\x05\x04\0\x02\x03\
-    \x05\x12\x03N\x02\x08\n\x0c\n\x05\x04\0\x02\x03\x01\x12\x03N\t\x10\n\x0c\
-    \n\x05\x04\0\x02\x03\x03\x12\x03N\x13\x14\n[\n\x04\x04\0\x02\x04\x12\x03\
-    R\x02#\x1aN\x20Source\x20context\x20for\x20the\x20protocol\x20buffer\x20\
-    service\x20represented\x20by\x20this\n\x20message.\n\n\x0c\n\x05\x04\0\
-    \x02\x04\x06\x12\x03R\x02\x0f\n\x0c\n\x05\x04\0\x02\x04\x01\x12\x03R\x10\
-    \x1e\n\x0c\n\x05\x04\0\x02\x04\x03\x12\x03R!\&quot;\n,\n\x04\x04\0\x02\x05\
-    \x12\x03U\x02\x1c\x1a\x1f\x20Included\x20APIs.\x20See\x20[Mixin][].\n\n\
-    \x0c\n\x05\x04\0\x02\x05\x04\x12\x03U\x02\n\n\x0c\n\x05\x04\0\x02\x05\
-    \x06\x12\x03U\x0b\x10\n\x0c\n\x05\x04\0\x02\x05\x01\x12\x03U\x11\x17\n\
-    \x0c\n\x05\x04\0\x02\x05\x03\x12\x03U\x1a\x1b\n0\n\x04\x04\0\x02\x06\x12\
-    \x03X\x02\x14\x1a#\x20The\x20source\x20syntax\x20of\x20the\x20service.\n\
-    \n\x0c\n\x05\x04\0\x02\x06\x06\x12\x03X\x02\x08\n\x0c\n\x05\x04\0\x02\
-    \x06\x01\x12\x03X\t\x0f\n\x0c\n\x05\x04\0\x02\x06\x03\x12\x03X\x12\x13\n\
-    3\n\x02\x04\x01\x12\x04\\\0r\x01\x1a&#39;\x20Method\x20represents\x20a\x20me\
-    thod\x20of\x20an\x20api.\n\n\n\n\x03\x04\x01\x01\x12\x03\\\x08\x0e\n.\n\
-    \x04\x04\x01\x02\0\x12\x03_\x02\x12\x1a!\x20The\x20simple\x20name\x20of\
-    \x20this\x20method.\n\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03_\x02\x08\n\
-    \x0c\n\x05\x04\x01\x02\0\x01\x12\x03_\t\r\n\x0c\n\x05\x04\x01\x02\0\x03\
-    \x12\x03_\x10\x11\n/\n\x04\x04\x01\x02\x01\x12\x03b\x02\x1e\x1a\&quot;\x20A\
-    \x20URL\x20of\x20the\x20input\x20message\x20type.\n\n\x0c\n\x05\x04\x01\
-    \x02\x01\x05\x12\x03b\x02\x08\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03b\t\
-    \x19\n\x0c\n\x05\x04\x01\x02\x01\x03\x12\x03b\x1c\x1d\n0\n\x04\x04\x01\
-    \x02\x02\x12\x03e\x02\x1d\x1a#\x20If\x20true,\x20the\x20request\x20is\
-    \x20streamed.\n\n\x0c\n\x05\x04\x01\x02\x02\x05\x12\x03e\x02\x06\n\x0c\n\
-    \x05\x04\x01\x02\x02\x01\x12\x03e\x07\x18\n\x0c\n\x05\x04\x01\x02\x02\
-    \x03\x12\x03e\x1b\x1c\n2\n\x04\x04\x01\x02\x03\x12\x03h\x02\x1f\x1a%\x20\
-    The\x20URL\x20of\x20the\x20output\x20message\x20type.\n\n\x0c\n\x05\x04\
-    \x01\x02\x03\x05\x12\x03h\x02\x08\n\x0c\n\x05\x04\x01\x02\x03\x01\x12\
-    \x03h\t\x1a\n\x0c\n\x05\x04\x01\x02\x03\x03\x12\x03h\x1d\x1e\n1\n\x04\
-    \x04\x01\x02\x04\x12\x03k\x02\x1e\x1a$\x20If\x20true,\x20the\x20response\
-    \x20is\x20streamed.\n\n\x0c\n\x05\x04\x01\x02\x04\x05\x12\x03k\x02\x06\n\
-    \x0c\n\x05\x04\x01\x02\x04\x01\x12\x03k\x07\x19\n\x0c\n\x05\x04\x01\x02\
-    \x04\x03\x12\x03k\x1c\x1d\n3\n\x04\x04\x01\x02\x05\x12\x03n\x02\x1e\x1a&amp;\
-    \x20Any\x20metadata\x20attached\x20to\x20the\x20method.\n\n\x0c\n\x05\
-    \x04\x01\x02\x05\x04\x12\x03n\x02\n\n\x0c\n\x05\x04\x01\x02\x05\x06\x12\
-    \x03n\x0b\x11\n\x0c\n\x05\x04\x01\x02\x05\x01\x12\x03n\x12\x19\n\x0c\n\
-    \x05\x04\x01\x02\x05\x03\x12\x03n\x1c\x1d\n0\n\x04\x04\x01\x02\x06\x12\
-    \x03q\x02\x14\x1a#\x20The\x20source\x20syntax\x20of\x20this\x20method.\n\
-    \n\x0c\n\x05\x04\x01\x02\x06\x06\x12\x03q\x02\x08\n\x0c\n\x05\x04\x01\
-    \x02\x06\x01\x12\x03q\t\x0f\n\x0c\n\x05\x04\x01\x02\x06\x03\x12\x03q\x12\
-    \x13\n\xa4\x13\n\x02\x04\x02\x12\x06\xc1\x01\0\xc8\x01\x01\x1a\x95\x13\
-    \x20Declares\x20an\x20API\x20to\x20be\x20included\x20in\x20this\x20API.\
-    \x20The\x20including\x20API\x20must\n\x20redeclare\x20all\x20the\x20meth\
-    ods\x20from\x20the\x20included\x20API,\x20but\x20documentation\n\x20and\
-    \x20options\x20are\x20inherited\x20as\x20follows:\n\n\x20-\x20If\x20afte\
-    r\x20comment\x20and\x20whitespace\x20stripping,\x20the\x20documentation\
-    \n\x20\x20\x20string\x20of\x20the\x20redeclared\x20method\x20is\x20empty\
-    ,\x20it\x20will\x20be\x20inherited\n\x20\x20\x20from\x20the\x20original\
-    \x20method.\n\n\x20-\x20Each\x20annotation\x20belonging\x20to\x20the\x20\
-    service\x20config\x20(http,\n\x20\x20\x20visibility)\x20which\x20is\x20n\
-    ot\x20set\x20in\x20the\x20redeclared\x20method\x20will\x20be\n\x20\x20\
-    \x20inherited.\n\n\x20-\x20If\x20an\x20http\x20annotation\x20is\x20inher\
-    ited,\x20the\x20path\x20pattern\x20will\x20be\n\x20\x20\x20modified\x20a\
-    s\x20follows.\x20Any\x20version\x20prefix\x20will\x20be\x20replaced\x20b\
-    y\x20the\n\x20\x20\x20version\x20of\x20the\x20including\x20API\x20plus\
-    \x20the\x20[root][]\x20path\x20if\x20specified.\n\n\x20Example\x20of\x20\
-    a\x20simple\x20mixin:\n\n\x20\x20\x20\x20\x20package\x20google.acl.v1;\n\
-    \x20\x20\x20\x20\x20service\x20AccessControl\x20{\n\x20\x20\x20\x20\x20\
+    \x12\x12\n\x04root\x18\x02\x20\x01(\tR\x04rootBv\n\x13com.google.protobu\
+    fB\x08ApiProtoP\x01Z,google.golang.org/protobuf/types/known/apipb\xa2\
+    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\x81&lt;\n\x07\x12\
+    \x05\x1e\0\xcf\x01\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\
+    \x20Protocol\x20Buffers\x20-\x20Google&#39;s\x20data\x20interchange\x20forma\
+    t\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reser\
+    ved.\n\x20https://developers.google.com/protocol-buffers/\n\n\x20Redistr\
+    ibution\x20and\x20use\x20in\x20source\x20and\x20binary\x20forms,\x20with\
+    \x20or\x20without\n\x20modification,\x20are\x20permitted\x20provided\x20\
+    that\x20the\x20following\x20conditions\x20are\n\x20met:\n\n\x20\x20\x20\
+    \x20\x20*\x20Redistributions\x20of\x20source\x20code\x20must\x20retain\
+    \x20the\x20above\x20copyright\n\x20notice,\x20this\x20list\x20of\x20cond\
+    itions\x20and\x20the\x20following\x20disclaimer.\n\x20\x20\x20\x20\x20*\
+    \x20Redistributions\x20in\x20binary\x20form\x20must\x20reproduce\x20the\
+    \x20above\n\x20copyright\x20notice,\x20this\x20list\x20of\x20conditions\
+    \x20and\x20the\x20following\x20disclaimer\n\x20in\x20the\x20documentatio\
+    n\x20and/or\x20other\x20materials\x20provided\x20with\x20the\n\x20distri\
+    bution.\n\x20\x20\x20\x20\x20*\x20Neither\x20the\x20name\x20of\x20Google\
+    \x20Inc.\x20nor\x20the\x20names\x20of\x20its\n\x20contributors\x20may\
+    \x20be\x20used\x20to\x20endorse\x20or\x20promote\x20products\x20derived\
+    \x20from\n\x20this\x20software\x20without\x20specific\x20prior\x20writte\
+    n\x20permission.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDED\x20BY\x20THE\
+    \x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\x20IS\&quot;\x20AND\
+    \x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INCLUDING,\x20BUT\
+    \x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIES\x20OF\x20MER\
+    CHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\x20PURPOSE\
+    \x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\x20COPYRIGHT\
+    \n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\x20ANY\x20DIREC\
+    T,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLARY,\x20OR\x20CONS\
+    EQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\
+    \x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVICES;\x20LOSS\
+    \x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINESS\x20INTERRU\
+    PTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\x20OF\x20LIA\
+    BILITY,\x20WHETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILITY,\x20OR\x20T\
+    ORT\n\x20(INCLUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\
+    \x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\
+    \x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20D\
+    AMAGE.\n\n\x08\n\x01\x02\x12\x03\x20\0\x18\n\t\n\x02\x03\0\x12\x03\&quot;\0.\
+    \n\t\n\x02\x03\x01\x12\x03#\0$\n\x08\n\x01\x08\x12\x03%\0;\n\t\n\x02\x08\
+    %\x12\x03%\0;\n\x08\n\x01\x08\x12\x03&amp;\0,\n\t\n\x02\x08\x01\x12\x03&amp;\0,\
+    \n\x08\n\x01\x08\x12\x03&#39;\0)\n\t\n\x02\x08\x08\x12\x03&#39;\0)\n\x08\n\x01\
+    \x08\x12\x03(\0\&quot;\n\t\n\x02\x08\n\x12\x03(\0\&quot;\n\x08\n\x01\x08\x12\x03)\
+    \0!\n\t\n\x02\x08$\x12\x03)\0!\n\x08\n\x01\x08\x12\x03*\0C\n\t\n\x02\x08\
+    \x0b\x12\x03*\0C\n\xab\x04\n\x02\x04\0\x12\x045\0`\x01\x1a\x9e\x04\x20Ap\
+    i\x20is\x20a\x20light-weight\x20descriptor\x20for\x20an\x20API\x20Interf\
+    ace.\n\n\x20Interfaces\x20are\x20also\x20described\x20as\x20\&quot;protocol\
+    \x20buffer\x20services\&quot;\x20in\x20some\x20contexts,\n\x20such\x20as\x20b\
+    y\x20the\x20\&quot;service\&quot;\x20keyword\x20in\x20a\x20.proto\x20file,\x20but\
+    \x20they\x20are\x20different\n\x20from\x20API\x20Services,\x20which\x20r\
+    epresent\x20a\x20concrete\x20implementation\x20of\x20an\x20interface\n\
+    \x20as\x20opposed\x20to\x20simply\x20a\x20description\x20of\x20methods\
+    \x20and\x20bindings.\x20They\x20are\x20also\n\x20sometimes\x20simply\x20\
+    referred\x20to\x20as\x20\&quot;APIs\&quot;\x20in\x20other\x20contexts,\x20such\x20\
+    as\x20the\x20name\x20of\n\x20this\x20message\x20itself.\x20See\x20https:\
+    //cloud.google.com/apis/design/glossary\x20for\n\x20detailed\x20terminol\
+    ogy.\n\n\n\n\x03\x04\0\x01\x12\x035\x08\x0b\n{\n\x04\x04\0\x02\0\x12\x03\
+    8\x02\x12\x1an\x20The\x20fully\x20qualified\x20name\x20of\x20this\x20int\
+    erface,\x20including\x20package\x20name\n\x20followed\x20by\x20the\x20in\
+    terface&#39;s\x20simple\x20name.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x038\x02\
+    \x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x038\t\r\n\x0c\n\x05\x04\0\x02\0\
+    \x03\x12\x038\x10\x11\nC\n\x04\x04\0\x02\x01\x12\x03;\x02\x1e\x1a6\x20Th\
+    e\x20methods\x20of\x20this\x20interface,\x20in\x20unspecified\x20order.\
+    \n\n\x0c\n\x05\x04\0\x02\x01\x04\x12\x03;\x02\n\n\x0c\n\x05\x04\0\x02\
+    \x01\x06\x12\x03;\x0b\x11\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03;\x12\x19\
+    \n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03;\x1c\x1d\n6\n\x04\x04\0\x02\x02\
+    \x12\x03&gt;\x02\x1e\x1a)\x20Any\x20metadata\x20attached\x20to\x20the\x20in\
+    terface.\n\n\x0c\n\x05\x04\0\x02\x02\x04\x12\x03&gt;\x02\n\n\x0c\n\x05\x04\
+    \0\x02\x02\x06\x12\x03&gt;\x0b\x11\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03&gt;\
+    \x12\x19\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x03&gt;\x1c\x1d\n\x82\x08\n\x04\
+    \x04\0\x02\x03\x12\x03U\x02\x15\x1a\xf4\x07\x20A\x20version\x20string\
+    \x20for\x20this\x20interface.\x20If\x20specified,\x20must\x20have\x20the\
+    \x20form\n\x20`major-version.minor-version`,\x20as\x20in\x20`1.10`.\x20I\
+    f\x20the\x20minor\x20version\x20is\n\x20omitted,\x20it\x20defaults\x20to\
+    \x20zero.\x20If\x20the\x20entire\x20version\x20field\x20is\x20empty,\x20\
+    the\n\x20major\x20version\x20is\x20derived\x20from\x20the\x20package\x20\
+    name,\x20as\x20outlined\x20below.\x20If\x20the\n\x20field\x20is\x20not\
+    \x20empty,\x20the\x20version\x20in\x20the\x20package\x20name\x20will\x20\
+    be\x20verified\x20to\x20be\n\x20consistent\x20with\x20what\x20is\x20prov\
+    ided\x20here.\n\n\x20The\x20versioning\x20schema\x20uses\x20[semantic\n\
+    \x20versioning](http://semver.org)\x20where\x20the\x20major\x20version\
+    \x20number\n\x20indicates\x20a\x20breaking\x20change\x20and\x20the\x20mi\
+    nor\x20version\x20an\x20additive,\n\x20non-breaking\x20change.\x20Both\
+    \x20version\x20numbers\x20are\x20signals\x20to\x20users\n\x20what\x20to\
+    \x20expect\x20from\x20different\x20versions,\x20and\x20should\x20be\x20c\
+    arefully\n\x20chosen\x20based\x20on\x20the\x20product\x20plan.\n\n\x20Th\
+    e\x20major\x20version\x20is\x20also\x20reflected\x20in\x20the\x20package\
+    \x20name\x20of\x20the\n\x20interface,\x20which\x20must\x20end\x20in\x20`\
+    v&lt;major-version&gt;`,\x20as\x20in\n\x20`google.feature.v1`.\x20For\x20major\
+    \x20versions\x200\x20and\x201,\x20the\x20suffix\x20can\n\x20be\x20omitte\
+    d.\x20Zero\x20major\x20versions\x20must\x20only\x20be\x20used\x20for\n\
+    \x20experimental,\x20non-GA\x20interfaces.\n\n\n\n\x0c\n\x05\x04\0\x02\
+    \x03\x05\x12\x03U\x02\x08\n\x0c\n\x05\x04\0\x02\x03\x01\x12\x03U\t\x10\n\
+    \x0c\n\x05\x04\0\x02\x03\x03\x12\x03U\x13\x14\n[\n\x04\x04\0\x02\x04\x12\
+    \x03Y\x02#\x1aN\x20Source\x20context\x20for\x20the\x20protocol\x20buffer\
+    \x20service\x20represented\x20by\x20this\n\x20message.\n\n\x0c\n\x05\x04\
+    \0\x02\x04\x06\x12\x03Y\x02\x0f\n\x0c\n\x05\x04\0\x02\x04\x01\x12\x03Y\
+    \x10\x1e\n\x0c\n\x05\x04\0\x02\x04\x03\x12\x03Y!\&quot;\n2\n\x04\x04\0\x02\
+    \x05\x12\x03\\\x02\x1c\x1a%\x20Included\x20interfaces.\x20See\x20[Mixin]\
+    [].\n\n\x0c\n\x05\x04\0\x02\x05\x04\x12\x03\\\x02\n\n\x0c\n\x05\x04\0\
+    \x02\x05\x06\x12\x03\\\x0b\x10\n\x0c\n\x05\x04\0\x02\x05\x01\x12\x03\\\
+    \x11\x17\n\x0c\n\x05\x04\0\x02\x05\x03\x12\x03\\\x1a\x1b\n0\n\x04\x04\0\
+    \x02\x06\x12\x03_\x02\x14\x1a#\x20The\x20source\x20syntax\x20of\x20the\
+    \x20service.\n\n\x0c\n\x05\x04\0\x02\x06\x06\x12\x03_\x02\x08\n\x0c\n\
+    \x05\x04\0\x02\x06\x01\x12\x03_\t\x0f\n\x0c\n\x05\x04\0\x02\x06\x03\x12\
+    \x03_\x12\x13\n=\n\x02\x04\x01\x12\x04c\0x\x01\x1a1\x20Method\x20represe\
+    nts\x20a\x20method\x20of\x20an\x20API\x20interface.\n\n\n\n\x03\x04\x01\
+    \x01\x12\x03c\x08\x0e\n.\n\x04\x04\x01\x02\0\x12\x03e\x02\x12\x1a!\x20Th\
+    e\x20simple\x20name\x20of\x20this\x20method.\n\n\x0c\n\x05\x04\x01\x02\0\
+    \x05\x12\x03e\x02\x08\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03e\t\r\n\x0c\n\
+    \x05\x04\x01\x02\0\x03\x12\x03e\x10\x11\n/\n\x04\x04\x01\x02\x01\x12\x03\
+    h\x02\x1e\x1a\&quot;\x20A\x20URL\x20of\x20the\x20input\x20message\x20type.\n\
+    \n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03h\x02\x08\n\x0c\n\x05\x04\x01\
+    \x02\x01\x01\x12\x03h\t\x19\n\x0c\n\x05\x04\x01\x02\x01\x03\x12\x03h\x1c\
+    \x1d\n0\n\x04\x04\x01\x02\x02\x12\x03k\x02\x1d\x1a#\x20If\x20true,\x20th\
+    e\x20request\x20is\x20streamed.\n\n\x0c\n\x05\x04\x01\x02\x02\x05\x12\
+    \x03k\x02\x06\n\x0c\n\x05\x04\x01\x02\x02\x01\x12\x03k\x07\x18\n\x0c\n\
+    \x05\x04\x01\x02\x02\x03\x12\x03k\x1b\x1c\n2\n\x04\x04\x01\x02\x03\x12\
+    \x03n\x02\x1f\x1a%\x20The\x20URL\x20of\x20the\x20output\x20message\x20ty\
+    pe.\n\n\x0c\n\x05\x04\x01\x02\x03\x05\x12\x03n\x02\x08\n\x0c\n\x05\x04\
+    \x01\x02\x03\x01\x12\x03n\t\x1a\n\x0c\n\x05\x04\x01\x02\x03\x03\x12\x03n\
+    \x1d\x1e\n1\n\x04\x04\x01\x02\x04\x12\x03q\x02\x1e\x1a$\x20If\x20true,\
+    \x20the\x20response\x20is\x20streamed.\n\n\x0c\n\x05\x04\x01\x02\x04\x05\
+    \x12\x03q\x02\x06\n\x0c\n\x05\x04\x01\x02\x04\x01\x12\x03q\x07\x19\n\x0c\
+    \n\x05\x04\x01\x02\x04\x03\x12\x03q\x1c\x1d\n3\n\x04\x04\x01\x02\x05\x12\
+    \x03t\x02\x1e\x1a&amp;\x20Any\x20metadata\x20attached\x20to\x20the\x20method\
+    .\n\n\x0c\n\x05\x04\x01\x02\x05\x04\x12\x03t\x02\n\n\x0c\n\x05\x04\x01\
+    \x02\x05\x06\x12\x03t\x0b\x11\n\x0c\n\x05\x04\x01\x02\x05\x01\x12\x03t\
+    \x12\x19\n\x0c\n\x05\x04\x01\x02\x05\x03\x12\x03t\x1c\x1d\n0\n\x04\x04\
+    \x01\x02\x06\x12\x03w\x02\x14\x1a#\x20The\x20source\x20syntax\x20of\x20t\
+    his\x20method.\n\n\x0c\n\x05\x04\x01\x02\x06\x06\x12\x03w\x02\x08\n\x0c\
+    \n\x05\x04\x01\x02\x06\x01\x12\x03w\t\x0f\n\x0c\n\x05\x04\x01\x02\x06\
+    \x03\x12\x03w\x12\x13\n\xca\x13\n\x02\x04\x02\x12\x06\xc8\x01\0\xcf\x01\
+    \x01\x1a\xbb\x13\x20Declares\x20an\x20API\x20Interface\x20to\x20be\x20in\
+    cluded\x20in\x20this\x20interface.\x20The\x20including\n\x20interface\
+    \x20must\x20redeclare\x20all\x20the\x20methods\x20from\x20the\x20include\
+    d\x20interface,\x20but\n\x20documentation\x20and\x20options\x20are\x20in\
+    herited\x20as\x20follows:\n\n\x20-\x20If\x20after\x20comment\x20and\x20w\
+    hitespace\x20stripping,\x20the\x20documentation\n\x20\x20\x20string\x20o\
+    f\x20the\x20redeclared\x20method\x20is\x20empty,\x20it\x20will\x20be\x20\
+    inherited\n\x20\x20\x20from\x20the\x20original\x20method.\n\n\x20-\x20Ea\
+    ch\x20annotation\x20belonging\x20to\x20the\x20service\x20config\x20(http\
+    ,\n\x20\x20\x20visibility)\x20which\x20is\x20not\x20set\x20in\x20the\x20\
+    redeclared\x20method\x20will\x20be\n\x20\x20\x20inherited.\n\n\x20-\x20I\
+    f\x20an\x20http\x20annotation\x20is\x20inherited,\x20the\x20path\x20patt\
+    ern\x20will\x20be\n\x20\x20\x20modified\x20as\x20follows.\x20Any\x20vers\
+    ion\x20prefix\x20will\x20be\x20replaced\x20by\x20the\n\x20\x20\x20versio\
+    n\x20of\x20the\x20including\x20interface\x20plus\x20the\x20[root][]\x20p\
+    ath\x20if\n\x20\x20\x20specified.\n\n\x20Example\x20of\x20a\x20simple\
+    \x20mixin:\n\n\x20\x20\x20\x20\x20package\x20google.acl.v1;\n\x20\x20\
+    \x20\x20\x20service\x20AccessControl\x20{\n\x20\x20\x20\x20\x20\x20\x20/\
+    /\x20Get\x20the\x20underlying\x20ACL\x20object.\n\x20\x20\x20\x20\x20\
+    \x20\x20rpc\x20GetAcl(GetAclRequest)\x20returns\x20(Acl)\x20{\n\x20\x20\
+    \x20\x20\x20\x20\x20\x20\x20option\x20(google.api.http).get\x20=\x20\&quot;/v\
+    1/{resource=**}:getAcl\&quot;;\n\x20\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\
+    \x20\x20}\n\n\x20\x20\x20\x20\x20package\x20google.storage.v2;\n\x20\x20\
+    \x20\x20\x20service\x20Storage\x20{\n\x20\x20\x20\x20\x20\x20\x20rpc\x20\
+    GetAcl(GetAclRequest)\x20returns\x20(Acl);\n\n\x20\x20\x20\x20\x20\x20\
+    \x20//\x20Get\x20a\x20data\x20record.\n\x20\x20\x20\x20\x20\x20\x20rpc\
+    \x20GetData(GetDataRequest)\x20returns\x20(Data)\x20{\n\x20\x20\x20\x20\
+    \x20\x20\x20\x20\x20option\x20(google.api.http).get\x20=\x20\&quot;/v2/{resou\
+    rce=**}\&quot;;\n\x20\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20\x20}\n\n\x20\
+    Example\x20of\x20a\x20mixin\x20configuration:\n\n\x20\x20\x20\x20\x20api\
+    s:\n\x20\x20\x20\x20\x20-\x20name:\x20google.storage.v2.Storage\n\x20\
+    \x20\x20\x20\x20\x20\x20mixins:\n\x20\x20\x20\x20\x20\x20\x20-\x20name:\
+    \x20google.acl.v1.AccessControl\n\n\x20The\x20mixin\x20construct\x20impl\
+    ies\x20that\x20all\x20methods\x20in\x20`AccessControl`\x20are\n\x20also\
+    \x20declared\x20with\x20same\x20name\x20and\x20request/response\x20types\
+    \x20in\n\x20`Storage`.\x20A\x20documentation\x20generator\x20or\x20annot\
+    ation\x20processor\x20will\n\x20see\x20the\x20effective\x20`Storage.GetA\
+    cl`\x20method\x20after\x20inheriting\n\x20documentation\x20and\x20annota\
+    tions\x20as\x20follows:\n\n\x20\x20\x20\x20\x20service\x20Storage\x20{\n\
+    \x20\x20\x20\x20\x20\x20\x20//\x20Get\x20the\x20underlying\x20ACL\x20obj\
+    ect.\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAclRequest)\x20return\
+    s\x20(Acl)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20option\x20(google.a\
+    pi.http).get\x20=\x20\&quot;/v2/{resource=**}:getAcl\&quot;;\n\x20\x20\x20\x20\x20\
+    \x20\x20}\n\x20\x20\x20\x20\x20\x20\x20...\n\x20\x20\x20\x20\x20}\n\n\
+    \x20Note\x20how\x20the\x20version\x20in\x20the\x20path\x20pattern\x20cha\
+    nged\x20from\x20`v1`\x20to\x20`v2`.\n\n\x20If\x20the\x20`root`\x20field\
+    \x20in\x20the\x20mixin\x20is\x20specified,\x20it\x20should\x20be\x20a\n\
+    \x20relative\x20path\x20under\x20which\x20inherited\x20HTTP\x20paths\x20\
+    are\x20placed.\x20Example:\n\n\x20\x20\x20\x20\x20apis:\n\x20\x20\x20\
+    \x20\x20-\x20name:\x20google.storage.v2.Storage\n\x20\x20\x20\x20\x20\
+    \x20\x20mixins:\n\x20\x20\x20\x20\x20\x20\x20-\x20name:\x20google.acl.v1\
+    .AccessControl\n\x20\x20\x20\x20\x20\x20\x20\x20\x20root:\x20acls\n\n\
+    \x20This\x20implies\x20the\x20following\x20inherited\x20HTTP\x20annotati\
+    on:\n\n\x20\x20\x20\x20\x20service\x20Storage\x20{\n\x20\x20\x20\x20\x20\
     \x20\x20//\x20Get\x20the\x20underlying\x20ACL\x20object.\n\x20\x20\x20\
     \x20\x20\x20\x20rpc\x20GetAcl(GetAclRequest)\x20returns\x20(Acl)\x20{\n\
     \x20\x20\x20\x20\x20\x20\x20\x20\x20option\x20(google.api.http).get\x20=\
-    \x20\&quot;/v1/{resource=**}:getAcl\&quot;;\n\x20\x20\x20\x20\x20\x20\x20}\n\x20\
-    \x20\x20\x20\x20}\n\n\x20\x20\x20\x20\x20package\x20google.storage.v2;\n\
-    \x20\x20\x20\x20\x20service\x20Storage\x20{\n\x20\x20\x20\x20\x20\x20\
-    \x20rpc\x20GetAcl(GetAclRequest)\x20returns\x20(Acl);\n\n\x20\x20\x20\
-    \x20\x20\x20\x20//\x20Get\x20a\x20data\x20record.\n\x20\x20\x20\x20\x20\
-    \x20\x20rpc\x20GetData(GetDataRequest)\x20returns\x20(Data)\x20{\n\x20\
-    \x20\x20\x20\x20\x20\x20\x20\x20option\x20(google.api.http).get\x20=\x20\
-    \&quot;/v2/{resource=**}\&quot;;\n\x20\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20\
-    \x20}\n\n\x20Example\x20of\x20a\x20mixin\x20configuration:\n\n\x20\x20\
-    \x20\x20\x20apis:\n\x20\x20\x20\x20\x20-\x20name:\x20google.storage.v2.S\
-    torage\n\x20\x20\x20\x20\x20\x20\x20mixins:\n\x20\x20\x20\x20\x20\x20\
-    \x20-\x20name:\x20google.acl.v1.AccessControl\n\n\x20The\x20mixin\x20con\
-    struct\x20implies\x20that\x20all\x20methods\x20in\x20`AccessControl`\x20\
-    are\n\x20also\x20declared\x20with\x20same\x20name\x20and\x20request/resp\
-    onse\x20types\x20in\n\x20`Storage`.\x20A\x20documentation\x20generator\
-    \x20or\x20annotation\x20processor\x20will\n\x20see\x20the\x20effective\
-    \x20`Storage.GetAcl`\x20method\x20after\x20inherting\n\x20documentation\
-    \x20and\x20annotations\x20as\x20follows:\n\n\x20\x20\x20\x20\x20service\
-    \x20Storage\x20{\n\x20\x20\x20\x20\x20\x20\x20//\x20Get\x20the\x20underl\
-    ying\x20ACL\x20object.\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAcl\
-    Request)\x20returns\x20(Acl)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20o\
-    ption\x20(google.api.http).get\x20=\x20\&quot;/v2/{resource=**}:getAcl\&quot;;\n\
-    \x20\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20\x20\x20\x20...\n\x20\x20\
-    \x20\x20\x20}\n\n\x20Note\x20how\x20the\x20version\x20in\x20the\x20path\
-    \x20pattern\x20changed\x20from\x20`v1`\x20to\x20`v2`.\n\n\x20If\x20the\
-    \x20`root`\x20field\x20in\x20the\x20mixin\x20is\x20specified,\x20it\x20s\
-    hould\x20be\x20a\n\x20relative\x20path\x20under\x20which\x20inherited\
-    \x20HTTP\x20paths\x20are\x20placed.\x20Example:\n\n\x20\x20\x20\x20\x20a\
-    pis:\n\x20\x20\x20\x20\x20-\x20name:\x20google.storage.v2.Storage\n\x20\
-    \x20\x20\x20\x20\x20\x20mixins:\n\x20\x20\x20\x20\x20\x20\x20-\x20name:\
-    \x20google.acl.v1.AccessControl\n\x20\x20\x20\x20\x20\x20\x20\x20\x20roo\
-    t:\x20acls\n\n\x20This\x20implies\x20the\x20following\x20inherited\x20HT\
-    TP\x20annotation:\n\n\x20\x20\x20\x20\x20service\x20Storage\x20{\n\x20\
-    \x20\x20\x20\x20\x20\x20//\x20Get\x20the\x20underlying\x20ACL\x20object.\
-    \n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAclRequest)\x20returns\
-    \x20(Acl)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20option\x20(google.ap\
-    i.http).get\x20=\x20\&quot;/v2/acls/{resource=**}:getAcl\&quot;;\n\x20\x20\x20\x20\
-    \x20\x20\x20}\n\x20\x20\x20\x20\x20\x20\x20...\n\x20\x20\x20\x20\x20}\n\
-    \n\x0b\n\x03\x04\x02\x01\x12\x04\xc1\x01\x08\r\nF\n\x04\x04\x02\x02\0\
-    \x12\x04\xc3\x01\x02\x12\x1a8\x20The\x20fully\x20qualified\x20name\x20of\
-    \x20the\x20API\x20which\x20is\x20included.\n\n\r\n\x05\x04\x02\x02\0\x05\
-    \x12\x04\xc3\x01\x02\x08\n\r\n\x05\x04\x02\x02\0\x01\x12\x04\xc3\x01\t\r\
-    \n\r\n\x05\x04\x02\x02\0\x03\x12\x04\xc3\x01\x10\x11\n[\n\x04\x04\x02\
-    \x02\x01\x12\x04\xc7\x01\x02\x12\x1aM\x20If\x20non-empty\x20specifies\
-    \x20a\x20path\x20under\x20which\x20inherited\x20HTTP\x20paths\n\x20are\
-    \x20rooted.\n\n\r\n\x05\x04\x02\x02\x01\x05\x12\x04\xc7\x01\x02\x08\n\r\
-    \n\x05\x04\x02\x02\x01\x01\x12\x04\xc7\x01\t\r\n\r\n\x05\x04\x02\x02\x01\
-    \x03\x12\x04\xc7\x01\x10\x11b\x06proto3\
+    \x20\&quot;/v2/acls/{resource=**}:getAcl\&quot;;\n\x20\x20\x20\x20\x20\x20\x20}\n\
+    \x20\x20\x20\x20\x20\x20\x20...\n\x20\x20\x20\x20\x20}\n\n\x0b\n\x03\x04\
+    \x02\x01\x12\x04\xc8\x01\x08\r\nL\n\x04\x04\x02\x02\0\x12\x04\xca\x01\
+    \x02\x12\x1a&gt;\x20The\x20fully\x20qualified\x20name\x20of\x20the\x20inter\
+    face\x20which\x20is\x20included.\n\n\r\n\x05\x04\x02\x02\0\x05\x12\x04\
+    \xca\x01\x02\x08\n\r\n\x05\x04\x02\x02\0\x01\x12\x04\xca\x01\t\r\n\r\n\
+    \x05\x04\x02\x02\0\x03\x12\x04\xca\x01\x10\x11\n[\n\x04\x04\x02\x02\x01\
+    \x12\x04\xce\x01\x02\x12\x1aM\x20If\x20non-empty\x20specifies\x20a\x20pa\
+    th\x20under\x20which\x20inherited\x20HTTP\x20paths\n\x20are\x20rooted.\n\
+    \n\r\n\x05\x04\x02\x02\x01\x05\x12\x04\xce\x01\x02\x08\n\r\n\x05\x04\x02\
+    \x02\x01\x01\x12\x04\xce\x01\t\r\n\r\n\x05\x04\x02\x02\x01\x03\x12\x04\
+    \xce\x01\x10\x11b\x06proto3\
 &quot;</span>;
 
 <span class="kw">static</span> <span class="ident">file_descriptor_proto_lazy</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
 
 <span class="kw">fn</span> <span class="ident">parse_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
-    <span class="kw">crate</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
+    <span class="kw">crate</span>::<span class="ident">Message</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
@@ -2558,4 +2587,4 @@
     })
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

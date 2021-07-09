@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/libc-0.2.74/src/unix/linux_like/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script src="../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../libc/index.html'><div class='logo-container'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/libc-0.2.95/src/unix/linux_like/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../libc/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1541,6 +1544,146 @@
 <span id="1541">1541</span>
 <span id="1542">1542</span>
 <span id="1543">1543</span>
+<span id="1544">1544</span>
+<span id="1545">1545</span>
+<span id="1546">1546</span>
+<span id="1547">1547</span>
+<span id="1548">1548</span>
+<span id="1549">1549</span>
+<span id="1550">1550</span>
+<span id="1551">1551</span>
+<span id="1552">1552</span>
+<span id="1553">1553</span>
+<span id="1554">1554</span>
+<span id="1555">1555</span>
+<span id="1556">1556</span>
+<span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
+<span id="1563">1563</span>
+<span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
+<span id="1594">1594</span>
+<span id="1595">1595</span>
+<span id="1596">1596</span>
+<span id="1597">1597</span>
+<span id="1598">1598</span>
+<span id="1599">1599</span>
+<span id="1600">1600</span>
+<span id="1601">1601</span>
+<span id="1602">1602</span>
+<span id="1603">1603</span>
+<span id="1604">1604</span>
+<span id="1605">1605</span>
+<span id="1606">1606</span>
+<span id="1607">1607</span>
+<span id="1608">1608</span>
+<span id="1609">1609</span>
+<span id="1610">1610</span>
+<span id="1611">1611</span>
+<span id="1612">1612</span>
+<span id="1613">1613</span>
+<span id="1614">1614</span>
+<span id="1615">1615</span>
+<span id="1616">1616</span>
+<span id="1617">1617</span>
+<span id="1618">1618</span>
+<span id="1619">1619</span>
+<span id="1620">1620</span>
+<span id="1621">1621</span>
+<span id="1622">1622</span>
+<span id="1623">1623</span>
+<span id="1624">1624</span>
+<span id="1625">1625</span>
+<span id="1626">1626</span>
+<span id="1627">1627</span>
+<span id="1628">1628</span>
+<span id="1629">1629</span>
+<span id="1630">1630</span>
+<span id="1631">1631</span>
+<span id="1632">1632</span>
+<span id="1633">1633</span>
+<span id="1634">1634</span>
+<span id="1635">1635</span>
+<span id="1636">1636</span>
+<span id="1637">1637</span>
+<span id="1638">1638</span>
+<span id="1639">1639</span>
+<span id="1640">1640</span>
+<span id="1641">1641</span>
+<span id="1642">1642</span>
+<span id="1643">1643</span>
+<span id="1644">1644</span>
+<span id="1645">1645</span>
+<span id="1646">1646</span>
+<span id="1647">1647</span>
+<span id="1648">1648</span>
+<span id="1649">1649</span>
+<span id="1650">1650</span>
+<span id="1651">1651</span>
+<span id="1652">1652</span>
+<span id="1653">1653</span>
+<span id="1654">1654</span>
+<span id="1655">1655</span>
+<span id="1656">1656</span>
+<span id="1657">1657</span>
+<span id="1658">1658</span>
+<span id="1659">1659</span>
+<span id="1660">1660</span>
+<span id="1661">1661</span>
+<span id="1662">1662</span>
+<span id="1663">1663</span>
+<span id="1664">1664</span>
+<span id="1665">1665</span>
+<span id="1666">1666</span>
+<span id="1667">1667</span>
+<span id="1668">1668</span>
+<span id="1669">1669</span>
+<span id="1670">1670</span>
+<span id="1671">1671</span>
+<span id="1672">1672</span>
+<span id="1673">1673</span>
+<span id="1674">1674</span>
+<span id="1675">1675</span>
+<span id="1676">1676</span>
+<span id="1677">1677</span>
+<span id="1678">1678</span>
+<span id="1679">1679</span>
+<span id="1680">1680</span>
+<span id="1681">1681</span>
+<span id="1682">1682</span>
+<span id="1683">1683</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">sa_family_t</span> <span class="op">=</span> <span class="ident">u16</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">speed_t</span> <span class="op">=</span> ::<span class="ident">c_uint</span>;
@@ -1803,7 +1946,7 @@
         <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">epoll_event</span> {
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">epoll_event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
                 <span class="self">self</span>.<span class="ident">events</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">events</span>
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">u64</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">u64</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">u64</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">u64</span>
             }
         }
         <span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">epoll_event</span> {}
@@ -1829,7 +1972,7 @@
         <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">sockaddr_un</span> {
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">sockaddr_un</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
                 <span class="self">self</span>.<span class="ident">sun_family</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sun_family</span>
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">sun_path</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">sun_path</span>.<span class="ident">iter</span>())
@@ -1855,7 +1998,7 @@
         <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">sockaddr_storage</span> {
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">sockaddr_storage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
                 <span class="self">self</span>.<span class="ident">ss_family</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">ss_family</span>
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">__ss_pad2</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">__ss_pad2</span>.<span class="ident">iter</span>())
@@ -1888,27 +2031,27 @@
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">sysname</span>.<span class="ident">iter</span>())
                     .<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>)
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">nodename</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">nodename</span>.<span class="ident">iter</span>())
                     .<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>)
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">release</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">release</span>.<span class="ident">iter</span>())
                     .<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>)
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">version</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">version</span>.<span class="ident">iter</span>())
                     .<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>)
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">machine</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">machine</span>.<span class="ident">iter</span>())
                     .<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>)
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>
                     .<span class="ident">domainname</span>
                     .<span class="ident">iter</span>()
                     .<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">domainname</span>.<span class="ident">iter</span>())
@@ -1945,9 +2088,9 @@
         <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">sigevent</span> {
             <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">sigevent</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
                 <span class="self">self</span>.<span class="ident">sigev_value</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sigev_value</span>
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">sigev_signo</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sigev_signo</span>
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">sigev_notify</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sigev_notify</span>
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">sigev_notify_thread_id</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">sigev_signo</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sigev_signo</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">sigev_notify</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sigev_notify</span>
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">sigev_notify_thread_id</span>
                         <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">sigev_notify_thread_id</span>
             }
         }
@@ -2090,13 +2233,18 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PROT_WRITE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PROT_EXEC</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_CTYPE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_NUMERIC</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_TIME</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_COLLATE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_MONETARY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_MESSAGES</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_ALL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_env</span> <span class="op">=</span> <span class="string">&quot;uclibc&quot;</span>))]</span> {
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_CTYPE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_NUMERIC</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_TIME</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_COLLATE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_MONETARY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_MESSAGES</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_ALL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">6</span>;
+    }
+}
+
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_CTYPE_MASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">LC_CTYPE</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_NUMERIC_MASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">LC_NUMERIC</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LC_TIME_MASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">LC_TIME</span>;
@@ -2141,6 +2289,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_KERNMOUNT</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0x400000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_I_VERSION</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0x800000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_STRICTATIME</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0x1000000</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_LAZYTIME</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0x2000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_ACTIVE</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0x40000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_MGC_VAL</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0xc0ed0000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MS_MGC_MSK</span>: ::<span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">0xffff0000</span>;
@@ -2312,22 +2461,116 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SOCK_RAW</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SOCK_RDM</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_IF</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">32</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_TTL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">33</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_LOOP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">34</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_TOS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_TTL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_HDRINCL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_OPTIONS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_ROUTER_ALERT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RECVOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RETOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">7</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PKTINFO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PKTOPTIONS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">9</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MTU_DISCOVER</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RECVTOS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">13</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RECVERR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">11</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RECVTTL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RECVTOS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">13</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MTU</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">14</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_FREEBIND</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">15</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_IPSEC_POLICY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">16</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_XFRM_POLICY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">17</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PASSSEC</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">18</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_TRANSPARENT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">19</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_ORIGDSTADDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">20</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_RECVORIGDSTADDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="ident">IP_ORIGDSTADDR</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MINTTL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">21</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_NODEFRAG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">22</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_CHECKSUM</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">23</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_BIND_ADDRESS_NO_PORT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">24</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_IF</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">32</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_TTL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">33</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_LOOP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">34</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_ADD_MEMBERSHIP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">35</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_DROP_MEMBERSHIP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">36</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_UNBLOCK_SOURCE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">37</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_BLOCK_SOURCE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">38</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_ADD_SOURCE_MEMBERSHIP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">39</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_DROP_SOURCE_MEMBERSHIP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">40</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_TRANSPARENT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">19</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MSFILTER</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">41</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_MULTICAST_ALL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">49</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_UNICAST_IF</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">50</span>;
+
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_DEFAULT_MULTICAST_TTL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_DEFAULT_MULTICAST_LOOP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_DONT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_WANT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_DO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_PROBE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_INTERFACE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_OMIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+
+<span class="comment">// IPPROTO_IP defined in src/unix/mod.rs</span>
+<span class="doccomment">/// Hop-by-hop option header</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_HOPOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="comment">// IPPROTO_ICMP defined in src/unix/mod.rs</span>
+<span class="doccomment">/// group mgmt protocol</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_IGMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="doccomment">/// for compatibility</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_IPIP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="comment">// IPPROTO_TCP defined in src/unix/mod.rs</span>
+<span class="doccomment">/// exterior gateway protocol</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_EGP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="doccomment">/// pup</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_PUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="comment">// IPPROTO_UDP defined in src/unix/mod.rs</span>
+<span class="doccomment">/// xns idp</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_IDP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">22</span>;
+<span class="doccomment">/// tp-4 w/ class negotiation</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_TP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">29</span>;
+<span class="doccomment">/// DCCP</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_DCCP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">33</span>;
+<span class="comment">// IPPROTO_IPV6 defined in src/unix/mod.rs</span>
+<span class="doccomment">/// IP6 routing header</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_ROUTING</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">43</span>;
+<span class="doccomment">/// IP6 fragmentation header</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_FRAGMENT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">44</span>;
+<span class="doccomment">/// resource reservation</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_RSVP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">46</span>;
+<span class="doccomment">/// General Routing Encap.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_GRE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">47</span>;
+<span class="doccomment">/// IP6 Encap Sec. Payload</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_ESP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">50</span>;
+<span class="doccomment">/// IP6 Auth Header</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_AH</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">51</span>;
+<span class="comment">// IPPROTO_ICMPV6 defined in src/unix/mod.rs</span>
+<span class="doccomment">/// IP6 no next header</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_NONE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">59</span>;
+<span class="doccomment">/// IP6 destination option</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_DSTOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">60</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_MTP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">92</span>;
+<span class="doccomment">/// encapsulation header</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_ENCAP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">98</span>;
+<span class="doccomment">/// Protocol indep. multicast</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_PIM</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">103</span>;
+<span class="doccomment">/// IP Payload Comp. Protocol</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_COMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">108</span>;
+<span class="doccomment">/// SCTP</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_SCTP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">132</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_MH</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">135</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_UDPLITE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">136</span>;
+<span class="doccomment">/// raw IP packet</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_RAW</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">255</span>;
+
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_EXCLUDE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_INCLUDE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_JOIN_GROUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">42</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_BLOCK_SOURCE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">43</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_UNBLOCK_SOURCE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">44</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_LEAVE_GROUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">45</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_JOIN_SOURCE_GROUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">46</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_LEAVE_SOURCE_GROUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">47</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MCAST_MSFILTER</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">48</span>;
+
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_ADDRFORM</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_2292PKTINFO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_2292HOPOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
@@ -2337,6 +2580,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_CHECKSUM</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">7</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_2292HOPLIMIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_NEXTHOP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">9</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_AUTHHDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">10</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_UNICAST_HOPS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">16</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_MULTICAST_IF</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">17</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_MULTICAST_HOPS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">18</span>;
@@ -2350,16 +2594,43 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_V6ONLY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">26</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_JOIN_ANYCAST</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">27</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_LEAVE_ANYCAST</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">28</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_IPSEC_POLICY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">34</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_XFRM_POLICY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">35</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVPKTINFO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">49</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PKTINFO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">50</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVHOPLIMIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">51</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_HOPLIMIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">52</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVHOPOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">53</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_HOPOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">54</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RTHDRDSTOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">55</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVRTHDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">56</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RTHDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">57</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVDSTOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">58</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_DSTOPTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">59</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVPATHMTU</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">60</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PATHMTU</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">61</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_DONTFRAG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">62</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVTCLASS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">66</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_TCLASS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">67</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_AUTOFLOWLABEL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">70</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_ADDR_PREFERENCES</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">72</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_MINHOPCOUNT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">73</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_ORIGDSTADDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">74</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_RECVORIGDSTADDR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="ident">IPV6_ORIGDSTADDR</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_TRANSPARENT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">75</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_UNICAST_IF</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">76</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_TMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0001</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_PUBLIC</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0002</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_PUBTMP_DEFAULT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0100</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_COA</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0004</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_HOME</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0400</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_CGA</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0008</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PREFER_SRC_NONCGA</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0800</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_DONT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_WANT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_DO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IP_PMTUDISC_PROBE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PMTUDISC_DONT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PMTUDISC_WANT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PMTUDISC_DO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PMTUDISC_PROBE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_NODELAY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_MAXSEG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
@@ -2374,6 +2645,43 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_INFO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">11</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_QUICKACK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">12</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_CONGESTION</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">13</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_MD5SIG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">14</span>;
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">any</span>(<span class="ident">target_env</span> <span class="op">=</span> <span class="string">&quot;gnu&quot;</span>, <span class="ident">target_env</span> <span class="op">=</span> <span class="string">&quot;musl&quot;</span>)))]</span> {
+        <span class="comment">// WARN: deprecated</span>
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_COOKIE_TRANSACTIONS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">15</span>;
+    }
+}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_THIN_LINEAR_TIMEOUTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">16</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_THIN_DUPACK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">17</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_USER_TIMEOUT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">18</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_REPAIR</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">19</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_REPAIR_QUEUE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">20</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_QUEUE_SEQ</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">21</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_REPAIR_OPTIONS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">22</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_FASTOPEN</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">23</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_TIMESTAMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">24</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_NOTSENT_LOWAT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">25</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_CC_INFO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">26</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_SAVE_SYN</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">27</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_SAVED_SYN</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">28</span>;
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span> {
+        <span class="comment">// NOTE: emscripten doesn&#39;t support these options yet.</span>
+
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_REPAIR_WINDOW</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">29</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_FASTOPEN_CONNECT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">30</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_ULP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">31</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_MD5SIG_EXT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_FASTOPEN_KEY</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">33</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_FASTOPEN_NO_COOKIE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">34</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_ZEROCOPY_RECEIVE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">35</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_INQ</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">36</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TCP_CM_INQ</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="ident">TCP_INQ</span>;
+        <span class="comment">// NOTE: Some CI images doesn&#39;t have this option yet.</span>
+        <span class="comment">// pub const TCP_TX_DELAY: ::c_int = 37;</span>
+    }
+}
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SO_DEBUG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
 
@@ -2390,6 +2698,8 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SS_DISABLE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PATH_MAX</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4096</span>;
+
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UIO_MAXIOV</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1024</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FD_SETSIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">1024</span>;
 
@@ -2496,7 +2806,6 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLONE_NEWPID</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x20000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLONE_NEWNET</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x40000000</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLONE_IO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x80000000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLONE_NEWCGROUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x02000000</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WNOHANG</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000001</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WUNTRACED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000002</span>;
@@ -2504,6 +2813,13 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WEXITED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000004</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WCONTINUED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000008</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WNOWAIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x01000000</span>;
+
+<span class="comment">// Options for personality(2).</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MMAP_PAGE_ZERO</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0100000</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ADDR_LIMIT_32BIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0800000</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SHORT_INODE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x1000000</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WHOLE_SECONDS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x2000000</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STICKY_TIMEOUTS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x4000000</span>;
 
 <span class="comment">// Options set using PTRACE_SETOPTIONS.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_TRACESYSGOOD</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000001</span>;
@@ -2514,9 +2830,6 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_TRACEVFORKDONE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000020</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_TRACEEXIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000040</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_TRACESECCOMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000080</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_EXITKILL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00100000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_SUSPEND_SECCOMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00200000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_MASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x003000ff</span>;
 
 <span class="comment">// Wait extended result codes for the above trace options.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_EVENT_FORK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
@@ -2560,6 +2873,13 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SI_LOAD_SHIFT</span>: ::<span class="ident">c_uint</span> <span class="op">=</span> <span class="number">16</span>;
 
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLD_EXITED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLD_KILLED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLD_DUMPED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLD_TRAPPED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLD_STOPPED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLD_CONTINUED</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">6</span>;
+
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIGEV_SIGNAL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIGEV_NONE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIGEV_THREAD</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
@@ -2567,6 +2887,11 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">P_ALL</span>: <span class="ident">idtype_t</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">P_PID</span>: <span class="ident">idtype_t</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">P_PGID</span>: <span class="ident">idtype_t</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span> {
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">P_PIDFD</span>: <span class="ident">idtype_t</span> <span class="op">=</span> <span class="number">3</span>;
+    }
+}
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UTIME_OMIT</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1073741822</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UTIME_NOW</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1073741823</span>;
@@ -2701,6 +3026,24 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ARPHRD_VOID</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xFFFF</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ARPHRD_NONE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xFFFE</span>;
 
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_env</span> <span class="op">=</span> <span class="string">&quot;uclibc&quot;</span>))]</span> {
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_BEETPH</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">94</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPPROTO_MPLS</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">137</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_HDRINCL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">36</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PMTUDISC_INTERFACE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IPV6_PMTUDISC_OMIT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLONE_NEWCGROUP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x02000000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ADDR_NO_RANDOMIZE</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0040000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ADDR_COMPAT_LAYOUT</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0200000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">READ_IMPLIES_EXEC</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x0400000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ADDR_LIMIT_3GB</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x8000000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_EXITKILL</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00100000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_SUSPEND_SECCOMP</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00200000</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PTRACE_O_MASK</span>: ::<span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x003000ff</span>;
+    }
+}
+
 <span class="macro">const_fn</span><span class="macro">!</span> {
     {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">CMSG_ALIGN</span>(<span class="ident">len</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="ident">len</span> <span class="op">+</span> ::<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">-</span> <span class="number">1</span> <span class="op">&amp;</span> <span class="op">!</span>(::<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>() <span class="op">-</span> <span class="number">1</span>)
@@ -2732,7 +3075,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">FD_CLR</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">set</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">fd_set</span>) <span class="op">-</span><span class="op">&gt;</span> () {
         <span class="kw">let</span> <span class="ident">fd</span> <span class="op">=</span> <span class="ident">fd</span> <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> ::<span class="ident">mem</span>::<span class="ident">size_of_val</span>(<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">set</span>).<span class="ident">fds_bits</span>[<span class="number">0</span>]) <span class="op">*</span> <span class="number">8</span>;
-        (<span class="kw-2">*</span><span class="ident">set</span>).<span class="ident">fds_bits</span>[<span class="ident">fd</span> <span class="op">/</span> <span class="ident">size</span>] <span class="kw-2">&amp;</span><span class="op">=</span> <span class="op">!</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">fd</span> <span class="op">%</span> <span class="ident">size</span>));
+        (<span class="kw-2">*</span><span class="ident">set</span>).<span class="ident">fds_bits</span>[<span class="ident">fd</span> <span class="op">/</span> <span class="ident">size</span>] <span class="op">&amp;=</span> <span class="op">!</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">fd</span> <span class="op">%</span> <span class="ident">size</span>));
         <span class="kw">return</span>
     }
 
@@ -2754,85 +3097,84 @@
             <span class="kw-2">*</span><span class="ident">slot</span> <span class="op">=</span> <span class="number">0</span>;
         }
     }
+}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WIFSTOPPED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="macro">safe_f</span><span class="macro">!</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WIFSTOPPED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         (<span class="ident">status</span> <span class="op">&amp;</span> <span class="number">0xff</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0x7f</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WSTOPSIG</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WSTOPSIG</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
         (<span class="ident">status</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">8</span>) <span class="op">&amp;</span> <span class="number">0xff</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WIFCONTINUED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WIFCONTINUED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="ident">status</span> <span class="op">=</span><span class="op">=</span> <span class="number">0xffff</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WIFSIGNALED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WIFSIGNALED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         ((<span class="ident">status</span> <span class="op">&amp;</span> <span class="number">0x7f</span>) <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">i8</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WTERMSIG</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WTERMSIG</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
         <span class="ident">status</span> <span class="op">&amp;</span> <span class="number">0x7f</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WIFEXITED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WIFEXITED</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         (<span class="ident">status</span> <span class="op">&amp;</span> <span class="number">0x7f</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WEXITSTATUS</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WEXITSTATUS</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
         (<span class="ident">status</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">8</span>) <span class="op">&amp;</span> <span class="number">0xff</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">WCOREDUMP</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">WCOREDUMP</span>(<span class="ident">status</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         (<span class="ident">status</span> <span class="op">&amp;</span> <span class="number">0x80</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">QCMD</span>(<span class="ident">cmd</span>: ::<span class="ident">c_int</span>, <span class="ident">type_</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">W_EXITCODE</span>(<span class="ident">ret</span>: ::<span class="ident">c_int</span>, <span class="ident">sig</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
+        (<span class="ident">ret</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>) <span class="op">|</span> <span class="ident">sig</span>
+    }
+
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">W_STOPCODE</span>(<span class="ident">sig</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
+        (<span class="ident">sig</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>) <span class="op">|</span> <span class="number">0x7f</span>
+    }
+
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">QCMD</span>(<span class="ident">cmd</span>: ::<span class="ident">c_int</span>, <span class="ident">type_</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span> {
         (<span class="ident">cmd</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>) <span class="op">|</span> (<span class="ident">type_</span> <span class="op">&amp;</span> <span class="number">0x00ff</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IPOPT_COPIED</span>(<span class="ident">o</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">IPOPT_COPIED</span>(<span class="ident">o</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
         <span class="ident">o</span> <span class="op">&amp;</span> <span class="ident">IPOPT_COPY</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IPOPT_CLASS</span>(<span class="ident">o</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">IPOPT_CLASS</span>(<span class="ident">o</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
         <span class="ident">o</span> <span class="op">&amp;</span> <span class="ident">IPOPT_CLASS_MASK</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IPOPT_NUMBER</span>(<span class="ident">o</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">IPOPT_NUMBER</span>(<span class="ident">o</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
         <span class="ident">o</span> <span class="op">&amp;</span> <span class="ident">IPOPT_NUMBER_MASK</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">IPTOS_ECN</span>(<span class="ident">x</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
+    <span class="kw">pub</span> {<span class="kw">const</span>} <span class="kw">fn</span> <span class="ident">IPTOS_ECN</span>(<span class="ident">x</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
         <span class="ident">x</span> <span class="op">&amp;</span> ::<span class="ident">IPTOS_ECN_MASK</span>
     }
 }
 
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sem_destroy</span>(<span class="ident">sem</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sem_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sem_init</span>(
-        <span class="ident">sem</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sem_t</span>,
-        <span class="ident">pshared</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">value</span>: ::<span class="ident">c_uint</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sem_init</span>(<span class="ident">sem</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sem_t</span>, <span class="ident">pshared</span>: ::<span class="ident">c_int</span>, <span class="ident">value</span>: ::<span class="ident">c_uint</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fdatasync</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mincore</span>(
-        <span class="ident">addr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>,
-        <span class="ident">len</span>: ::<span class="ident">size_t</span>,
-        <span class="ident">vec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_uchar</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mincore</span>(<span class="ident">addr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>, <span class="ident">len</span>: ::<span class="ident">size_t</span>, <span class="ident">vec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_uchar</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clock_getres</span>(<span class="ident">clk_id</span>: ::<span class="ident">clockid_t</span>, <span class="ident">tp</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">timespec</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clock_gettime</span>(<span class="ident">clk_id</span>: ::<span class="ident">clockid_t</span>, <span class="ident">tp</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">timespec</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clock_settime</span>(
-        <span class="ident">clk_id</span>: ::<span class="ident">clockid_t</span>,
-        <span class="ident">tp</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">timespec</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clock_settime</span>(<span class="ident">clk_id</span>: ::<span class="ident">clockid_t</span>, <span class="ident">tp</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">timespec</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clock_getcpuclockid</span>(<span class="ident">pid</span>: ::<span class="ident">pid_t</span>, <span class="ident">clk_id</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">clockid_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dirfd</span>(<span class="ident">dirp</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">DIR</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_getattr_np</span>(
-        <span class="ident">native</span>: ::<span class="ident">pthread_t</span>,
-        <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">pthread_attr_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_getattr_np</span>(<span class="ident">native</span>: ::<span class="ident">pthread_t</span>, <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">pthread_attr_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_attr_getstack</span>(
         <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">pthread_attr_t</span>,
         <span class="ident">stackaddr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>,
@@ -2847,18 +3189,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fstatfs64</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">statfs64</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">statvfs64</span>(<span class="ident">path</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_char</span>, <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">statvfs64</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fstatvfs64</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">statvfs64</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">memrchr</span>(
-        <span class="ident">cx</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_void</span>,
-        <span class="ident">c</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">n</span>: ::<span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">memrchr</span>(<span class="ident">cx</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_void</span>, <span class="ident">c</span>: ::<span class="ident">c_int</span>, <span class="ident">n</span>: ::<span class="ident">size_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">posix_fadvise</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">offset</span>: ::<span class="ident">off_t</span>,
-        <span class="ident">len</span>: ::<span class="ident">off_t</span>,
-        <span class="ident">advise</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">posix_fadvise</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">offset</span>: ::<span class="ident">off_t</span>, <span class="ident">len</span>: ::<span class="ident">off_t</span>, <span class="ident">advise</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">posix_fadvise64</span>(
         <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
         <span class="ident">offset</span>: ::<span class="ident">off64_t</span>,
@@ -2874,11 +3207,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">duplocale</span>(<span class="ident">base</span>: ::<span class="ident">locale_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">locale_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">freelocale</span>(<span class="ident">loc</span>: ::<span class="ident">locale_t</span>);
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">newlocale</span>(
-        <span class="ident">mask</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">locale</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_char</span>,
-        <span class="ident">base</span>: ::<span class="ident">locale_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">locale_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">newlocale</span>(<span class="ident">mask</span>: ::<span class="ident">c_int</span>, <span class="ident">locale</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_char</span>, <span class="ident">base</span>: ::<span class="ident">locale_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">locale_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uselocale</span>(<span class="ident">loc</span>: ::<span class="ident">locale_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">locale_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">creat64</span>(<span class="ident">path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">mode</span>: <span class="ident">mode_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fstat64</span>(<span class="ident">fildes</span>: ::<span class="ident">c_int</span>, <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">stat64</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
@@ -2900,35 +3229,13 @@
         <span class="ident">offset</span>: <span class="ident">off64_t</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open64</span>(<span class="ident">path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">oflag</span>: ::<span class="ident">c_int</span>, ...) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">openat64</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-        <span class="ident">oflag</span>: ::<span class="ident">c_int</span>,
-        ...
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pread64</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>,
-        <span class="ident">count</span>: ::<span class="ident">size_t</span>,
-        <span class="ident">offset</span>: <span class="ident">off64_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">preadv64</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>,
-        <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">offset</span>: ::<span class="ident">off64_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">openat64</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="ident">oflag</span>: ::<span class="ident">c_int</span>, ...) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pread64</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>, <span class="ident">count</span>: ::<span class="ident">size_t</span>, <span class="ident">offset</span>: <span class="ident">off64_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pwrite64</span>(
         <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
         <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_void</span>,
         <span class="ident">count</span>: ::<span class="ident">size_t</span>,
         <span class="ident">offset</span>: <span class="ident">off64_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pwritev64</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>,
-        <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">offset</span>: ::<span class="ident">off64_t</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">readdir64</span>(<span class="ident">dirp</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">DIR</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">dirent64</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">readdir64_r</span>(
@@ -2953,16 +3260,7 @@
         <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pthread_condattr_t</span>,
         <span class="ident">clock_id</span>: ::<span class="ident">clockid_t</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_condattr_setpshared</span>(
-        <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pthread_condattr_t</span>,
-        <span class="ident">pshared</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accept4</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">addr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">sockaddr</span>,
-        <span class="ident">len</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">socklen_t</span>,
-        <span class="ident">flg</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_condattr_setpshared</span>(<span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pthread_condattr_t</span>, <span class="ident">pshared</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_mutexattr_setpshared</span>(
         <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pthread_mutexattr_t</span>,
         <span class="ident">pshared</span>: ::<span class="ident">c_int</span>,
@@ -2971,34 +3269,15 @@
         <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pthread_rwlockattr_t</span>,
         <span class="ident">val</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_rwlockattr_setpshared</span>(
-        <span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pthread_rwlockattr_t</span>,
-        <span class="ident">val</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptsname_r</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>,
-        <span class="ident">buflen</span>: ::<span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pthread_rwlockattr_setpshared</span>(<span class="ident">attr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pthread_rwlockattr_t</span>, <span class="ident">val</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptsname_r</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>, <span class="ident">buflen</span>: ::<span class="ident">size_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clearenv</span>() <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">waitid</span>(
-        <span class="ident">idtype</span>: <span class="ident">idtype_t</span>,
-        <span class="ident">id</span>: <span class="ident">id_t</span>,
-        <span class="ident">infop</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">siginfo_t</span>,
-        <span class="ident">options</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">waitid</span>(<span class="ident">idtype</span>: <span class="ident">idtype_t</span>, <span class="ident">id</span>: <span class="ident">id_t</span>, <span class="ident">infop</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">siginfo_t</span>, <span class="ident">options</span>: ::<span class="ident">c_int</span>)
+        <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setreuid</span>(<span class="ident">ruid</span>: ::<span class="ident">uid_t</span>, <span class="ident">euid</span>: ::<span class="ident">uid_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setregid</span>(<span class="ident">rgid</span>: ::<span class="ident">gid_t</span>, <span class="ident">egid</span>: ::<span class="ident">gid_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getresuid</span>(
-        <span class="ident">ruid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">uid_t</span>,
-        <span class="ident">euid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">uid_t</span>,
-        <span class="ident">suid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">uid_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getresgid</span>(
-        <span class="ident">rgid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">gid_t</span>,
-        <span class="ident">egid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">gid_t</span>,
-        <span class="ident">sgid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">gid_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getresuid</span>(<span class="ident">ruid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">uid_t</span>, <span class="ident">euid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">uid_t</span>, <span class="ident">suid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">uid_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getresgid</span>(<span class="ident">rgid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">gid_t</span>, <span class="ident">egid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">gid_t</span>, <span class="ident">sgid</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">gid_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">acct</span>(<span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">brk</span>(<span class="ident">addr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sbrk</span>(<span class="ident">increment</span>: ::<span class="ident">intptr_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_void</span>;
@@ -3015,19 +3294,6 @@
         <span class="ident">options</span>: ::<span class="ident">c_int</span>,
         <span class="ident">rusage</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">rusage</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">pid_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">openpty</span>(
-        <span class="ident">amaster</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
-        <span class="ident">aslave</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>,
-        <span class="ident">termp</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">termios</span>,
-        <span class="ident">winp</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">winsize</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">forkpty</span>(
-        <span class="ident">amaster</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>,
-        <span class="ident">termp</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">termios</span>,
-        <span class="ident">winp</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">winsize</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">pid_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">login_tty</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">execvpe</span>(
         <span class="ident">file</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">c_char</span>,
@@ -3041,34 +3307,48 @@
     ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">getifaddrs</span>(<span class="ident">ifap</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">ifaddrs</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">freeifaddrs</span>(<span class="ident">ifa</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">ifaddrs</span>);
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bind</span>(
-        <span class="ident">socket</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">address</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">sockaddr</span>,
-        <span class="ident">address_len</span>: ::<span class="ident">socklen_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bind</span>(<span class="ident">socket</span>: ::<span class="ident">c_int</span>, <span class="ident">address</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">sockaddr</span>, <span class="ident">address_len</span>: ::<span class="ident">socklen_t</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">writev</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>,
-        <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">readv</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>,
-        <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">writev</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>, <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">readv</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>, <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sendmsg</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">msg</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">msghdr</span>,
-        <span class="ident">flags</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">recvmsg</span>(
-        <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
-        <span class="ident">msg</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">msghdr</span>,
-        <span class="ident">flags</span>: ::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sendmsg</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">msg</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">msghdr</span>, <span class="ident">flags</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">recvmsg</span>(<span class="ident">fd</span>: ::<span class="ident">c_int</span>, <span class="ident">msg</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">msghdr</span>, <span class="ident">flags</span>: ::<span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uname</span>(<span class="ident">buf</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">utsname</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+}
+
+<span class="macro">cfg_if</span><span class="macro">!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_env</span> <span class="op">=</span> <span class="string">&quot;uclibc&quot;</span>))]</span> {
+        <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">preadv64</span>(
+                <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
+                <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>,
+                <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>,
+                <span class="ident">offset</span>: ::<span class="ident">off64_t</span>,
+            ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pwritev64</span>(
+                <span class="ident">fd</span>: ::<span class="ident">c_int</span>,
+                <span class="ident">iov</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">iovec</span>,
+                <span class="ident">iovcnt</span>: ::<span class="ident">c_int</span>,
+                <span class="ident">offset</span>: ::<span class="ident">off64_t</span>,
+            ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">ssize_t</span>;
+            <span class="comment">// uclibc has separate non-const version of this function</span>
+            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">forkpty</span>(
+                <span class="ident">amaster</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
+                <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>,
+                <span class="ident">termp</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">termios</span>,
+                <span class="ident">winp</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">winsize</span>,
+            ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">pid_t</span>;
+            <span class="comment">// uclibc has separate non-const version of this function</span>
+            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">openpty</span>(
+                <span class="ident">amaster</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
+                <span class="ident">aslave</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_int</span>,
+                <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">c_char</span>,
+                <span class="ident">termp</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">termios</span>,
+                <span class="ident">winp</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">winsize</span>,
+            ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">c_int</span>;
+        }
+    }
 }
 
 <span class="macro">cfg_if</span><span class="macro">!</span> {
@@ -3076,6 +3356,9 @@
         <span class="kw">mod</span> <span class="ident">emscripten</span>;
         <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">emscripten</span>::<span class="kw-2">*</span>;
     } <span class="kw">else</span> <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span> {
+        <span class="kw">mod</span> <span class="ident">linux</span>;
+        <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">linux</span>::<span class="kw-2">*</span>;
+    } <span class="kw">else</span> <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;l4re&quot;</span>)]</span> {
         <span class="kw">mod</span> <span class="ident">linux</span>;
         <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">linux</span>::<span class="kw-2">*</span>;
     } <span class="kw">else</span> <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;android&quot;</span>)]</span> {
@@ -3086,4 +3369,4 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../";window.currentCrate = "libc";</script><script src="../../../../aliases.js"></script><script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script><script defer src="../../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../";window.currentCrate = "libc";</script><script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script><script defer src="../../../../search-index.js"></script></body></html>

@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.17.0/src/well_known_types/wrappers.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>wrappers.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.23.0/src/well_known_types/wrappers.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>wrappers.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../protobuf/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1554,8 +1557,14 @@
 <span id="1554">1554</span>
 <span id="1555">1555</span>
 <span id="1556">1556</span>
+<span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">// This file is generated by rust-protobuf 2.17.0-pre. Do not edit</span>
+<span class="comment">// This file is generated by rust-protobuf 2.22.0. Do not edit</span>
 <span class="comment">// @generated</span>
 
 <span class="comment">// https://github.com/rust-lang/rust-clippy/issues/702</span>
@@ -1563,7 +1572,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">all</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_attributes</span>)]</span>
-<span class="attribute">#![<span class="ident">rustfmt</span>::<span class="ident">skip</span>]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">rustfmt</span>, <span class="ident">rustfmt</span>::<span class="ident">skip</span>)]</span>
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">box_pointers</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
@@ -1577,7 +1586,7 @@
 <span class="doccomment">//! Generated file from `google/protobuf/wrappers.proto`</span>
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DoubleValue</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">f64</span>,
@@ -1671,13 +1680,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -1732,7 +1741,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FloatValue</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">f32</span>,
@@ -1826,13 +1835,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -1887,7 +1896,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Int64Value</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">i64</span>,
@@ -1981,13 +1990,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2042,7 +2051,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UInt64Value</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">u64</span>,
@@ -2136,13 +2145,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2197,7 +2206,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Int32Value</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">i32</span>,
@@ -2291,13 +2300,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2352,7 +2361,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UInt32Value</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">u32</span>,
@@ -2446,13 +2455,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2507,7 +2516,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BoolValue</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">bool</span>,
@@ -2601,13 +2610,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2662,7 +2671,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StringValue</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">String</span>,
@@ -2763,13 +2772,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2824,7 +2833,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>,<span class="ident">Clone</span>,<span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-serde&quot;</span>, <span class="ident">derive</span>(::<span class="ident">serde</span>::<span class="ident">Serialize</span>, ::<span class="ident">serde</span>::<span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BytesValue</span> {
     <span class="comment">// message fields</span>
     <span class="kw">pub</span> <span class="ident">value</span>: ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
@@ -2925,13 +2934,13 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">unknown_fields</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
+    <span class="kw">fn</span> <span class="ident">as_any_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>) {
+        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)
     }
-    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">into_any</span>(<span class="self">self</span>: ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> (::<span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">Any</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>
     }
 
@@ -2995,115 +3004,121 @@
     \x14\n\x05value\x18\x01\x20\x01(\rR\x05value\&quot;!\n\tBoolValue\x12\x14\n\
     \x05value\x18\x01\x20\x01(\x08R\x05value\&quot;#\n\x0bStringValue\x12\x14\n\
     \x05value\x18\x01\x20\x01(\tR\x05value\&quot;\&quot;\n\nBytesValue\x12\x14\n\x05va\
-    lue\x18\x01\x20\x01(\x0cR\x05valueB|\n\x13com.google.protobufB\rWrappers\
-    ProtoP\x01Z*github.com/golang/protobuf/ptypes/wrappers\xf8\x01\x01\xa2\
-    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xae\x1d\n\x06\x12\
-    \x04#\0u\x01\n\xc3\x0e\n\x01\x0c\x12\x03#\0\x122\xc1\x0c\x20Protocol\x20\
-    Buffers\x20-\x20Google&#39;s\x20data\x20interchange\x20format\n\x20Copyright\
-    \x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20https:\
-    //developers.google.com/protocol-buffers/\n\n\x20Redistribution\x20and\
-    \x20use\x20in\x20source\x20and\x20binary\x20forms,\x20with\x20or\x20with\
-    out\n\x20modification,\x20are\x20permitted\x20provided\x20that\x20the\
-    \x20following\x20conditions\x20are\n\x20met:\n\n\x20\x20\x20\x20\x20*\
-    \x20Redistributions\x20of\x20source\x20code\x20must\x20retain\x20the\x20\
-    above\x20copyright\n\x20notice,\x20this\x20list\x20of\x20conditions\x20a\
-    nd\x20the\x20following\x20disclaimer.\n\x20\x20\x20\x20\x20*\x20Redistri\
-    butions\x20in\x20binary\x20form\x20must\x20reproduce\x20the\x20above\n\
-    \x20copyright\x20notice,\x20this\x20list\x20of\x20conditions\x20and\x20t\
-    he\x20following\x20disclaimer\n\x20in\x20the\x20documentation\x20and/or\
-    \x20other\x20materials\x20provided\x20with\x20the\n\x20distribution.\n\
-    \x20\x20\x20\x20\x20*\x20Neither\x20the\x20name\x20of\x20Google\x20Inc.\
-    \x20nor\x20the\x20names\x20of\x20its\n\x20contributors\x20may\x20be\x20u\
-    sed\x20to\x20endorse\x20or\x20promote\x20products\x20derived\x20from\n\
-    \x20this\x20software\x20without\x20specific\x20prior\x20written\x20permi\
-    ssion.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDED\x20BY\x20THE\x20COPYRIG\
-    HT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\x20IS\&quot;\x20AND\x20ANY\x20\
-    EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INCLUDING,\x20BUT\x20NOT\n\
-    \x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIES\x20OF\x20MERCHANTABIL\
-    ITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\x20PURPOSE\x20ARE\x20D\
-    ISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\x20COPYRIGHT\n\x20OWNER\
-    \x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\x20ANY\x20DIRECT,\x20INDIR\
-    ECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLARY,\x20OR\x20CONSEQUENTIAL\
-    \x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\x20PROCUREM\
-    ENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVICES;\x20LOSS\x20OF\x20USE\
-    ,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINESS\x20INTERRUPTION)\x20HOW\
-    EVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\x20OF\x20LIABILITY,\x20WH\
-    ETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILITY,\x20OR\x20TORT\n\x20(INC\
-    LUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\x20ANY\x20WAY\
-    \x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\x20EVEN\x20IF\
-    \x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20DAMAGE.\n2\xf4\
-    \x01\x20Wrappers\x20for\x20primitive\x20(non-message)\x20types.\x20These\
-    \x20types\x20are\x20useful\n\x20for\x20embedding\x20primitives\x20in\x20\
-    the\x20`google.protobuf.Any`\x20type\x20and\x20for\x20places\n\x20where\
-    \x20we\x20need\x20to\x20distinguish\x20between\x20the\x20absence\x20of\
-    \x20a\x20primitive\n\x20typed\x20field\x20and\x20its\x20default\x20value\
-    .\n\n\x08\n\x01\x02\x12\x03%\0\x18\n\x08\n\x01\x08\x12\x03&#39;\0;\n\t\n\x02\
-    \x08%\x12\x03&#39;\0;\n\x08\n\x01\x08\x12\x03(\0\x1f\n\t\n\x02\x08\x1f\x12\
-    \x03(\0\x1f\n\x08\n\x01\x08\x12\x03)\0A\n\t\n\x02\x08\x0b\x12\x03)\0A\n\
-    \x08\n\x01\x08\x12\x03*\0,\n\t\n\x02\x08\x01\x12\x03*\0,\n\x08\n\x01\x08\
-    \x12\x03+\0.\n\t\n\x02\x08\x08\x12\x03+\0.\n\x08\n\x01\x08\x12\x03,\0\&quot;\
-    \n\t\n\x02\x08\n\x12\x03,\0\&quot;\n\x08\n\x01\x08\x12\x03-\0!\n\t\n\x02\x08$\
-    \x12\x03-\0!\ng\n\x02\x04\0\x12\x042\05\x01\x1a[\x20Wrapper\x20message\
-    \x20for\x20`double`.\n\n\x20The\x20JSON\x20representation\x20for\x20`Dou\
-    bleValue`\x20is\x20JSON\x20number.\n\n\n\n\x03\x04\0\x01\x12\x032\x08\
-    \x13\n\x20\n\x04\x04\0\x02\0\x12\x034\x02\x13\x1a\x13\x20The\x20double\
-    \x20value.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x034\x02\x08\n\x0c\n\x05\
-    \x04\0\x02\0\x01\x12\x034\t\x0e\n\x0c\n\x05\x04\0\x02\0\x03\x12\x034\x11\
-    \x12\ne\n\x02\x04\x01\x12\x04:\0=\x01\x1aY\x20Wrapper\x20message\x20for\
+    lue\x18\x01\x20\x01(\x0cR\x05valueB\x83\x01\n\x13com.google.protobufB\rW\
+    rappersProtoP\x01Z1google.golang.org/protobuf/types/known/wrapperspb\xf8\
+    \x01\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xc6\
+    \x1f\n\x06\x12\x04(\0z\x01\n\xdb\x10\n\x01\x0c\x12\x03(\0\x122\xc1\x0c\
+    \x20Protocol\x20Buffers\x20-\x20Google&#39;s\x20data\x20interchange\x20forma\
+    t\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reser\
+    ved.\n\x20https://developers.google.com/protocol-buffers/\n\n\x20Redistr\
+    ibution\x20and\x20use\x20in\x20source\x20and\x20binary\x20forms,\x20with\
+    \x20or\x20without\n\x20modification,\x20are\x20permitted\x20provided\x20\
+    that\x20the\x20following\x20conditions\x20are\n\x20met:\n\n\x20\x20\x20\
+    \x20\x20*\x20Redistributions\x20of\x20source\x20code\x20must\x20retain\
+    \x20the\x20above\x20copyright\n\x20notice,\x20this\x20list\x20of\x20cond\
+    itions\x20and\x20the\x20following\x20disclaimer.\n\x20\x20\x20\x20\x20*\
+    \x20Redistributions\x20in\x20binary\x20form\x20must\x20reproduce\x20the\
+    \x20above\n\x20copyright\x20notice,\x20this\x20list\x20of\x20conditions\
+    \x20and\x20the\x20following\x20disclaimer\n\x20in\x20the\x20documentatio\
+    n\x20and/or\x20other\x20materials\x20provided\x20with\x20the\n\x20distri\
+    bution.\n\x20\x20\x20\x20\x20*\x20Neither\x20the\x20name\x20of\x20Google\
+    \x20Inc.\x20nor\x20the\x20names\x20of\x20its\n\x20contributors\x20may\
+    \x20be\x20used\x20to\x20endorse\x20or\x20promote\x20products\x20derived\
+    \x20from\n\x20this\x20software\x20without\x20specific\x20prior\x20writte\
+    n\x20permission.\n\n\x20THIS\x20SOFTWARE\x20IS\x20PROVIDED\x20BY\x20THE\
+    \x20COPYRIGHT\x20HOLDERS\x20AND\x20CONTRIBUTORS\n\x20\&quot;AS\x20IS\&quot;\x20AND\
+    \x20ANY\x20EXPRESS\x20OR\x20IMPLIED\x20WARRANTIES,\x20INCLUDING,\x20BUT\
+    \x20NOT\n\x20LIMITED\x20TO,\x20THE\x20IMPLIED\x20WARRANTIES\x20OF\x20MER\
+    CHANTABILITY\x20AND\x20FITNESS\x20FOR\n\x20A\x20PARTICULAR\x20PURPOSE\
+    \x20ARE\x20DISCLAIMED.\x20IN\x20NO\x20EVENT\x20SHALL\x20THE\x20COPYRIGHT\
+    \n\x20OWNER\x20OR\x20CONTRIBUTORS\x20BE\x20LIABLE\x20FOR\x20ANY\x20DIREC\
+    T,\x20INDIRECT,\x20INCIDENTAL,\n\x20SPECIAL,\x20EXEMPLARY,\x20OR\x20CONS\
+    EQUENTIAL\x20DAMAGES\x20(INCLUDING,\x20BUT\x20NOT\n\x20LIMITED\x20TO,\
+    \x20PROCUREMENT\x20OF\x20SUBSTITUTE\x20GOODS\x20OR\x20SERVICES;\x20LOSS\
+    \x20OF\x20USE,\n\x20DATA,\x20OR\x20PROFITS;\x20OR\x20BUSINESS\x20INTERRU\
+    PTION)\x20HOWEVER\x20CAUSED\x20AND\x20ON\x20ANY\n\x20THEORY\x20OF\x20LIA\
+    BILITY,\x20WHETHER\x20IN\x20CONTRACT,\x20STRICT\x20LIABILITY,\x20OR\x20T\
+    ORT\n\x20(INCLUDING\x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\
+    \x20ANY\x20WAY\x20OUT\x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\
+    \x20EVEN\x20IF\x20ADVISED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20D\
+    AMAGE.\n2\x8c\x04\x20Wrappers\x20for\x20primitive\x20(non-message)\x20ty\
+    pes.\x20These\x20types\x20are\x20useful\n\x20for\x20embedding\x20primiti\
+    ves\x20in\x20the\x20`google.protobuf.Any`\x20type\x20and\x20for\x20place\
+    s\n\x20where\x20we\x20need\x20to\x20distinguish\x20between\x20the\x20abs\
+    ence\x20of\x20a\x20primitive\n\x20typed\x20field\x20and\x20its\x20defaul\
+    t\x20value.\n\n\x20These\x20wrappers\x20have\x20no\x20meaningful\x20use\
+    \x20within\x20repeated\x20fields\x20as\x20they\x20lack\n\x20the\x20abili\
+    ty\x20to\x20detect\x20presence\x20on\x20individual\x20elements.\n\x20The\
+    se\x20wrappers\x20have\x20no\x20meaningful\x20use\x20within\x20a\x20map\
+    \x20or\x20a\x20oneof\x20since\n\x20individual\x20entries\x20of\x20a\x20m\
+    ap\x20or\x20fields\x20of\x20a\x20oneof\x20can\x20already\x20detect\x20pr\
+    esence.\n\n\x08\n\x01\x02\x12\x03*\0\x18\n\x08\n\x01\x08\x12\x03,\0;\n\t\
+    \n\x02\x08%\x12\x03,\0;\n\x08\n\x01\x08\x12\x03-\0\x1f\n\t\n\x02\x08\x1f\
+    \x12\x03-\0\x1f\n\x08\n\x01\x08\x12\x03.\0H\n\t\n\x02\x08\x0b\x12\x03.\0\
+    H\n\x08\n\x01\x08\x12\x03/\0,\n\t\n\x02\x08\x01\x12\x03/\0,\n\x08\n\x01\
+    \x08\x12\x030\0.\n\t\n\x02\x08\x08\x12\x030\0.\n\x08\n\x01\x08\x12\x031\
+    \0\&quot;\n\t\n\x02\x08\n\x12\x031\0\&quot;\n\x08\n\x01\x08\x12\x032\0!\n\t\n\x02\
+    \x08$\x12\x032\0!\ng\n\x02\x04\0\x12\x047\0:\x01\x1a[\x20Wrapper\x20mess\
+    age\x20for\x20`double`.\n\n\x20The\x20JSON\x20representation\x20for\x20`\
+    DoubleValue`\x20is\x20JSON\x20number.\n\n\n\n\x03\x04\0\x01\x12\x037\x08\
+    \x13\n\x20\n\x04\x04\0\x02\0\x12\x039\x02\x13\x1a\x13\x20The\x20double\
+    \x20value.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x039\x02\x08\n\x0c\n\x05\
+    \x04\0\x02\0\x01\x12\x039\t\x0e\n\x0c\n\x05\x04\0\x02\0\x03\x12\x039\x11\
+    \x12\ne\n\x02\x04\x01\x12\x04?\0B\x01\x1aY\x20Wrapper\x20message\x20for\
     \x20`float`.\n\n\x20The\x20JSON\x20representation\x20for\x20`FloatValue`\
-    \x20is\x20JSON\x20number.\n\n\n\n\x03\x04\x01\x01\x12\x03:\x08\x12\n\x1f\
-    \n\x04\x04\x01\x02\0\x12\x03&lt;\x02\x12\x1a\x12\x20The\x20float\x20value.\
-    \n\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03&lt;\x02\x07\n\x0c\n\x05\x04\x01\
-    \x02\0\x01\x12\x03&lt;\x08\r\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03&lt;\x10\x11\
-    \ne\n\x02\x04\x02\x12\x04B\0E\x01\x1aY\x20Wrapper\x20message\x20for\x20`\
+    \x20is\x20JSON\x20number.\n\n\n\n\x03\x04\x01\x01\x12\x03?\x08\x12\n\x1f\
+    \n\x04\x04\x01\x02\0\x12\x03A\x02\x12\x1a\x12\x20The\x20float\x20value.\
+    \n\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03A\x02\x07\n\x0c\n\x05\x04\x01\
+    \x02\0\x01\x12\x03A\x08\r\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03A\x10\x11\
+    \ne\n\x02\x04\x02\x12\x04G\0J\x01\x1aY\x20Wrapper\x20message\x20for\x20`\
     int64`.\n\n\x20The\x20JSON\x20representation\x20for\x20`Int64Value`\x20i\
-    s\x20JSON\x20string.\n\n\n\n\x03\x04\x02\x01\x12\x03B\x08\x12\n\x1f\n\
-    \x04\x04\x02\x02\0\x12\x03D\x02\x12\x1a\x12\x20The\x20int64\x20value.\n\
-    \n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03D\x02\x07\n\x0c\n\x05\x04\x02\x02\
-    \0\x01\x12\x03D\x08\r\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03D\x10\x11\ng\
-    \n\x02\x04\x03\x12\x04J\0M\x01\x1a[\x20Wrapper\x20message\x20for\x20`uin\
+    s\x20JSON\x20string.\n\n\n\n\x03\x04\x02\x01\x12\x03G\x08\x12\n\x1f\n\
+    \x04\x04\x02\x02\0\x12\x03I\x02\x12\x1a\x12\x20The\x20int64\x20value.\n\
+    \n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03I\x02\x07\n\x0c\n\x05\x04\x02\x02\
+    \0\x01\x12\x03I\x08\r\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03I\x10\x11\ng\
+    \n\x02\x04\x03\x12\x04O\0R\x01\x1a[\x20Wrapper\x20message\x20for\x20`uin\
     t64`.\n\n\x20The\x20JSON\x20representation\x20for\x20`UInt64Value`\x20is\
-    \x20JSON\x20string.\n\n\n\n\x03\x04\x03\x01\x12\x03J\x08\x13\n\x20\n\x04\
-    \x04\x03\x02\0\x12\x03L\x02\x13\x1a\x13\x20The\x20uint64\x20value.\n\n\
-    \x0c\n\x05\x04\x03\x02\0\x05\x12\x03L\x02\x08\n\x0c\n\x05\x04\x03\x02\0\
-    \x01\x12\x03L\t\x0e\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x03L\x11\x12\ne\n\
-    \x02\x04\x04\x12\x04R\0U\x01\x1aY\x20Wrapper\x20message\x20for\x20`int32\
+    \x20JSON\x20string.\n\n\n\n\x03\x04\x03\x01\x12\x03O\x08\x13\n\x20\n\x04\
+    \x04\x03\x02\0\x12\x03Q\x02\x13\x1a\x13\x20The\x20uint64\x20value.\n\n\
+    \x0c\n\x05\x04\x03\x02\0\x05\x12\x03Q\x02\x08\n\x0c\n\x05\x04\x03\x02\0\
+    \x01\x12\x03Q\t\x0e\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x03Q\x11\x12\ne\n\
+    \x02\x04\x04\x12\x04W\0Z\x01\x1aY\x20Wrapper\x20message\x20for\x20`int32\
     `.\n\n\x20The\x20JSON\x20representation\x20for\x20`Int32Value`\x20is\x20\
-    JSON\x20number.\n\n\n\n\x03\x04\x04\x01\x12\x03R\x08\x12\n\x1f\n\x04\x04\
-    \x04\x02\0\x12\x03T\x02\x12\x1a\x12\x20The\x20int32\x20value.\n\n\x0c\n\
-    \x05\x04\x04\x02\0\x05\x12\x03T\x02\x07\n\x0c\n\x05\x04\x04\x02\0\x01\
-    \x12\x03T\x08\r\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x03T\x10\x11\ng\n\x02\
-    \x04\x05\x12\x04Z\0]\x01\x1a[\x20Wrapper\x20message\x20for\x20`uint32`.\
+    JSON\x20number.\n\n\n\n\x03\x04\x04\x01\x12\x03W\x08\x12\n\x1f\n\x04\x04\
+    \x04\x02\0\x12\x03Y\x02\x12\x1a\x12\x20The\x20int32\x20value.\n\n\x0c\n\
+    \x05\x04\x04\x02\0\x05\x12\x03Y\x02\x07\n\x0c\n\x05\x04\x04\x02\0\x01\
+    \x12\x03Y\x08\r\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x03Y\x10\x11\ng\n\x02\
+    \x04\x05\x12\x04_\0b\x01\x1a[\x20Wrapper\x20message\x20for\x20`uint32`.\
     \n\n\x20The\x20JSON\x20representation\x20for\x20`UInt32Value`\x20is\x20J\
-    SON\x20number.\n\n\n\n\x03\x04\x05\x01\x12\x03Z\x08\x13\n\x20\n\x04\x04\
-    \x05\x02\0\x12\x03\\\x02\x13\x1a\x13\x20The\x20uint32\x20value.\n\n\x0c\
-    \n\x05\x04\x05\x02\0\x05\x12\x03\\\x02\x08\n\x0c\n\x05\x04\x05\x02\0\x01\
-    \x12\x03\\\t\x0e\n\x0c\n\x05\x04\x05\x02\0\x03\x12\x03\\\x11\x12\no\n\
-    \x02\x04\x06\x12\x04b\0e\x01\x1ac\x20Wrapper\x20message\x20for\x20`bool`\
-    .\n\n\x20The\x20JSON\x20representation\x20for\x20`BoolValue`\x20is\x20JS\
-    ON\x20`true`\x20and\x20`false`.\n\n\n\n\x03\x04\x06\x01\x12\x03b\x08\x11\
-    \n\x1e\n\x04\x04\x06\x02\0\x12\x03d\x02\x11\x1a\x11\x20The\x20bool\x20va\
-    lue.\n\n\x0c\n\x05\x04\x06\x02\0\x05\x12\x03d\x02\x06\n\x0c\n\x05\x04\
-    \x06\x02\0\x01\x12\x03d\x07\x0c\n\x0c\n\x05\x04\x06\x02\0\x03\x12\x03d\
-    \x0f\x10\ng\n\x02\x04\x07\x12\x04j\0m\x01\x1a[\x20Wrapper\x20message\x20\
-    for\x20`string`.\n\n\x20The\x20JSON\x20representation\x20for\x20`StringV\
-    alue`\x20is\x20JSON\x20string.\n\n\n\n\x03\x04\x07\x01\x12\x03j\x08\x13\
-    \n\x20\n\x04\x04\x07\x02\0\x12\x03l\x02\x13\x1a\x13\x20The\x20string\x20\
-    value.\n\n\x0c\n\x05\x04\x07\x02\0\x05\x12\x03l\x02\x08\n\x0c\n\x05\x04\
-    \x07\x02\0\x01\x12\x03l\t\x0e\n\x0c\n\x05\x04\x07\x02\0\x03\x12\x03l\x11\
-    \x12\ne\n\x02\x04\x08\x12\x04r\0u\x01\x1aY\x20Wrapper\x20message\x20for\
+    SON\x20number.\n\n\n\n\x03\x04\x05\x01\x12\x03_\x08\x13\n\x20\n\x04\x04\
+    \x05\x02\0\x12\x03a\x02\x13\x1a\x13\x20The\x20uint32\x20value.\n\n\x0c\n\
+    \x05\x04\x05\x02\0\x05\x12\x03a\x02\x08\n\x0c\n\x05\x04\x05\x02\0\x01\
+    \x12\x03a\t\x0e\n\x0c\n\x05\x04\x05\x02\0\x03\x12\x03a\x11\x12\no\n\x02\
+    \x04\x06\x12\x04g\0j\x01\x1ac\x20Wrapper\x20message\x20for\x20`bool`.\n\
+    \n\x20The\x20JSON\x20representation\x20for\x20`BoolValue`\x20is\x20JSON\
+    \x20`true`\x20and\x20`false`.\n\n\n\n\x03\x04\x06\x01\x12\x03g\x08\x11\n\
+    \x1e\n\x04\x04\x06\x02\0\x12\x03i\x02\x11\x1a\x11\x20The\x20bool\x20valu\
+    e.\n\n\x0c\n\x05\x04\x06\x02\0\x05\x12\x03i\x02\x06\n\x0c\n\x05\x04\x06\
+    \x02\0\x01\x12\x03i\x07\x0c\n\x0c\n\x05\x04\x06\x02\0\x03\x12\x03i\x0f\
+    \x10\ng\n\x02\x04\x07\x12\x04o\0r\x01\x1a[\x20Wrapper\x20message\x20for\
+    \x20`string`.\n\n\x20The\x20JSON\x20representation\x20for\x20`StringValu\
+    e`\x20is\x20JSON\x20string.\n\n\n\n\x03\x04\x07\x01\x12\x03o\x08\x13\n\
+    \x20\n\x04\x04\x07\x02\0\x12\x03q\x02\x13\x1a\x13\x20The\x20string\x20va\
+    lue.\n\n\x0c\n\x05\x04\x07\x02\0\x05\x12\x03q\x02\x08\n\x0c\n\x05\x04\
+    \x07\x02\0\x01\x12\x03q\t\x0e\n\x0c\n\x05\x04\x07\x02\0\x03\x12\x03q\x11\
+    \x12\ne\n\x02\x04\x08\x12\x04w\0z\x01\x1aY\x20Wrapper\x20message\x20for\
     \x20`bytes`.\n\n\x20The\x20JSON\x20representation\x20for\x20`BytesValue`\
-    \x20is\x20JSON\x20string.\n\n\n\n\x03\x04\x08\x01\x12\x03r\x08\x12\n\x1f\
-    \n\x04\x04\x08\x02\0\x12\x03t\x02\x12\x1a\x12\x20The\x20bytes\x20value.\
-    \n\n\x0c\n\x05\x04\x08\x02\0\x05\x12\x03t\x02\x07\n\x0c\n\x05\x04\x08\
-    \x02\0\x01\x12\x03t\x08\r\n\x0c\n\x05\x04\x08\x02\0\x03\x12\x03t\x10\x11\
+    \x20is\x20JSON\x20string.\n\n\n\n\x03\x04\x08\x01\x12\x03w\x08\x12\n\x1f\
+    \n\x04\x04\x08\x02\0\x12\x03y\x02\x12\x1a\x12\x20The\x20bytes\x20value.\
+    \n\n\x0c\n\x05\x04\x08\x02\0\x05\x12\x03y\x02\x07\n\x0c\n\x05\x04\x08\
+    \x02\0\x01\x12\x03y\x08\r\n\x0c\n\x05\x04\x08\x02\0\x03\x12\x03y\x10\x11\
     b\x06proto3\
 &quot;</span>;
 
 <span class="kw">static</span> <span class="ident">file_descriptor_proto_lazy</span>: <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">LazyV2</span>::<span class="ident">INIT</span>;
 
 <span class="kw">fn</span> <span class="ident">parse_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
-    <span class="kw">crate</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
+    <span class="kw">crate</span>::<span class="ident">Message</span>::<span class="ident">parse_from_bytes</span>(<span class="ident">file_descriptor_proto_data</span>).<span class="ident">unwrap</span>()
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_descriptor_proto</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw">crate</span>::<span class="ident">descriptor</span>::<span class="ident">FileDescriptorProto</span> {
@@ -3112,4 +3127,4 @@
     })
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "protobuf";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

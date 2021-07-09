@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/num-complex-0.2.4/src/cast.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cast.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../num_complex/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/num-complex-0.4.0/src/cast.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cast.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../num_complex/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -119,15 +122,19 @@
 <span id="119">119</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Complex</span>;
-<span class="kw">use</span> <span class="ident">traits</span>::{<span class="ident">AsPrimitive</span>, <span class="ident">FromPrimitive</span>, <span class="ident">Num</span>, <span class="ident">NumCast</span>, <span class="ident">ToPrimitive</span>};
+<span class="kw">use</span> <span class="ident">num_traits</span>::{<span class="ident">AsPrimitive</span>, <span class="ident">FromPrimitive</span>, <span class="ident">Num</span>, <span class="ident">NumCast</span>, <span class="ident">ToPrimitive</span>};
 
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_to_primitive</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">im</span>.<span class="ident">is_zero</span>() { <span class="self">self</span>.<span class="ident">re</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>() } <span class="kw">else</span> { <span class="prelude-val">None</span> }
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">im</span>.<span class="ident">is_zero</span>() {
+                <span class="self">self</span>.<span class="ident">re</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>()
+            } <span class="kw">else</span> {
+                <span class="prelude-val">None</span>
+            }
         }
-    }
+    };
 } <span class="comment">// impl_to_primitive</span>
 
 <span class="comment">// Returns None if Complex part is non-zero</span>
@@ -142,9 +149,7 @@
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">i16</span>, <span class="ident">to_i16</span>);
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">i32</span>, <span class="ident">to_i32</span>);
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">i64</span>, <span class="ident">to_i64</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">has_i128</span>)]</span>
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">u128</span>, <span class="ident">to_u128</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">has_i128</span>)]</span>
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">i128</span>, <span class="ident">to_i128</span>);
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">f32</span>, <span class="ident">to_f32</span>);
     <span class="macro">impl_to_primitive</span><span class="macro">!</span>(<span class="ident">f64</span>, <span class="ident">to_f64</span>);
@@ -154,8 +159,8 @@
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">from_xx</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">from_xx</span>(<span class="ident">n</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-            <span class="ident">T</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from_xx</span>(<span class="ident">n</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">re</span><span class="op">|</span> <span class="ident">Complex</span> {
-                <span class="ident">re</span>: <span class="ident">re</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">Complex</span> {
+                <span class="ident">re</span>: <span class="ident">T</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from_xx</span>(<span class="ident">n</span>)<span class="question-mark">?</span>,
                 <span class="ident">im</span>: <span class="ident">T</span>::<span class="ident">zero</span>(),
             })
         }
@@ -173,9 +178,7 @@
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">i16</span>, <span class="ident">from_i16</span>);
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">i32</span>, <span class="ident">from_i32</span>);
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">i64</span>, <span class="ident">from_i64</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">has_i128</span>)]</span>
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">u128</span>, <span class="ident">from_u128</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">has_i128</span>)]</span>
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">i128</span>, <span class="ident">from_i128</span>);
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">f32</span>, <span class="ident">from_f32</span>);
     <span class="macro">impl_from_primitive</span><span class="macro">!</span>(<span class="ident">f64</span>, <span class="ident">from_f64</span>);
@@ -183,8 +186,8 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">NumCast</span> <span class="op">+</span> <span class="ident">Num</span><span class="op">&gt;</span> <span class="ident">NumCast</span> <span class="kw">for</span> <span class="ident">Complex</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">from</span><span class="op">&lt;</span><span class="ident">U</span>: <span class="ident">ToPrimitive</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">U</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">T</span>::<span class="ident">from</span>(<span class="ident">n</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">re</span><span class="op">|</span> <span class="ident">Complex</span> {
-            <span class="ident">re</span>: <span class="ident">re</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">Complex</span> {
+            <span class="ident">re</span>: <span class="ident">T</span>::<span class="ident">from</span>(<span class="ident">n</span>)<span class="question-mark">?</span>,
             <span class="ident">im</span>: <span class="ident">T</span>::<span class="ident">zero</span>(),
         })
     }
@@ -238,4 +241,4 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "num_complex";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "num_complex";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

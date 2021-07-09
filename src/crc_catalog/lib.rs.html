@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/crc-catalog-1.1.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../crc_catalog/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+</pre><div class="example-wrap"><pre class="rust ">
+<span class="attribute">#![<span class="ident">no_std</span>]</span>
+
+<span class="kw">mod</span> <span class="ident">catalog</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">catalog</span>::<span class="kw-2">*</span>;
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Width</span>: <span class="ident">Sized</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {}
+<span class="kw">impl</span> <span class="ident">Width</span> <span class="kw">for</span> <span class="ident">u8</span> {}
+<span class="kw">impl</span> <span class="ident">Width</span> <span class="kw">for</span> <span class="ident">u16</span> {}
+<span class="kw">impl</span> <span class="ident">Width</span> <span class="kw">for</span> <span class="ident">u32</span> {}
+<span class="kw">impl</span> <span class="ident">Width</span> <span class="kw">for</span> <span class="ident">u64</span> {}
+
+<span class="doccomment">/// This struct describes a CRC algorithm using the fields specified by the [Catalogue of</span>
+<span class="doccomment">/// parametrised CRC algorithms](https://reveng.sourceforge.io/crc-catalogue/all.htm).</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Algorithm</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Width</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// The generator polynomial that sets the feedback tap positions of the shift register. The</span>
+    <span class="doccomment">/// least significant bit corresponds to the inward end of the shift register, and is always</span>
+    <span class="doccomment">/// set. The highest-order term is omitted.</span>
+    <span class="kw">pub</span> <span class="ident">poly</span>: <span class="ident">W</span>,
+    <span class="doccomment">/// The settings of the bit cells at the start of each calculation, before reading the first</span>
+    <span class="doccomment">/// message bit. The least significant bit corresponds to the inward end of the shift register.</span>
+    <span class="kw">pub</span> <span class="ident">init</span>: <span class="ident">W</span>,
+    <span class="doccomment">/// If equal to `false`, specifies that the characters of the message are read bit-by-bit, most</span>
+    <span class="doccomment">/// significant bit (MSB) first; if equal to `true`, the characters are read bit-by-bit, least</span>
+    <span class="doccomment">/// significant bit (LSB) first. Each sampled message bit is then XORed with the bit being</span>
+    <span class="doccomment">/// simultaneously shifted out of the register at the most significant end, and the result is</span>
+    <span class="doccomment">/// passed to the feedback taps.</span>
+    <span class="kw">pub</span> <span class="ident">refin</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If equal to `false`, specifies that the contents of the register after reading the last</span>
+    <span class="doccomment">/// message bit are unreflected before presentation; if equal to `true`, it specifies that they</span>
+    <span class="doccomment">/// are reflected, character-by-character, before presentation. For the purpose of this</span>
+    <span class="doccomment">/// definition, the reflection is performed by swapping the content of each cell with that of</span>
+    <span class="doccomment">/// the cell an equal distance from the opposite end of the register; the characters of the CRC</span>
+    <span class="doccomment">/// are then true images of parts of the reflected register, the character containing the</span>
+    <span class="doccomment">/// original MSB always appearing first.</span>
+    <span class="kw">pub</span> <span class="ident">refout</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// The XOR value applied to the contents of the register after the last message bit has been</span>
+    <span class="doccomment">/// read and after the optional reflection. It has the same endianness as the CRC such that its</span>
+    <span class="doccomment">/// true image appears in the characters of the CRC.</span>
+    <span class="kw">pub</span> <span class="ident">xorout</span>: <span class="ident">W</span>,
+    <span class="doccomment">/// The contents of the register after initialising, reading the UTF-8 string `&quot;123456789&quot;` (as</span>
+    <span class="doccomment">/// 8-bit characters), optionally reflecting, and applying the final XOR.</span>
+    <span class="kw">pub</span> <span class="ident">check</span>: <span class="ident">W</span>,
+    <span class="doccomment">/// The contents of the register after initialising, reading an error-free codeword and</span>
+    <span class="doccomment">/// optionally reflecting the register (if [`refout`](Algorithm::refout)=`true`), but not</span>
+    <span class="doccomment">/// applying the final XOR. This is mathematically equivalent to initialising the register with</span>
+    <span class="doccomment">/// the xorout parameter, reflecting it as described (if [`refout`](Algorithm::refout)=`true`),</span>
+    <span class="doccomment">/// reading as many zero bits as there are cells in the register, and reflecting the result (if</span>
+    <span class="doccomment">/// [`refin`](Algorithm::refin)=`true`). The residue of a crossed-endian model is calculated</span>
+    <span class="doccomment">/// assuming that the characters of the received CRC are specially reflected before submitting</span>
+    <span class="doccomment">/// the codeword.</span>
+    <span class="kw">pub</span> <span class="ident">residue</span>: <span class="ident">W</span>,
+}
+</pre></div>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "crc_catalog";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

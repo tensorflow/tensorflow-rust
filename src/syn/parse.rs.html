@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.38/src/parse.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>parse.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../syn/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.72/src/parse.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>parse.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../syn/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1248,6 +1251,43 @@
 <span id="1248">1248</span>
 <span id="1249">1249</span>
 <span id="1250">1250</span>
+<span id="1251">1251</span>
+<span id="1252">1252</span>
+<span id="1253">1253</span>
+<span id="1254">1254</span>
+<span id="1255">1255</span>
+<span id="1256">1256</span>
+<span id="1257">1257</span>
+<span id="1258">1258</span>
+<span id="1259">1259</span>
+<span id="1260">1260</span>
+<span id="1261">1261</span>
+<span id="1262">1262</span>
+<span id="1263">1263</span>
+<span id="1264">1264</span>
+<span id="1265">1265</span>
+<span id="1266">1266</span>
+<span id="1267">1267</span>
+<span id="1268">1268</span>
+<span id="1269">1269</span>
+<span id="1270">1270</span>
+<span id="1271">1271</span>
+<span id="1272">1272</span>
+<span id="1273">1273</span>
+<span id="1274">1274</span>
+<span id="1275">1275</span>
+<span id="1276">1276</span>
+<span id="1277">1277</span>
+<span id="1278">1278</span>
+<span id="1279">1279</span>
+<span id="1280">1280</span>
+<span id="1281">1281</span>
+<span id="1282">1282</span>
+<span id="1283">1283</span>
+<span id="1284">1284</span>
+<span id="1285">1285</span>
+<span id="1286">1286</span>
+<span id="1287">1287</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Parsing interface for parsing a token stream into a syntax tree node.</span>
 <span class="doccomment">//!</span>
@@ -1257,9 +1297,8 @@
 <span class="doccomment">//! [`Cursor`] type. `Cursor` is a cheaply copyable cursor over a range of</span>
 <span class="doccomment">//! tokens in a token stream.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`ParseStream`]: type.ParseStream.html</span>
-<span class="doccomment">//! [`Result&lt;T&gt;`]: type.Result.html</span>
-<span class="doccomment">//! [`Cursor`]: ../buffer/index.html</span>
+<span class="doccomment">//! [`Result&lt;T&gt;`]: Result</span>
+<span class="doccomment">//! [`Cursor`]: crate::buffer::Cursor</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Example</span>
 <span class="doccomment">//!</span>
@@ -1274,7 +1313,7 @@
 <span class="doccomment">//! procedural macro, they will receive a helpful compiler error message</span>
 <span class="doccomment">//! pointing out the exact token that triggered the failure to parse.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`parse_macro_input!`]: ../macro.parse_macro_input.html</span>
+<span class="doccomment">//! [`parse_macro_input!`]: crate::parse_macro_input!</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//! # extern crate proc_macro;</span>
@@ -1347,10 +1386,9 @@
 <span class="doccomment">//! obvious default way. These functions can return any syntax tree node that</span>
 <span class="doccomment">//! implements the [`Parse`] trait, which includes most types in Syn.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`syn::parse`]: ../fn.parse.html</span>
-<span class="doccomment">//! [`syn::parse2`]: ../fn.parse2.html</span>
-<span class="doccomment">//! [`syn::parse_str`]: ../fn.parse_str.html</span>
-<span class="doccomment">//! [`Parse`]: trait.Parse.html</span>
+<span class="doccomment">//! [`syn::parse`]: crate::parse()</span>
+<span class="doccomment">//! [`syn::parse2`]: crate::parse2()</span>
+<span class="doccomment">//! [`syn::parse_str`]: crate::parse_str()</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//! use syn::Type;</span>
@@ -1365,7 +1403,7 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The [`parse_quote!`] macro also uses this approach.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`parse_quote!`]: ../macro.parse_quote.html</span>
+<span class="doccomment">//! [`parse_quote!`]: crate::parse_quote!</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # The `Parser` trait</span>
 <span class="doccomment">//!</span>
@@ -1375,8 +1413,8 @@
 <span class="doccomment">//! may or may not allow trailing punctuation, and parsing it the wrong way</span>
 <span class="doccomment">//! would either reject valid input or accept invalid input.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`Attribute`]: ../struct.Attribute.html</span>
-<span class="doccomment">//! [`Punctuated`]: ../punctuated/index.html</span>
+<span class="doccomment">//! [`Attribute`]: crate::Attribute</span>
+<span class="doccomment">//! [`Punctuated`]: crate::punctuated</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The `Parse` trait is not implemented in these cases because there is no good</span>
 <span class="doccomment">//! behavior to consider the default.</span>
@@ -1401,7 +1439,6 @@
 <span class="doccomment">//! single `Parse` implementation, and those parser functions can be invoked</span>
 <span class="doccomment">//! through the [`Parser`] trait.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`Parser`]: trait.Parser.html</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//! # extern crate proc_macro;</span>
@@ -1440,6 +1477,17 @@
 <span class="attribute">#[<span class="ident">path</span> <span class="op">=</span> <span class="string">&quot;discouraged.rs&quot;</span>]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">discouraged</span>;
 
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">buffer</span>::{<span class="ident">Cursor</span>, <span class="ident">TokenBuffer</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">lookahead</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(
+    <span class="ident">not</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>, <span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;unknown&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;wasi&quot;</span>))),
+    <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;proc-macro&quot;</span>
+))]</span>
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">proc_macro</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">punctuated</span>::<span class="ident">Punctuated</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">token</span>::<span class="ident">Token</span>;
+<span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="self">self</span>, <span class="ident">Delimiter</span>, <span class="ident">Group</span>, <span class="ident">Literal</span>, <span class="ident">Punct</span>, <span class="ident">Span</span>, <span class="ident">TokenStream</span>, <span class="ident">TokenTree</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cell</span>::<span class="ident">Cell</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>, <span class="ident">Display</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
@@ -1447,19 +1495,6 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">Deref</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">rc</span>::<span class="ident">Rc</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">FromStr</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(
-    <span class="ident">not</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>, <span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;unknown&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;wasi&quot;</span>))),
-    <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;proc-macro&quot;</span>
-))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">proc_macro</span>;
-<span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="self">self</span>, <span class="ident">Delimiter</span>, <span class="ident">Group</span>, <span class="ident">Literal</span>, <span class="ident">Punct</span>, <span class="ident">Span</span>, <span class="ident">TokenStream</span>, <span class="ident">TokenTree</span>};
-
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">buffer</span>::{<span class="ident">Cursor</span>, <span class="ident">TokenBuffer</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">lookahead</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">punctuated</span>::<span class="ident">Punctuated</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">token</span>::<span class="ident">Token</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>::{<span class="ident">Error</span>, <span class="prelude-ty">Result</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">lookahead</span>::{<span class="ident">Lookahead1</span>, <span class="ident">Peek</span>};
@@ -1501,7 +1536,7 @@
 <span class="doccomment">/// - One of [the `syn::parse*` functions][syn-parse]; or</span>
 <span class="doccomment">/// - A method of the [`Parser`] trait.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [syn-parse]: index.html#the-synparse-functions</span>
+<span class="doccomment">/// [syn-parse]: self#the-synparse-functions</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ParseBuffer</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">scope</span>: <span class="ident">Span</span>,
     <span class="comment">// Instead of Cell&lt;Cursor&lt;&#39;a&gt;&gt; so that ParseBuffer&lt;&#39;a&gt; is covariant in &#39;a.</span>
@@ -1587,7 +1622,6 @@
 <span class="doccomment">/// #     .unwrap();</span>
 <span class="doccomment">/// # assert_eq!(remainder.to_string(), &quot;b c&quot;);</span>
 <span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StepCursor</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">scope</span>: <span class="ident">Span</span>,
     <span class="comment">// This field is covariant in &#39;c.</span>
@@ -1608,6 +1642,14 @@
 
     <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">cursor</span>
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Copy</span> <span class="kw">for</span> <span class="ident">StepCursor</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">StepCursor</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw-2">*</span><span class="self">self</span>
     }
 }
 
@@ -1644,7 +1686,6 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">Unexpected</span> {
     <span class="prelude-val">None</span>,
     <span class="prelude-val">Some</span>(<span class="ident">Span</span>),
@@ -1654,6 +1695,16 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Unexpected</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Unexpected</span>::<span class="prelude-val">None</span>
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">Unexpected</span> {
+    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident">Unexpected</span>::<span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Unexpected</span>::<span class="prelude-val">None</span>,
+            <span class="ident">Unexpected</span>::<span class="prelude-val">Some</span>(<span class="ident">span</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Unexpected</span>::<span class="prelude-val">Some</span>(<span class="kw-2">*</span><span class="ident">span</span>),
+            <span class="ident">Unexpected</span>::<span class="ident">Chain</span>(<span class="ident">next</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Unexpected</span>::<span class="ident">Chain</span>(<span class="ident">next</span>.<span class="ident">clone</span>()),
+        }
     }
 }
 
@@ -1857,17 +1908,36 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">peek2</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Peek</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">token</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">peek2</span>(<span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="ident">ParseBuffer</span>, <span class="ident">peek</span>: <span class="kw">fn</span>(<span class="ident">Cursor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">group</span>) <span class="op">=</span> <span class="ident">buffer</span>.<span class="ident">cursor</span>().<span class="ident">group</span>(<span class="ident">Delimiter</span>::<span class="prelude-val">None</span>) {
+                <span class="kw">if</span> <span class="ident">group</span>.<span class="number">0</span>.<span class="ident">skip</span>().<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="ident">peek</span>) {
+                    <span class="kw">return</span> <span class="bool-val">true</span>;
+                }
+            }
+            <span class="ident">buffer</span>.<span class="ident">cursor</span>().<span class="ident">skip</span>().<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="ident">peek</span>)
+        }
+
         <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">token</span>;
-        <span class="self">self</span>.<span class="ident">cursor</span>().<span class="ident">skip</span>().<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="ident">T</span>::<span class="ident">Token</span>::<span class="ident">peek</span>)
+        <span class="ident">peek2</span>(<span class="self">self</span>, <span class="ident">T</span>::<span class="ident">Token</span>::<span class="ident">peek</span>)
     }
 
     <span class="doccomment">/// Looks at the third-next token in the parse stream.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">peek3</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Peek</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">token</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">peek3</span>(<span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="ident">ParseBuffer</span>, <span class="ident">peek</span>: <span class="kw">fn</span>(<span class="ident">Cursor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">group</span>) <span class="op">=</span> <span class="ident">buffer</span>.<span class="ident">cursor</span>().<span class="ident">group</span>(<span class="ident">Delimiter</span>::<span class="prelude-val">None</span>) {
+                <span class="kw">if</span> <span class="ident">group</span>.<span class="number">0</span>.<span class="ident">skip</span>().<span class="ident">and_then</span>(<span class="ident">Cursor</span>::<span class="ident">skip</span>).<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="ident">peek</span>) {
+                    <span class="kw">return</span> <span class="bool-val">true</span>;
+                }
+            }
+            <span class="ident">buffer</span>
+                .<span class="ident">cursor</span>()
+                .<span class="ident">skip</span>()
+                .<span class="ident">and_then</span>(<span class="ident">Cursor</span>::<span class="ident">skip</span>)
+                .<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="ident">peek</span>)
+        }
+
         <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">token</span>;
-        <span class="self">self</span>.<span class="ident">cursor</span>()
-            .<span class="ident">skip</span>()
-            .<span class="ident">and_then</span>(<span class="ident">Cursor</span>::<span class="ident">skip</span>)
-            .<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="ident">T</span>::<span class="ident">Token</span>::<span class="ident">peek</span>)
+        <span class="ident">peek3</span>(<span class="self">self</span>, <span class="ident">T</span>::<span class="ident">Token</span>::<span class="ident">peek</span>)
     }
 
     <span class="doccomment">/// Parses zero or more occurrences of `T` separated by punctuation of type</span>
@@ -2280,12 +2350,14 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Parse</span><span class="op">&gt;</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">input</span>.<span class="ident">parse</span>().<span class="ident">map</span>(<span class="ident">Box</span>::<span class="ident">new</span>)
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Parse</span> <span class="op">+</span> <span class="ident">Token</span><span class="op">&gt;</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">T</span>::<span class="ident">peek</span>(<span class="ident">input</span>.<span class="ident">cursor</span>()) {
@@ -2296,12 +2368,14 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">TokenStream</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">input</span>.<span class="ident">step</span>(<span class="op">|</span><span class="ident">cursor</span><span class="op">|</span> <span class="prelude-val">Ok</span>((<span class="ident">cursor</span>.<span class="ident">token_stream</span>(), <span class="ident">Cursor</span>::<span class="ident">empty</span>())))
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">TokenTree</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">input</span>.<span class="ident">step</span>(<span class="op">|</span><span class="ident">cursor</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">cursor</span>.<span class="ident">token_tree</span>() {
@@ -2311,6 +2385,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Group</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">input</span>.<span class="ident">step</span>(<span class="op">|</span><span class="ident">cursor</span><span class="op">|</span> {
@@ -2326,6 +2401,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Punct</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">input</span>.<span class="ident">step</span>(<span class="op">|</span><span class="ident">cursor</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">cursor</span>.<span class="ident">punct</span>() {
@@ -2335,6 +2411,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parsing&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Literal</span> {
     <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">input</span>.<span class="ident">step</span>(<span class="op">|</span><span class="ident">cursor</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">cursor</span>.<span class="ident">literal</span>() {
@@ -2500,4 +2577,4 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "syn";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "syn";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

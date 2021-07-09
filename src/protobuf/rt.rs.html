@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.17.0/src/rt.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rt.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../protobuf/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/protobuf-2.23.0/src/rt.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rt.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../protobuf/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -928,10 +931,6 @@
 <span id="928">928</span>
 <span id="929">929</span>
 <span id="930">930</span>
-<span id="931">931</span>
-<span id="932">932</span>
-<span id="933">933</span>
-<span id="934">934</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Functions used by generated protobuf code.</span>
 <span class="doccomment">//! Should not be used by programs written by hands.</span>
@@ -945,6 +944,8 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bytes&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">bytes</span>::<span class="ident">Bytes</span>;
 
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">coded_input_stream</span>::<span class="ident">CodedInputStream</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">coded_output_stream</span>::<span class="ident">CodedOutputStream</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">enums</span>::<span class="ident">ProtobufEnum</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>::<span class="ident">ProtobufError</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>::<span class="ident">ProtobufResult</span>;
@@ -953,19 +954,13 @@
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">repeated</span>::<span class="ident">RepeatedField</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">singular</span>::<span class="ident">SingularField</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">singular</span>::<span class="ident">SingularPtrField</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">wire_format</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">wire_format</span>::<span class="ident">WireType</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeFixed32</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeFixed64</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeLengthDelimited</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">wire_format</span>::<span class="ident">WireTypeVarint</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">CodedInputStream</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">stream</span>::<span class="ident">CodedOutputStream</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">types</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">zigzag</span>::<span class="kw-2">*</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">lazy_v2</span>::<span class="ident">LazyV2</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">unknown</span>::<span class="ident">UnknownFields</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">wire_format</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">wire_format</span>::<span class="ident">WireType</span>;
 
 <span class="doccomment">/// Given `u64` value compute varint encoded length.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">compute_raw_varint64_size</span>(<span class="ident">value</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
@@ -1119,16 +1114,16 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
 
 <span class="doccomment">/// Compute tag size. Size of tag does not depend on wire type.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tag_size</span>(<span class="ident">field_number</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-    <span class="ident">wire_format</span>::<span class="ident">Tag</span>::<span class="ident">make</span>(<span class="ident">field_number</span>, <span class="ident">WireTypeFixed64</span>)
+    <span class="ident">wire_format</span>::<span class="ident">Tag</span>::<span class="ident">make</span>(<span class="ident">field_number</span>, <span class="ident">WireType</span>::<span class="ident">WireTypeFixed64</span>)
         .<span class="ident">value</span>()
         .<span class="ident">len_varint</span>()
 }
 
 <span class="kw">fn</span> <span class="ident">value_size_no_tag</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ProtobufVarint</span><span class="op">&gt;</span>(<span class="ident">value</span>: <span class="ident">T</span>, <span class="ident">wt</span>: <span class="ident">WireType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="kw">match</span> <span class="ident">wt</span> {
-        <span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">8</span>,
-        <span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">4</span>,
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>.<span class="ident">len_varint</span>(),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">8</span>,
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">4</span>,
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>.<span class="ident">len_varint</span>(),
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
     }
 }
@@ -1202,8 +1197,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_int32_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_int32_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_int32</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1218,8 +1213,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_int64_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_int64_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_int64</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1234,8 +1229,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_uint32_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_uint32_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_uint32</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1250,8 +1245,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_uint64_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_uint64_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_uint64</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1266,8 +1261,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sint32_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sint32_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_sint32</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1282,8 +1277,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sint64_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sint64_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_sint64</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1298,8 +1293,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_fixed32_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_fixed32_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_fixed32</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1314,8 +1309,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_fixed64_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_fixed64_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_fixed64</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1330,8 +1325,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sfixed32_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sfixed32_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_sfixed32</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1346,8 +1341,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sfixed64_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_sfixed64_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_sfixed64</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1362,8 +1357,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_double_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_double_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed64</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_double</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1378,8 +1373,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_float_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_float_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeFixed32</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_float</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1394,8 +1389,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_bool_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_bool_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_bool</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1411,8 +1406,8 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_enum_into</span>(<span class="ident">target</span>),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_repeated_packed_enum_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_enum</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1468,13 +1463,13 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">unknown_fields</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">UnknownFields</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">read_repeated_packed_enum_with_unknown_fields_into</span>(
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">read_repeated_packed_enum_with_unknown_fields_into</span>(
             <span class="ident">is</span>,
             <span class="ident">target</span>,
             <span class="ident">field_number</span>,
             <span class="ident">unknown_fields</span>,
         ),
-        <span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeVarint</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">read_enum_with_unknown_fields_into</span>(<span class="ident">is</span>, <span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">e</span>), <span class="ident">field_number</span>, <span class="ident">unknown_fields</span>)
         }
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>)),
@@ -1528,7 +1523,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RepeatedField</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">target</span>.<span class="ident">push_default</span>();
             <span class="ident">is</span>.<span class="ident">read_string_into</span>(<span class="ident">tmp</span>)
         }
@@ -1544,7 +1539,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Chars</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_carllerche_chars</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1559,7 +1554,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SingularField</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">target</span>.<span class="ident">set_default</span>();
             <span class="ident">is</span>.<span class="ident">read_string_into</span>(<span class="ident">tmp</span>)
         }
@@ -1575,7 +1570,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Chars</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw-2">*</span><span class="ident">target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">is</span>.<span class="ident">read_carllerche_chars</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1590,7 +1585,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">String</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_string_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_string_into</span>(<span class="ident">target</span>),
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>)),
     }
 }
@@ -1603,7 +1598,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Chars</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw-2">*</span><span class="ident">target</span> <span class="op">=</span> <span class="ident">is</span>.<span class="ident">read_carllerche_chars</span>()<span class="question-mark">?</span>;
             <span class="prelude-val">Ok</span>(())
         }
@@ -1618,7 +1613,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RepeatedField</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">target</span>.<span class="ident">push_default</span>();
             <span class="ident">is</span>.<span class="ident">read_bytes_into</span>(<span class="ident">tmp</span>)
         }
@@ -1634,7 +1629,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Bytes</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">target</span>.<span class="ident">push</span>(<span class="ident">is</span>.<span class="ident">read_carllerche_bytes</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1649,7 +1644,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SingularField</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">target</span>.<span class="ident">set_default</span>();
             <span class="ident">is</span>.<span class="ident">read_bytes_into</span>(<span class="ident">tmp</span>)
         }
@@ -1665,7 +1660,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Bytes</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw-2">*</span><span class="ident">target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">is</span>.<span class="ident">read_carllerche_bytes</span>()<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(())
         }
@@ -1680,7 +1675,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_bytes_into</span>(<span class="ident">target</span>),
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">is</span>.<span class="ident">read_bytes_into</span>(<span class="ident">target</span>),
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">unexpected_wire_type</span>(<span class="ident">wire_type</span>)),
     }
 }
@@ -1693,7 +1688,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Bytes</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw-2">*</span><span class="ident">target</span> <span class="op">=</span> <span class="ident">is</span>.<span class="ident">read_carllerche_bytes</span>()<span class="question-mark">?</span>;
             <span class="prelude-val">Ok</span>(())
         }
@@ -1708,7 +1703,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">RepeatedField</span><span class="op">&lt;</span><span class="ident">M</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">is</span>.<span class="ident">incr_recursion</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">target</span>.<span class="ident">push_default</span>();
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">is</span>.<span class="ident">merge_message</span>(<span class="ident">tmp</span>);
@@ -1726,7 +1721,7 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SingularPtrField</span><span class="op">&lt;</span><span class="ident">M</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtobufResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">wire_type</span> {
-        <span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">WireType</span>::<span class="ident">WireTypeLengthDelimited</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="ident">is</span>.<span class="ident">incr_recursion</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">target</span>.<span class="ident">set_default</span>();
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">is</span>.<span class="ident">merge_message</span>(<span class="ident">tmp</span>);
@@ -1868,4 +1863,4 @@ impl&lt;E:ProtobufEnum&gt; ProtobufVarint for E {
     <span class="prelude-val">Ok</span>(())
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "protobuf";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "protobuf";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

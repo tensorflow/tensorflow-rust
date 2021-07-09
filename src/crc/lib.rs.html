@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/crc-1.8.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../crc/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1"> 1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/adam/.cargo/registry/src/github.com-1ecc6299db9ec823/crc-2.0.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../crc/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1"> 1</span>
 <span id="2"> 2</span>
 <span id="3"> 3</span>
 <span id="4"> 4</span>
@@ -47,27 +50,6 @@
 <span id="47">47</span>
 <span id="48">48</span>
 <span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
-<span id="60">60</span>
-<span id="61">61</span>
-<span id="62">62</span>
-<span id="63">63</span>
-<span id="64">64</span>
-<span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
-<span id="68">68</span>
-<span id="69">69</span>
-<span id="70">70</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! # crc</span>
 <span class="doccomment">//! Rust implementation of CRC(16, 32, 64)</span>
@@ -75,69 +57,48 @@
 <span class="doccomment">//! ## Usage</span>
 <span class="doccomment">//! ### Compute CRC16</span>
 <span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use crc::{crc16, Hasher16};</span>
+<span class="doccomment">//! use crc::{Crc, Algorithm, CRC_16_IBM_SDLC, CRC_32_ISCSI};</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(crc16::checksum_x25(b&quot;123456789&quot;), 0x906e);</span>
-<span class="doccomment">//! assert_eq!(crc16::checksum_usb(b&quot;123456789&quot;), 0xb4c8);</span>
+<span class="doccomment">//! pub const X25: Crc&lt;u16&gt; = Crc::&lt;u16&gt;::new(&amp;CRC_16_IBM_SDLC);</span>
+<span class="doccomment">//! pub const CASTAGNOLI: Crc&lt;u32&gt; = Crc::&lt;u32&gt;::new(&amp;CRC_32_ISCSI);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // use provided or custom polynomial</span>
-<span class="doccomment">//! let mut digest = crc16::Digest::new(crc16::X25);</span>
-<span class="doccomment">//! digest.write(b&quot;123456789&quot;);</span>
-<span class="doccomment">//! assert_eq!(digest.sum16(), 0x906e);</span>
+<span class="doccomment">//! assert_eq!(X25.checksum(b&quot;123456789&quot;), 0x906e);</span>
+<span class="doccomment">//! assert_eq!(CASTAGNOLI.checksum(b&quot;123456789&quot;), 0xe3069283);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // with initial</span>
-<span class="doccomment">//! let mut digest = crc16::Digest::new_with_initial(crc16::X25, 0u16);</span>
-<span class="doccomment">//! digest.write(b&quot;123456789&quot;);</span>
-<span class="doccomment">//! assert_eq!(digest.sum16(), 0x906e);</span>
+<span class="doccomment">//! // use custom algorithm</span>
+<span class="doccomment">//! const CUSTOM_ALG: Algorithm&lt;u16&gt; = Algorithm {</span>
+<span class="doccomment">//!     poly: 0x8005,</span>
+<span class="doccomment">//!     init: 0xffff,</span>
+<span class="doccomment">//!     refin: false,</span>
+<span class="doccomment">//!     refout: false,</span>
+<span class="doccomment">//!     xorout: 0x0000,</span>
+<span class="doccomment">//!     check: 0xaee7,</span>
+<span class="doccomment">//!     residue: 0x0000</span>
+<span class="doccomment">//! };</span>
+<span class="doccomment">//! let crc = Crc::&lt;u16&gt;::new(&amp;CUSTOM_ALG);</span>
+<span class="doccomment">//! let mut digest = crc.digest();</span>
+<span class="doccomment">//! digest.update(b&quot;123456789&quot;);</span>
+<span class="doccomment">//! assert_eq!(digest.finalize(), 0xaee7);</span>
 <span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Compute CRC32</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use crc::{crc32, Hasher32};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // CRC-32-IEEE being the most commonly used one</span>
-<span class="doccomment">//! assert_eq!(crc32::checksum_ieee(b&quot;123456789&quot;), 0xcbf43926);</span>
-<span class="doccomment">//! assert_eq!(crc32::checksum_castagnoli(b&quot;123456789&quot;), 0xe3069283);</span>
-<span class="doccomment">//! assert_eq!(crc32::checksum_koopman(b&quot;123456789&quot;), 0x2d3dd0ae);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // use provided or custom polynomial</span>
-<span class="doccomment">//! let mut digest = crc32::Digest::new(crc32::IEEE);</span>
-<span class="doccomment">//! digest.write(b&quot;123456789&quot;);</span>
-<span class="doccomment">//! assert_eq!(digest.sum32(), 0xcbf43926);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // with initial</span>
-<span class="doccomment">//! let mut digest = crc32::Digest::new_with_initial(crc32::IEEE, 0u32);</span>
-<span class="doccomment">//! digest.write(b&quot;123456789&quot;);</span>
-<span class="doccomment">//! assert_eq!(digest.sum32(), 0xcbf43926);</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Compute CRC64</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use crc::{crc64, Hasher64};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(crc64::checksum_ecma(b&quot;123456789&quot;), 0x995dc9bbdf1939fa);</span>
-<span class="doccomment">//! assert_eq!(crc64::checksum_iso(b&quot;123456789&quot;), 0xb90956c775a41001);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // use provided or custom polynomial</span>
-<span class="doccomment">//! let mut digest = crc64::Digest::new(crc64::ECMA);</span>
-<span class="doccomment">//! digest.write(b&quot;123456789&quot;);</span>
-<span class="doccomment">//! assert_eq!(digest.sum64(), 0x995dc9bbdf1939fa);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // with initial</span>
-<span class="doccomment">//! let mut digest = crc64::Digest::new_with_initial(crc64::ECMA, 0u64);</span>
-<span class="doccomment">//! digest.write(b&quot;123456789&quot;);</span>
-<span class="doccomment">//! assert_eq!(digest.sum64(), 0x995dc9bbdf1939fa);</span>
-<span class="doccomment">//! ```</span>
+<span class="attribute">#![<span class="ident">no_std</span>]</span>
+<span class="attribute">#![<span class="ident">forbid</span>(<span class="ident">unsafe_code</span>)]</span>
 
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>), <span class="ident">no_std</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">crc_catalog</span>::<span class="kw-2">*</span>;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">crc16</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">crc32</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">crc64</span>;
+<span class="kw">mod</span> <span class="ident">crc16</span>;
+<span class="kw">mod</span> <span class="ident">crc32</span>;
+<span class="kw">mod</span> <span class="ident">crc64</span>;
+<span class="kw">mod</span> <span class="ident">table</span>;
 <span class="kw">mod</span> <span class="ident">util</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">crc16</span>::<span class="ident">Hasher16</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">crc32</span>::<span class="ident">Hasher32</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">crc64</span>::<span class="ident">Hasher64</span>;
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Crc</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Width</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">algorithm</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Algorithm</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>,
+    <span class="ident">table</span>: [<span class="ident">W</span>; <span class="number">256</span>],
+}
+
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Digest</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">W</span>: <span class="ident">Width</span><span class="op">&gt;</span> {
+    <span class="ident">crc</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Crc</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>,
+    <span class="ident">value</span>: <span class="ident">W</span>,
+}
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "crc";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "crc";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../tensorflow/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../tensorflow/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2344,6 +2347,120 @@
 <span id="2344">2344</span>
 <span id="2345">2345</span>
 <span id="2346">2346</span>
+<span id="2347">2347</span>
+<span id="2348">2348</span>
+<span id="2349">2349</span>
+<span id="2350">2350</span>
+<span id="2351">2351</span>
+<span id="2352">2352</span>
+<span id="2353">2353</span>
+<span id="2354">2354</span>
+<span id="2355">2355</span>
+<span id="2356">2356</span>
+<span id="2357">2357</span>
+<span id="2358">2358</span>
+<span id="2359">2359</span>
+<span id="2360">2360</span>
+<span id="2361">2361</span>
+<span id="2362">2362</span>
+<span id="2363">2363</span>
+<span id="2364">2364</span>
+<span id="2365">2365</span>
+<span id="2366">2366</span>
+<span id="2367">2367</span>
+<span id="2368">2368</span>
+<span id="2369">2369</span>
+<span id="2370">2370</span>
+<span id="2371">2371</span>
+<span id="2372">2372</span>
+<span id="2373">2373</span>
+<span id="2374">2374</span>
+<span id="2375">2375</span>
+<span id="2376">2376</span>
+<span id="2377">2377</span>
+<span id="2378">2378</span>
+<span id="2379">2379</span>
+<span id="2380">2380</span>
+<span id="2381">2381</span>
+<span id="2382">2382</span>
+<span id="2383">2383</span>
+<span id="2384">2384</span>
+<span id="2385">2385</span>
+<span id="2386">2386</span>
+<span id="2387">2387</span>
+<span id="2388">2388</span>
+<span id="2389">2389</span>
+<span id="2390">2390</span>
+<span id="2391">2391</span>
+<span id="2392">2392</span>
+<span id="2393">2393</span>
+<span id="2394">2394</span>
+<span id="2395">2395</span>
+<span id="2396">2396</span>
+<span id="2397">2397</span>
+<span id="2398">2398</span>
+<span id="2399">2399</span>
+<span id="2400">2400</span>
+<span id="2401">2401</span>
+<span id="2402">2402</span>
+<span id="2403">2403</span>
+<span id="2404">2404</span>
+<span id="2405">2405</span>
+<span id="2406">2406</span>
+<span id="2407">2407</span>
+<span id="2408">2408</span>
+<span id="2409">2409</span>
+<span id="2410">2410</span>
+<span id="2411">2411</span>
+<span id="2412">2412</span>
+<span id="2413">2413</span>
+<span id="2414">2414</span>
+<span id="2415">2415</span>
+<span id="2416">2416</span>
+<span id="2417">2417</span>
+<span id="2418">2418</span>
+<span id="2419">2419</span>
+<span id="2420">2420</span>
+<span id="2421">2421</span>
+<span id="2422">2422</span>
+<span id="2423">2423</span>
+<span id="2424">2424</span>
+<span id="2425">2425</span>
+<span id="2426">2426</span>
+<span id="2427">2427</span>
+<span id="2428">2428</span>
+<span id="2429">2429</span>
+<span id="2430">2430</span>
+<span id="2431">2431</span>
+<span id="2432">2432</span>
+<span id="2433">2433</span>
+<span id="2434">2434</span>
+<span id="2435">2435</span>
+<span id="2436">2436</span>
+<span id="2437">2437</span>
+<span id="2438">2438</span>
+<span id="2439">2439</span>
+<span id="2440">2440</span>
+<span id="2441">2441</span>
+<span id="2442">2442</span>
+<span id="2443">2443</span>
+<span id="2444">2444</span>
+<span id="2445">2445</span>
+<span id="2446">2446</span>
+<span id="2447">2447</span>
+<span id="2448">2448</span>
+<span id="2449">2449</span>
+<span id="2450">2450</span>
+<span id="2451">2451</span>
+<span id="2452">2452</span>
+<span id="2453">2453</span>
+<span id="2454">2454</span>
+<span id="2455">2455</span>
+<span id="2456">2456</span>
+<span id="2457">2457</span>
+<span id="2458">2458</span>
+<span id="2459">2459</span>
+<span id="2460">2460</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! This crate provides Rust bindings for the</span>
 <span class="doccomment">//! [`TensorFlow`](https://www.tensorflow.org) machine learning library.</span>
@@ -2363,11 +2480,13 @@
 )]</span>
 
 <span class="kw">use</span> <span class="ident">half</span>::<span class="ident">f16</span>;
+<span class="kw">use</span> <span class="ident">libc</span>::<span class="ident">size_t</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_int</span>, <span class="ident">c_uint</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ndarray&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">ndarray</span>::{<span class="ident">Array</span>, <span class="ident">ArrayBase</span>, <span class="ident">Data</span>, <span class="ident">Dim</span>, <span class="ident">Dimension</span>, <span class="ident">IxDynImpl</span>};
 <span class="kw">use</span> <span class="ident">num_complex</span>::<span class="ident">Complex</span>;
 <span class="kw">use</span> <span class="ident">protobuf</span>::<span class="ident">ProtobufEnum</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">alloc</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Borrow</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cell</span>::<span class="ident">Cell</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cell</span>::<span class="ident">RefCell</span>;
@@ -2389,6 +2508,8 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">Drop</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">Index</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_void</span> <span class="kw">as</span> <span class="ident">std_c_void</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">process</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">slice</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">Utf8Error</span>;
@@ -2917,7 +3038,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">dyn</span> <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="prelude-val">None</span>
     }
 }
@@ -3018,14 +3139,9 @@
     <span class="doccomment">/// type or some other error occurred.</span>
     <span class="kw">fn</span> <span class="ident">unpack</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">count</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the number of bytes in the packed representation.  If</span>
-    <span class="doccomment">/// `is_repr_c()` returns true, this will return 0.</span>
-    <span class="kw">fn</span> <span class="ident">packed_size</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span>;
-
     <span class="doccomment">/// Packs data for sending to C.  Returns an error if `is_repr_c()` returns</span>
-    <span class="doccomment">/// true for this type or some other error occurred.  The size of the buffer</span>
-    <span class="doccomment">/// must be at least as large as the value returned by `packed_size(data)`.</span>
-    <span class="kw">fn</span> <span class="ident">pack</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>], <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
+    <span class="doccomment">/// true for this type or some other error occurred.</span>
+    <span class="kw">fn</span> <span class="ident">pack</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>], <span class="ident">dims</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Tensor</span><span class="op">&gt;</span>;
 }
 
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">tensor_type</span> {
@@ -3057,11 +3173,7 @@
                 .<span class="ident">unwrap</span>())
             }
 
-            <span class="kw">fn</span> <span class="ident">packed_size</span>(<span class="ident">_data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-                <span class="number">0</span>
-            }
-
-            <span class="kw">fn</span> <span class="ident">pack</span>(<span class="ident">_data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>], <span class="ident">_buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+            <span class="kw">fn</span> <span class="ident">pack</span>(<span class="ident">_data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>], <span class="ident">_dims</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Tensor</span><span class="op">&gt;</span> {
                 <span class="prelude-val">Err</span>(<span class="ident">Status</span>::<span class="ident">new_set</span>(
                     <span class="ident">Code</span>::<span class="ident">Unimplemented</span>,
                     <span class="macro">concat</span><span class="macro">!</span>(<span class="string">&quot;Packing is not necessary for &quot;</span>, <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>)),
@@ -3072,7 +3184,7 @@
     };
 }
 
-<span class="macro">tensor_type</span><span class="macro">!</span>(<span class="ident">f16</span>, <span class="ident">Half</span>, <span class="ident">half</span>::<span class="ident">consts</span>::<span class="ident">ZERO</span>, <span class="ident">half</span>::<span class="ident">consts</span>::<span class="ident">ONE</span>);
+<span class="macro">tensor_type</span><span class="macro">!</span>(<span class="ident">f16</span>, <span class="ident">Half</span>, <span class="ident">f16</span>::<span class="ident">ZERO</span>, <span class="ident">f16</span>::<span class="ident">ONE</span>);
 <span class="macro">tensor_type</span><span class="macro">!</span>(<span class="ident">f32</span>, <span class="ident">Float</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);
 <span class="macro">tensor_type</span><span class="macro">!</span>(<span class="ident">f64</span>, <span class="ident">Double</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);
 <span class="macro">tensor_type</span><span class="macro">!</span>(<span class="ident">i32</span>, <span class="ident">Int32</span>, <span class="number">0</span>, <span class="number">1</span>);
@@ -3193,6 +3305,26 @@
 
 <span class="comment">////////////////////////</span>
 
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">string_deallocator</span>(
+    <span class="ident">data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">std_c_void</span>,
+    <span class="ident">length</span>: <span class="ident">size_t</span>,
+    <span class="ident">_deallocator_arg</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">std_c_void</span>,
+) {
+    <span class="kw">let</span> <span class="ident">align</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">align_of</span>::<span class="op">&lt;</span><span class="ident">tf</span>::<span class="ident">TF_TString</span><span class="op">&gt;</span>();
+    <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">tf</span>::<span class="ident">TF_TString</span><span class="op">&gt;</span>();
+    <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">alloc</span>::<span class="ident">Layout</span>::<span class="ident">from_size_align</span>(<span class="ident">length</span>, <span class="ident">align</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+        <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;internal error: failed to construct layout&quot;</span>);
+        <span class="comment">// make sure not to unwind</span>
+        <span class="ident">process</span>::<span class="ident">abort</span>();
+    });
+    <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">length</span> <span class="op">/</span> <span class="ident">size</span>;
+    <span class="kw">let</span> <span class="ident">tstrings</span> <span class="op">=</span> <span class="ident">slice</span>::<span class="ident">from_raw_parts_mut</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_TString</span>, <span class="ident">count</span>);
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
+        <span class="ident">tf</span>::<span class="ident">TF_StringDealloc</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">tstrings</span>[<span class="ident">i</span>]);
+    }
+    <span class="ident">alloc</span>::<span class="ident">dealloc</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="ident">layout</span>);
+}
+
 <span class="kw">impl</span> <span class="ident">TensorType</span> <span class="kw">for</span> <span class="ident">String</span> {
     <span class="kw">type</span> <span class="ident">InnerType</span> <span class="op">=</span> <span class="ident">TensorDataNoCRepr</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
 
@@ -3213,57 +3345,58 @@
     }
 
     <span class="kw">fn</span> <span class="ident">unpack</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">count</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">slice</span>::<span class="ident">from_raw_parts</span>(<span class="ident">data</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u64</span>, <span class="ident">count</span>) };
+        <span class="kw">let</span> <span class="ident">tstrings</span> <span class="op">=</span>
+            <span class="kw">unsafe</span> { <span class="ident">slice</span>::<span class="ident">from_raw_parts</span>(<span class="ident">data</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">tf</span>::<span class="ident">TF_TString</span>, <span class="ident">count</span>) };
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">count</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">Status</span>::<span class="ident">new</span>();
-        <span class="kw">let</span> <span class="ident">base_offset</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">count</span>;
-        <span class="kw">for</span> <span class="ident">offset</span> <span class="kw">in</span> <span class="ident">offsets</span> {
-            <span class="kw">let</span> <span class="ident">off</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">offset</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">base_offset</span>;
-            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">trivial_casts</span>)]</span>
-            <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">data</span>[<span class="ident">off</span>] <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
-            <span class="kw">let</span> <span class="ident">src_len</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">off</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dst_len</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dst</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null</span>();
-            <span class="kw">unsafe</span> {
-                <span class="ident">tf</span>::<span class="ident">TF_StringDecode</span>(<span class="ident">src</span>, <span class="ident">src_len</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dst</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">dst_len</span>, <span class="ident">status</span>.<span class="ident">inner</span>());
-            }
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">status</span>.<span class="ident">is_ok</span>() {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">status</span>);
-            }
-            <span class="kw">let</span> <span class="ident">string_data</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">slice</span>::<span class="ident">from_raw_parts</span>(<span class="ident">dst</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">dst_len</span>) };
-            <span class="ident">out</span>.<span class="ident">push</span>(<span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">from_utf8</span>(<span class="ident">string_data</span>)<span class="question-mark">?</span>.<span class="ident">to_string</span>());
+        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
+            <span class="kw">let</span> <span class="ident">byte_slice</span> <span class="op">=</span> <span class="kw">unsafe</span> {
+                <span class="ident">slice</span>::<span class="ident">from_raw_parts</span>(
+                    <span class="ident">tf</span>::<span class="ident">TF_StringGetDataPointer</span>(<span class="kw-2">&amp;</span><span class="ident">tstrings</span>[<span class="ident">i</span>]) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+                    <span class="ident">tf</span>::<span class="ident">TF_StringGetSize</span>(<span class="kw-2">&amp;</span><span class="ident">tstrings</span>[<span class="ident">i</span>]),
+                )
+            };
+            <span class="ident">out</span>.<span class="ident">push</span>(<span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">from_utf8</span>(<span class="ident">byte_slice</span>)<span class="question-mark">?</span>.<span class="ident">to_string</span>());
         }
         <span class="prelude-val">Ok</span>(<span class="ident">out</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">packed_size</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-        <span class="kw">let</span> <span class="ident">string_data</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">data</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="kw">unsafe</span> { <span class="ident">tf</span>::<span class="ident">TF_StringEncodedSize</span>(<span class="ident">s</span>.<span class="ident">len</span>()) })
-            .<span class="ident">sum</span>();
-        <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="ident">string_data</span>
-    }
-
-    <span class="kw">fn</span> <span class="ident">pack</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>], <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offsets</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u64</span>] <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="ident">slice</span>::<span class="ident">from_raw_parts_mut</span>(<span class="ident">buffer</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>, <span class="ident">data</span>.<span class="ident">len</span>()) };
-        <span class="kw">let</span> <span class="ident">base_offset</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">data</span>.<span class="ident">len</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">base_offset</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">Status</span>::<span class="ident">new</span>();
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">data</span>.<span class="ident">len</span>() {
-            <span class="ident">offsets</span>[<span class="ident">i</span>] <span class="op">=</span> (<span class="ident">offset</span> <span class="op">-</span> <span class="ident">base_offset</span>) <span class="kw">as</span> <span class="ident">u64</span>;
-            <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">data</span>[<span class="ident">i</span>].<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
-            <span class="kw">let</span> <span class="ident">src_len</span> <span class="op">=</span> <span class="ident">data</span>[<span class="ident">i</span>].<span class="ident">len</span>();
-            <span class="kw">let</span> <span class="ident">dst</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buffer</span>[<span class="ident">offset</span>];
-            <span class="kw">let</span> <span class="ident">dst_len</span> <span class="op">=</span> <span class="ident">buffer</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">offset</span>;
-            <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="kw">unsafe</span> {
-                <span class="ident">tf</span>::<span class="ident">TF_StringEncode</span>(<span class="ident">src</span>, <span class="ident">src_len</span>, <span class="ident">dst</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>, <span class="ident">dst_len</span>, <span class="ident">status</span>.<span class="ident">inner</span>())
-            };
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">status</span>.<span class="ident">is_ok</span>() {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">status</span>);
+    <span class="kw">fn</span> <span class="ident">pack</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>], <span class="ident">dims</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Tensor</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">align</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">align_of</span>::<span class="op">&lt;</span><span class="ident">tf</span>::<span class="ident">TF_TString</span><span class="op">&gt;</span>();
+        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">tf</span>::<span class="ident">TF_TString</span><span class="op">&gt;</span>();
+        <span class="kw">let</span> <span class="ident">packed_size</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">size</span>;
+        <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span>
+                <span class="ident">alloc</span>::<span class="ident">alloc</span>(<span class="ident">alloc</span>::<span class="ident">Layout</span>::<span class="ident">from_size_align</span>(<span class="ident">size</span> <span class="op">*</span> <span class="ident">data</span>.<span class="ident">len</span>(), <span class="ident">align</span>).<span class="ident">unwrap</span>());
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">ptr</span>.<span class="ident">is_null</span>(), <span class="string">&quot;allocation failure&quot;</span>);
+            <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">tf</span>::<span class="ident">TF_NewTensor</span>(
+                <span class="ident">DataType</span>::<span class="ident">String</span>.<span class="ident">to_c</span>(),
+                <span class="ident">dims</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
+                <span class="ident">dims</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
+                <span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">std_c_void</span>,
+                <span class="ident">size</span> <span class="op">*</span> <span class="ident">data</span>.<span class="ident">len</span>(),
+                <span class="prelude-val">Some</span>(<span class="ident">string_deallocator</span>),
+                <span class="ident">ptr</span>::<span class="ident">null_mut</span>(),
+            );
+            <span class="kw">if</span> <span class="ident">inner</span>.<span class="ident">is_null</span>() {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Status</span>::<span class="ident">new_set_lossy</span>(
+                    <span class="kw">crate</span>::<span class="ident">Code</span>::<span class="ident">Internal</span>,
+                    <span class="string">&quot;TF_NewTensor returned null&quot;</span>,
+                ));
             }
-        }
-        <span class="prelude-val">Ok</span>(())
+            <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">slice</span>::<span class="ident">from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="ident">packed_size</span>);
+            <span class="kw">let</span> <span class="ident">tstrings</span> <span class="op">=</span>
+                <span class="ident">slice</span>::<span class="ident">from_raw_parts_mut</span>(<span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_TString</span>, <span class="ident">data</span>.<span class="ident">len</span>());
+            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">data</span>.<span class="ident">len</span>() {
+                <span class="ident">tf</span>::<span class="ident">TF_StringInit</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">tstrings</span>[<span class="ident">i</span>]);
+                <span class="ident">tf</span>::<span class="ident">TF_StringCopy</span>(
+                    <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">tstrings</span>[<span class="ident">i</span>],
+                    <span class="ident">data</span>[<span class="ident">i</span>].<span class="ident">as_bytes</span>().<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+                    <span class="ident">data</span>[<span class="ident">i</span>].<span class="ident">len</span>(),
+                );
+            }
+            <span class="ident">inner</span>
+        };
+        <span class="prelude-val">Ok</span>(<span class="ident">inner</span>)
     }
 }
 
@@ -3275,14 +3408,14 @@
     <span class="kw">fn</span> <span class="ident">data_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DataType</span>;
 }
 
-<span class="kw">impl</span> <span class="ident">AnyTensor</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyTensor</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">AnyTensor</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">AnyTensor</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">inner</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Tensor</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">borrowed</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AnyTensor</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">borrow</span>();
+        <span class="kw">let</span> <span class="ident">borrowed</span>: <span class="kw-2">&amp;</span><span class="ident">dyn</span> <span class="ident">AnyTensor</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">borrow</span>();
         <span class="ident">borrowed</span>.<span class="ident">inner</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">data_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DataType</span> {
-        <span class="kw">let</span> <span class="ident">borrowed</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AnyTensor</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">borrow</span>();
+        <span class="kw">let</span> <span class="ident">borrowed</span>: <span class="kw-2">&amp;</span><span class="ident">dyn</span> <span class="ident">AnyTensor</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">borrow</span>();
         <span class="ident">borrowed</span>.<span class="ident">data_type</span>()
     }
 }
@@ -3494,22 +3627,9 @@
 
     <span class="kw">fn</span> <span class="ident">as_mut_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dims</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Tensor</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inner</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">get</span>();
-
         <span class="kw">if</span> <span class="ident">inner</span>.<span class="ident">is_null</span>() {
             <span class="kw">let</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>] <span class="op">=</span> <span class="self">self</span>;
-            <span class="kw">let</span> <span class="ident">packed_size</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">packed_size</span>(<span class="ident">data</span>);
-            <span class="ident">inner</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">tf</span>::<span class="ident">TF_AllocateTensor</span>(
-                    <span class="ident">T</span>::<span class="ident">data_type</span>().<span class="ident">to_c</span>(),
-                    <span class="ident">dims</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
-                    <span class="ident">dims</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">packed_size</span>,
-                );
-                <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span>
-                    <span class="ident">slice</span>::<span class="ident">from_raw_parts_mut</span>(<span class="ident">tf</span>::<span class="ident">TF_TensorData</span>(<span class="ident">inner</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>, <span class="ident">packed_size</span>);
-                <span class="ident">T</span>::<span class="ident">pack</span>(<span class="ident">data</span>, <span class="ident">buf</span>)<span class="question-mark">?</span>;
-                <span class="ident">inner</span>
-            };
+            <span class="ident">inner</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">pack</span>(<span class="ident">data</span>, <span class="ident">dims</span>)<span class="question-mark">?</span>;
             <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">set</span>(<span class="ident">inner</span>);
         }
 
@@ -3764,6 +3884,20 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">TensorType</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: [<span class="ident">T</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+        <span class="ident">Tensor</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">TensorType</span>, <span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">T</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+        <span class="ident">Tensor</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ndarray&quot;</span>)]</span>
 <span class="doccomment">/// Convert any ndarray::ArrayBase type into a tensorflow::Tensor</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">S</span>, <span class="ident">D</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ArrayBase</span><span class="op">&lt;</span><span class="ident">S</span>, <span class="ident">D</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
@@ -3800,7 +3934,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span> <span class="op">+</span> <span class="ident">PartialEq</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">dims</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">dims</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">deref</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">deref</span>()
+        <span class="self">self</span>.<span class="ident">dims</span> <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">dims</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">deref</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">deref</span>()
     }
 }
 
@@ -3872,8 +4006,8 @@
                 (<span class="kw-2">*</span><span class="ident">heap_buf</span>).<span class="ident">length</span> <span class="op">=</span> <span class="ident">stack_buf</span>.<span class="ident">length</span>;
                 <span class="ident">Buffer</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>::<span class="ident">from_c</span>(<span class="ident">heap_buf</span>, <span class="bool-val">true</span>)
             };
-            <span class="kw">let</span> <span class="ident">op_proto</span>: <span class="ident">protos</span>::<span class="ident">op_def</span>::<span class="ident">OpList</span> <span class="op">=</span>
-                <span class="ident">protobuf</span>::<span class="ident">parse_from_bytes</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="ident">op_proto</span>: <span class="ident">protos</span>::<span class="ident">op_def</span>::<span class="ident">OpList</span> <span class="op">=</span> <span class="ident">protobuf</span>::<span class="ident">Message</span>::<span class="ident">parse_from_bytes</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>)
+                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
                     <span class="ident">Status</span>::<span class="ident">new_set_lossy</span>(
                         <span class="ident">Code</span>::<span class="ident">InvalidArgument</span>,
                         <span class="kw-2">&amp;</span><span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid serialized OpList: {}&quot;</span>, <span class="ident">e</span>),
@@ -4377,14 +4511,78 @@
     };
 }
 
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">0</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">1</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">2</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">3</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">4</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">5</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">6</span>);
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">not</span>(<span class="ident">since</span>(<span class="number">1.51</span>))]</span>
 <span class="macro">shape_from_array</span><span class="macro">!</span>(<span class="number">7</span>);
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">i32</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: [<span class="ident">i32</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">u32</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: [<span class="ident">u32</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">i64</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: [<span class="ident">i64</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">u64</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: [<span class="ident">u64</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">i32</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">i32</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u32</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">i64</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">i64</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
+
+<span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="ident">N</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="ident">N</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shape</span> {
+        <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>[..])
+    }
+}
 
 <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
     <span class="kw">fn</span> <span class="ident">into</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
@@ -4561,16 +4759,16 @@
         <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">SessionOptions</span>::<span class="ident">new</span>();
         <span class="kw">let</span> <span class="ident">session</span> <span class="op">=</span> <span class="ident">Session</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="ident">options</span>, <span class="kw-2">&amp;</span><span class="ident">g</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span>[<span class="number">2</span>]);
-        <span class="ident">x</span>[<span class="number">0</span>] <span class="op">=</span> <span class="string">&quot;foo&quot;</span>.<span class="ident">to_string</span>();
-        <span class="ident">x</span>[<span class="number">1</span>] <span class="op">=</span> <span class="string">&quot;bar&quot;</span>.<span class="ident">to_string</span>();
+        <span class="ident">x</span>[<span class="number">0</span>] <span class="op">=</span> <span class="string">&quot;This is a long string.&quot;</span>.<span class="ident">to_string</span>();
+        <span class="ident">x</span>[<span class="number">1</span>] <span class="op">=</span> <span class="string">&quot;This is another long string.&quot;</span>.<span class="ident">to_string</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">step</span> <span class="op">=</span> <span class="ident">SessionRunArgs</span>::<span class="ident">new</span>();
         <span class="ident">step</span>.<span class="ident">add_feed</span>(<span class="kw-2">&amp;</span><span class="ident">x_op</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">x</span>);
         <span class="kw">let</span> <span class="ident">output_ix</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">request_fetch</span>(<span class="kw-2">&amp;</span><span class="ident">y_op</span>, <span class="number">0</span>);
         <span class="ident">session</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">step</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">output_tensor</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">fetch</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>(<span class="ident">output_ix</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>.<span class="ident">len</span>(), <span class="number">2</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>[<span class="number">0</span>], <span class="string">&quot;Zm9v&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>[<span class="number">1</span>], <span class="string">&quot;YmFy&quot;</span>);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>[<span class="number">0</span>], <span class="string">&quot;VGhpcyBpcyBhIGxvbmcgc3RyaW5nLg&quot;</span>);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>[<span class="number">1</span>], <span class="string">&quot;VGhpcyBpcyBhbm90aGVyIGxvbmcgc3RyaW5nLg&quot;</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -4589,6 +4787,20 @@
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">a</span>, <span class="ident">b</span>);
         <span class="macro">assert_ne</span><span class="macro">!</span>(<span class="ident">a</span>, <span class="ident">c</span>);
         <span class="macro">assert_ne</span><span class="macro">!</span>(<span class="ident">a</span>, <span class="ident">d</span>);
+    }
+
+    <span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">tensor_from_array</span>() {
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">Tensor</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>::<span class="ident">from</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x</span>.<span class="ident">as_ref</span>(), <span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
+    }
+
+    <span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">tensor_from_array_ref</span>() {
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">Tensor</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x</span>.<span class="ident">as_ref</span>(), <span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -4658,7 +4870,8 @@
         <span class="comment">// This test is not yet implemented for Windows</span>
         <span class="kw">let</span> <span class="ident">check_path</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">std</span>::<span class="ident">env</span>::<span class="ident">consts</span>::<span class="ident">OS</span> {
             <span class="string">&quot;linux&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;test_resources/library/linux/test_op.so&quot;</span>),
-            <span class="string">&quot;macos&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;test_resources/library/macos/test_op.so&quot;</span>),
+            <span class="comment">// TODO: The test op needs to be recompiled for macos.</span>
+            <span class="comment">// &quot;macos&quot; =&gt; Some(&quot;test_resources/library/macos/test_op.so&quot;),</span>
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         };
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">path</span>) <span class="op">=</span> <span class="ident">check_path</span> {
@@ -4690,6 +4903,24 @@
     <span class="kw">fn</span> <span class="ident">shape_from_array1_ref</span>() {
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>]), <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>][..]));
     }
+
+    <span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">shape_from_array8</span>() {
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">Shape</span>::<span class="ident">from</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]),
+            <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>][..])
+        );
+    }
+
+    <span class="attribute">#[<span class="ident">rustversion</span>::<span class="ident">since</span>(<span class="number">1.51</span>)]</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">shape_from_array8_ref</span>() {
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]),
+            <span class="ident">Shape</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>][..])
+        );
+    }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "tensorflow";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "tensorflow";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
